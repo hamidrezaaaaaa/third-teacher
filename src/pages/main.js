@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo/logo.png";
 
 const Main = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <span></span>
       <SelectMode>
         <Content>
-          <p className="schools">مدارس</p>
-          <p className="philosophy">فلسفه</p>
+          <p
+            className="schools"
+            onClick={() => {
+              navigate("/home/schools");
+            }}
+          >
+            مدارس
+          </p>
+          <p
+            className="philosophy"
+            onClick={() => {
+              navigate("/home/philosophy");
+            }}
+          >
+            فلسفه
+          </p>
         </Content>
       </SelectMode>
     </Container>
