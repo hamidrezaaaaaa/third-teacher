@@ -5,12 +5,14 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import Main from "./pages/main";
 import Home from "./pages/home";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <Navbar/>
         <Router>
           <Routes>
             <Route exact path="/" element={<Main />} />
