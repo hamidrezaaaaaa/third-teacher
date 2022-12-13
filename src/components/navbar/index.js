@@ -159,13 +159,16 @@ const Item = styled.li`
       flex-direction: column;
       background: #ffffff;
       padding: 1.042vw;
-      gap: 0.694vw;
+      gap: 1.042vw;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       // top:30px;
       li {
         color: ${(props) => props.theme.textColor[0]};
         white-space: nowrap;
         text-align: center;
+        &:hover{
+          color: ${(props) => props.theme.textColor[3]};
+        }
       }
     }
   }
