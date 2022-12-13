@@ -1,0 +1,26 @@
+{
+  "navbar": [
+    {
+      "section": "صفحه اصلی",
+      "path": "/"
+    },
+    {
+      "section":" درباره معلم سوم",
+      "path":"/about",
+      "dropDown":[
+        {"title":"اعضای گروه" , "path":"/about/team"},
+        {"title":"معلم سوم" ,"path":"/about"},
+        {"title":"مکعب سبز خلاق" , "path":"about/green-squad"}
+      ]
+    },
+    {
+      "section":"ورود/ثبت نام",
+      "path":"/log-in",
+      "dropDown":[
+        {"title":"ورود" ,"path":"/log-in"},
+        {"title":"ثبت نام ","path":"/sign-in"}
+      ]
+    }
+
+  ]
+}

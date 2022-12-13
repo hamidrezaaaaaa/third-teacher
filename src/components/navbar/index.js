@@ -4,9 +4,44 @@ import instagram from "../../assets/icon/instagram.png";
 import whatsapp from "../../assets/icon/instagram.png";
 import logo from "../../assets/logo/logo.png";
 import search from "../../assets/icon/search.png";
+import data from "../../data/navbar.json";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [select, setSelect] = useState(1);
+  const [select, setSelect] = useState(0);
+  const navigate = useNavigate();
+
+  const menuItem = data.navbar.map((x, i) => {
+    return (
+      <Item
+        key={i}
+        onClick={() => {
+          setSelect(i);
+          navigate(x.path);
+        }}
+        className={select == i ? "active" : ""}
+      >
+        {x.section}
+        {x.dropDown && (
+          <ul className="drop-down">
+            {x.dropDown.map((z, i) => {
+              return (
+                <li
+                  key={i}
+                  onClick={() => {
+                    navigate(z.path);
+                  }}
+                >
+                  {z.title}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </Item>
+    );
+  });
+
   return (
     <Container>
       <SocialNetwork>
@@ -16,42 +51,7 @@ const Navbar = () => {
 
       <Logo />
 
-      <Items>
-        <Item
-          onClick={() => {
-            setSelect(1);
-          }}
-          className={select == 1 ? "active" : ""}
-        >
-          صفحه اصلی
-        </Item>
-        <Item
-          onClick={() => {
-            setSelect(2);
-          }}
-          className={select == 2 ? "active" : ""}
-        >
-          درباره معلم سوم
-          <ul className="drop-down">
-            <li>اعضای گروه</li>
-            <li>معلم سوم</li>
-            <li>مکعب سبز خلاق</li>
-          </ul>
-        </Item>
-
-        <Item
-          onClick={() => {
-            setSelect(3);
-          }}
-          className={select == 3 ? "active" : ""}
-        >
-          ورود/ثبت نام
-          <ul className="drop-down">
-            <li> ورود</li>
-            <li>ثبت نام </li>
-          </ul>
-        </Item>
-      </Items>
+      <Items>{menuItem}</Items>
 
       <Search>
         <input type="text" placeholder="جستجو" />
@@ -166,7 +166,7 @@ const Item = styled.li`
         color: ${(props) => props.theme.textColor[0]};
         white-space: nowrap;
         text-align: center;
-        &:hover{
+        &:hover {
           color: ${(props) => props.theme.textColor[3]};
         }
       }
