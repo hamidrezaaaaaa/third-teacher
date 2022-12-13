@@ -8,6 +8,8 @@ const Home = () => {
  
   return (
     <Container>
+
+      
       <Swap>
         <p className={title == "philosophy" ? "text active" : "text"}>فلاسفه</p>
         <p className={title == "schools" ? "text active" : "text"}>مدارس</p>
