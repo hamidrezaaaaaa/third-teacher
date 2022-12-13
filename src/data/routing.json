@@ -1,0 +1,8 @@
+{
+  "routing": [
+    { "title": "پژوهش", "path": "/Research" },
+    { "title": "مسابقات", "path": "/Competition" },
+    { "title": "آموزش", "path": "/Education" },
+    { "title": "کتاب ها", "path": "/Book" }
+  ]
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Control from "../components/control";
 
 const Home = () => {
   const { title } = useParams();
@@ -9,7 +10,7 @@ const Home = () => {
   return (
     <Container>
 
-      
+      <Control/>
       <Swap>
         <p className={title == "philosophy" ? "text active" : "text"}>فلاسفه</p>
         <p className={title == "schools" ? "text active" : "text"}>مدارس</p>
