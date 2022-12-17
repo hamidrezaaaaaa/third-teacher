@@ -6,7 +6,6 @@ import theme from "./styles/theme";
 import Main from "./pages/main";
 import Home from "./pages/home";
 import { Layout } from "./components/layout";
-import Navbar from "./components/navbar";
 
 function App() {
   return (

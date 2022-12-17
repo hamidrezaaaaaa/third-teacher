@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Carousel from "../components/carousel";
 import Control from "../components/control";
 
 const Home = () => {
@@ -9,7 +10,7 @@ const Home = () => {
  
   return (
     <Container>
-
+      <Carousel/>
       <Control/>
       <Swap>
         <p className={title == "philosophy" ? "text active" : "text"}>فلاسفه</p>
@@ -22,7 +23,8 @@ const Home = () => {
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  height:84vh;
 `;
 
 const Swap = styled.div`
