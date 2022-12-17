@@ -6,6 +6,8 @@ import theme from "./styles/theme";
 import Main from "./pages/main";
 import Home from "./pages/home";
 import { Layout } from "./components/layout";
+import Books from "./pages/book";
+import PreviewBook from "./components/books/previewBook";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Main />} />
               <Route path="/home/:title" element={<Home />} />
+              <Route path="/Book" element={<Books />} />
+              <Route path="/Book/:title" element={<PreviewBook/>} />
             </Routes>
           </Layout>
         </Router>
