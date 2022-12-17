@@ -1,26 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const Research = () => {
+const Competition = () => {
   return (
     <Container>
-      <Title>پژوهش</Title>
+      <Title>مسابقات</Title>
       <Gallery>
-        <Item>
-          <p className="text"></p>
-        </Item>
-        <Item>
-          <p className="text"></p>
-        </Item>
-        <Item>
-          <p className="text"></p>
-        </Item>
-        <Item>
-          <p className="text"></p>
-        </Item>
-        <Item>
-          <p className="text"></p>
-        </Item>
+        <Item><p className="text">مسابقه مدرسه نور</p></Item>
+        <Item><p className="text">مسابقه مدرسه نور</p></Item>
+        <Item><p className="text">مسابقه مدرسه نور</p></Item>
+        <Item><p className="text">مسابقه مدرسه نور</p></Item>
+        <Item><p className="text">مسابقه مدرسه نور</p></Item>
       </Gallery>
     </Container>
   );
@@ -62,15 +52,16 @@ const Gallery = styled.div`
 
 const Item = styled.div`
   width: 100%;
-  padding: 1.042vw;
+  padding:0.4vw  1.042vw;
   border: 3px solid #fe9900;
-  .text {
-    margin: 0;
-    padding: 0;
-    font-size: 1.736vw;
-    font-weight: 400;
-    color: ${(props) => props.theme.textColor[1]};
+  cursor:pointer;
+  .text{
+    margin:0;
+    padding:0;
+    font-size:1.736vw;
+    font-weight:400;
+    color:${props=>props.theme.textColor[1]};
   }
 `;
 
-export default Research;
+export default Competition;
