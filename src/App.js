@@ -13,6 +13,8 @@ import Competition from "./pages/competition";
 import Education from "./pages/education";
 import PreviewEducation from "./components/education/previewEducation";
 import About from "./pages/about";
+import Team from "./components/about/team";
+import GreenSquad from "./components/about/greenSquad";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
               <Route path="/Education" element={<Education/>} />
               <Route path="/Education/:id" element={<PreviewEducation/>} />
               <Route path="/about" element={<About/>} />
+              <Route path="/about/team" element={<Team/>}/>
+              <Route path="/about/green-squad" element={<GreenSquad/>}/>
 
             </Routes>
           </Layout>

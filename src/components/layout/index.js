@@ -12,7 +12,7 @@ export function Layout({ children }) {
     <>
       {!IsMainPage && <Navbar />}
 
-      <main style={{overflow:'hidden'}}>{children}</main>
+      <main >{children}</main>
     </>
   );
 }

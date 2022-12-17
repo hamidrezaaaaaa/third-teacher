@@ -43,12 +43,12 @@ const Content = styled.div`
       content: "";
       display: inline-flex;
       width: 100%;
-      height: 5px;
+      height: 3px;
       background: ${(props) => props.theme.background[1]};
     }
   }
   .content {
-    border: 2px solid #ffcf87;
+    border: 3px solid #ffcf87;
     padding: 2vw;
 
     .text,
