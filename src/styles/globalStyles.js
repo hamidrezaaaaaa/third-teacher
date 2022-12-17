@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     // height:90vh;
-    overflow:hidden;
+    overflow-x:hidden;
     font-family: Open-Sans, Helvetica, Sans-Serif;
 
   }

@@ -11,6 +11,7 @@ const Books = () => {
         bookCover={item.img}
         bookName={item.name}
         writer={item.writer}
+        id={item.id}
       />
     );
   });

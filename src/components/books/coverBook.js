@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import back from "../../assets/pic/cover.png";
 
-const CoverBook = ({ bookCover, bookName, writer }) => {
+const CoverBook = ({ bookCover, bookName, writer ,id}) => {
     const navigate =useNavigate();
   return (
-    <Container onClick={()=>{navigate(`${bookName}`)}}>
+    <Container onClick={()=>{navigate(`${id}`)}}>
       <Cover>
         <img src={bookCover} alt={bookName} />
       </Cover>
