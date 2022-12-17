@@ -13,15 +13,17 @@ const Navbar = () => {
 
   const menuItem = data.navbar.map((x, i) => {
     return (
-      <Item
-        key={i}
-        onClick={() => {
-          setSelect(i);
-          navigate(x.path);
-        }}
-        className={select == i ? "active" : ""}
-      >
-        {x.section}
+      <Wraper>
+        <Item
+          key={i}
+          onClick={() => {
+            setSelect(i);
+            navigate(x.path);
+          }}
+          className={select == i ? "active" : ""}
+        >
+          {x.section}
+        </Item>
         {x.dropDown && (
           <ul className="drop-down">
             {x.dropDown.map((z, i) => {
@@ -38,7 +40,7 @@ const Navbar = () => {
             })}
           </ul>
         )}
-      </Item>
+      </Wraper>
     );
   });
 
@@ -125,6 +127,37 @@ const Items = styled.ul`
   padding-right: 3.472vw;
 `;
 
+const Wraper = styled.div`
+  .drop-down {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    z-index: 100;
+  }
+  &:hover {
+    .drop-down {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      padding: 1.042vw;
+      gap: 1.042vw;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      // top:30px;
+      li {
+        color: ${(props) => props.theme.textColor[0]};
+        white-space: nowrap;
+        text-align: center;
+        cursor:pointer;
+        &:hover {
+          color: ${(props) => props.theme.textColor[3]};
+        }
+      }
+    }
+  }
+`;
+
 const Item = styled.li`
   margin: 0;
   padding: 0;
@@ -145,32 +178,9 @@ const Item = styled.li`
       background: ${(props) => props.theme.background[1]};
     }
   }
-  .drop-down {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: none;
-  }
+
   &:hover {
     color: ${(props) => props.theme.textColor[3]};
-    .drop-down {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
-      padding: 1.042vw;
-      gap: 1.042vw;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      // top:30px;
-      li {
-        color: ${(props) => props.theme.textColor[0]};
-        white-space: nowrap;
-        text-align: center;
-        &:hover {
-          color: ${(props) => props.theme.textColor[3]};
-        }
-      }
-    }
   }
 `;
 
