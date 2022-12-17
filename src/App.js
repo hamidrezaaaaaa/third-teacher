@@ -12,6 +12,7 @@ import Research from "./pages/research";
 import Competition from "./pages/competition";
 import Education from "./pages/education";
 import PreviewEducation from "./components/education/previewEducation";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
               <Route path="/Competition" element={<Competition/>} />
               <Route path="/Education" element={<Education/>} />
               <Route path="/Education/:id" element={<PreviewEducation/>} />
+              <Route path="/about" element={<About/>} />
+
             </Routes>
           </Layout>
         </Router>

@@ -90,8 +90,8 @@ const SocialNetwork = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 5.556vw;
-  height: 5.556vw;
+  width: 5vw;
+  height: 5vw;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(${logo});
@@ -107,7 +107,7 @@ const Search = styled.div`
     font-size: 1.736vw;
     font-weight: 400;
     padding: 5px;
-    width: 27.778vw;
+    width: 22vw;
   }
   span {
     width: 2.569vw;
@@ -123,8 +123,8 @@ const Items = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 2.222vw;
-  padding-right: 3.472vw;
+  gap: 2vw;
+  padding-right: 2vw;
 `;
 
 const Wraper = styled.div`
@@ -163,7 +163,7 @@ const Item = styled.li`
   padding: 0;
   color: ${(props) => props.theme.textColor[1]};
   font-weight: 300;
-  font-size: 1.736vw;
+  font-size: 1.4vw;
   cursor: pointer;
   position: relative;
   &.active {
