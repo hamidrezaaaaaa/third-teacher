@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { logInSchema } from "../schema";
 import styled from "styled-components";
 import SideBar from "../components/sidebar";
 
@@ -6,14 +8,54 @@ const LogIn = () => {
   const navigate = useNavigate();
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
+
+  const onSubmit = async () => {
+    navigate("/dashboard");
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      userName: "",
+      password: "",
+    },
+    validationSchema: logInSchema,
+    onSubmit,
+  });
+
+  console.log(values);
+
   return (
     <Container>
       <Content>
         <Wraper>
-          <form>
-            <input placeholder="نام کاربری یا آدرس ایمیل" />
-            <input placeholder="گذرواژه" />
-            <button>ورود</button>
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <input
+              placeholder="نام کاربری یا آدرس ایمیل"
+              id="userName"
+              value={values.userName}
+              onChange={handleChange}
+            />
+            {errors.userName && touched.userName && (
+              <ErrorText>{errors.userName}</ErrorText>
+            )}
+            <input
+              placeholder="گذرواژه"
+              id="password"
+              value={values.usepasswordrName}
+              onChange={handleChange}
+            />
+            {errors.password && touched.password && (
+              <ErrorText>{errors.password}</ErrorText>
+            )}
+            <button type="submit">ورود</button>
           </form>
           <ForgetPass>گذرواژه خود را فراموش کرده‌اید؟</ForgetPass>
           <Link
@@ -100,5 +142,15 @@ const ForgetPass = styled.p`
 `;
 const Link = styled(ForgetPass)`
   margin-top: 1vw;
+`;
+
+const ErrorText = styled.p`
+  color: #fc8181;
+  font-size: 1rem;
+  width: 100%;
+  text-align: right;
+  margin: 0;
+  margin-right: 2%;
+  margin-top: -2%;
 `;
 export default LogIn;
