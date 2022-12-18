@@ -16,6 +16,7 @@ import About from "./pages/about";
 import Team from "./components/about/team";
 import GreenSquad from "./components/about/greenSquad";
 import LogIn from "./pages/logIn";
+import SignIn from "./pages/signIn";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
               <Route path="/about/team" element={<Team/>}/>
               <Route path="/about/green-squad" element={<GreenSquad/>}/>
               <Route path="/log-in" element={<LogIn/>}/>
-
+              <Route path="/sign-in" element={<SignIn/>}/>
 
             </Routes>
           </Layout>
