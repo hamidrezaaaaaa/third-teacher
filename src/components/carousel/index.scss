@@ -1,0 +1,149 @@
+.alan{
+    background-color: red;
+    // width: 23.7% !important;
+    transform: scale(1.6);
+    //  width: 35% !important; 
+    //  transition-duration: .9s;
+    // width: 535px !important;
+    // width: 30% !important;
+    transition: transform .5s;
+    // transform: scaleX(1.5);
+    // padding: 20px;
+    // border:10px solid red;
+    // margin: 0 60px 0 60px;
+    .kos{
+        transform: scaleY(1);
+        margin-top: 50px;
+    }
+}
+.badi{
+    // width: 200px !important;
+    background-color: rgb(0, 204, 255);
+    // width: 20% !important;
+    // width: 17.5% !important; 
+    transform: translateX(-62px) scaleX(.8);
+    // width: 15.3% !important;
+    transition: width .5s;
+    .title{
+        font-size: 1.5rem;
+    }
+    .kos{
+        transform: scaleY(0.8);
+    }
+}
+
+.ghabli{
+    // width: 200px !important;
+    // width: 20% !important;
+    background-color: rgb(0, 204, 255);
+    // width: 17.5% !important; 
+    
+    transform:  translateX(62px) scaleX(.8);
+    // width: 15.3% !important;
+    transition: width .5s;
+    .title{
+        font-size: 1.5rem;
+    }
+    .kos{
+        transform: scaleY(0.8);
+    }
+}
+
+
+.badi2{
+    // width: 100px !important;
+    // width: 10% !important;
+    background-color: rgb(162, 255, 0);
+    transform:translateX(-42px)  scaleX(0.45);
+    // width: 10% !important; 
+    transition: transform .5s;
+    // width: 9.6% !important;
+    .title{
+        font-size: 1rem;
+    }
+    .kos{
+        transform: scaleY(0.45);
+    }
+}
+
+.ghabli2{
+    // width: 100px !important;
+    // width: 10% !important;
+
+    background-color: rgb(162, 255, 0);
+    transform:translateX(42px)  scaleX(0.45);
+    transition: width .5s;
+    // width: 10% !important; 
+    // width: 9.6% !important;
+    .title{
+        font-size: 1rem;
+    }
+    .kos{
+        transform: scaleY(0.45);
+    }
+}
+.badi3{
+    
+    // transform: translateX(22px);
+    transform:   translateX(10px) scaleX(0.3);
+    transition: transform .5s;
+    // width: 5% !important; 
+    // width: 50px !important;
+    // width: 5% !important;
+    background-color: rgb(115, 0, 255);
+    // width: 6.6% !important;
+    .title{
+        font-size: .75rem;
+    }
+    .kos{
+        transform: scaleY(0.3);
+    }
+}
+
+.ghabli3{
+    // width: 50px !important;
+    // width: 5% !important;
+
+    // transform: translateX(22px);
+    transform: translateX(-10px)   scaleX(0.3);
+    // width: 5% !important; 
+    transition: transform .5s;
+    background-color: rgb(115, 0, 255);
+    // width: 6.6% !important;
+    .title{
+        font-size: .75rem;
+    }
+    .kos{
+        transform: scaleY(0.3);
+    }
+}
+
+
+
+
+.hich{
+    // transform: scaleX(0.5);
+    //  width: 5% !important; 
+    // width: 25px !important;
+    transition: width .5s;
+    //  display: none;
+     title{
+        // font-size: .75rem;
+    }
+}
+/* .ghabli{
+    background-color: rgb(0, 204, 255);
+    width: 15.3% !important;
+
+} */
+
+/* .ghabli2{
+    background-color: rgb(162, 255, 0);
+    width: 5.5% !important;
+    
+} */
+/* .ghabli3{
+    background-color: rgb(115, 0, 255);
+    width: 3.6% !important;
+    
+} */
