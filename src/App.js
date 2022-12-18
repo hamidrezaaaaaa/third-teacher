@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import GlobalStyle from "./styles/globalStyles";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+import Main from "./pages/main";
+import Home from "./pages/home";
+import { Layout } from "./components/layout";
+import Books from "./pages/book";
+import PreviewBook from "./components/books/previewBook";
+import Research from "./pages/research";
+import Competition from "./pages/competition";
+import Education from "./pages/education";
+import PreviewEducation from "./components/education/previewEducation";
+import About from "./pages/about";
+import Team from "./components/about/team";
+import GreenSquad from "./components/about/greenSquad";
+import LogIn from "./pages/logIn";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+
+        <Router>
+          <Layout>
+            <Routes>
+              <Route exact path="/" element={<Main />} />
+              <Route path="/home/:title" element={<Home />} />
+              <Route path="/Book" element={<Books />} />
+              <Route path="/Book/:id" element={<PreviewBook/>} />
+              <Route path="/Research" element={<Research/>} />
+              <Route path="/Competition" element={<Competition/>} />
+              <Route path="/Education" element={<Education/>} />
+              <Route path="/Education/:id" element={<PreviewEducation/>} />
+              <Route path="/about" element={<About/>} />
+              <Route path="/about/team" element={<Team/>}/>
+              <Route path="/about/green-squad" element={<GreenSquad/>}/>
+              <Route path="/log-in" element={<LogIn/>}/>
+
+
+            </Routes>
+          </Layout>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
