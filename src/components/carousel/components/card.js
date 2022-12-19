@@ -2,15 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import back from "../../../assets/pic/cover.png";
 
-const Card =({img,title,expand,index})=>{
+const Card =({img,title,expand})=>{
     return(
         <Container>
-          <Image className="kos">
+          <Image className="imageincarousel">
             <img src={img} alt="philosophy"/>
-            {/* <div className="curtain"></div> */}
+            <div className="curtain"></div>
           </Image>
           <Title className="title">
-            {index}
             {title}
           </Title>
         </Container>
