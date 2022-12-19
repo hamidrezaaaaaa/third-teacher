@@ -5,11 +5,11 @@ import back from "../../../assets/pic/cover.png";
 const Card =({img,title,expand})=>{
     return(
         <Container>
-          <Image>
+          <Image className="imageincarousel">
             <img src={img} alt="philosophy"/>
             <div className="curtain"></div>
           </Image>
-          <Title>
+          <Title className="title">
             {title}
           </Title>
         </Container>
@@ -18,25 +18,31 @@ const Card =({img,title,expand})=>{
 
 const Container =styled.div`
 display:flex;
+width:100%;
 flex-direction:column;
+// border:2px solid red;
+height:100%;
+height:300px !important;
 align-items:center;
 justify-content:center;
 background:${props=>props.theme.background[0]};
 padding:0.764vw 0 3.125vw;
-max-width:13.889vw;
-min-width:13.889vw;
-min-height:21.528vw;
+// max-width:13.889vw;
+// min-width:13.889vw;
+// min-height:21.528vw;
 `
 
 const Image =styled.div`
-  // width:100%;
+  width:80%;
   //  height:100%;
   background:${props=>props.theme.background[2]};
   border-radius:100%;
   margin:0 1vw 2.083vw;
   position:relative;
   z-index:10;
+  // border:4px solid white;
   &:before{
+    // border:2px solid white;
     content:'';
     display:block;
     position: absolute;
@@ -45,12 +51,18 @@ const Image =styled.div`
     background-image: url(${back});
     background-size: contain;
     background-repeat: no-repeat;
-    top: -20px;
-    right: 20px;
+    // right: 20px;
+    // top: -20px;
+    left:-11%;
+    top:-11%;
     z-index:-1;
   }
   img{
+    // max-width:120px;
+    // max-height:120px;
+    // height:320px;
     width:100%;
+    // border:4px solid red;
     height:auto;
     object-fit:contain;
     transform: translate(-1px, 13px);
