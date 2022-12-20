@@ -2,52 +2,44 @@ import React, { useRef, useState,useEffect } from "react";
 import styled from "styled-components";
 import Card from "./components/card";
 import zar from "../../assets/pic/zartosht.png";
-import carouselData from "../../data/carousel.json";
+import carouselData from "../../data/Philosophers.js";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay,EffectCoverflow, Pagination, Navigation } from "swiper";
-import PropTypes from "prop-types";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
-
 const Carousel = () => {
   const navigate = useNavigate();
   let [sequence, setSequence] = useState([])
-let [main,setMain] = useState()
-let [showModule,setShowModule] = useState(false)
-  console.log(carouselData)
+  let [main,setMain] = useState()
+  let [showModule,setShowModule] = useState(false)
   const modal = useRef(null);
   useOutsideAlerter(modal);
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
+
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           setShowModule(false)
-          // alert("You clicked outside of me!");
         }
       }
       
       // Bind the event listener
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        // Unbind the event listener on clean up
         document.removeEventListener("mousedown", handleClickOutside);
-        
       };
     }, [ref]);
   }
   
   return (
     <Container>
-      <Arrow className="PrevSlide" onClick={() => {setShowModule(false)}}>
+      <Arrow className="PrevSlide" >
         <span></span>
         <span></span>
         <span></span>
@@ -122,7 +114,7 @@ let [showModule,setShowModule] = useState(false)
     {carouselData.map((i,index) =>{
       
 return (
-      <SwiperSlide onClick={() => {setShowModule(true); setMain(index)}} className={sequence[0] == index ? "next3" :sequence[1] == index ? "next2" : sequence[2] == index ? 'next1' : sequence[3] == index ? "now" : sequence[4] == index ? "before1" : sequence[5] == index ? "before2" : sequence[6] == index ? "before3" : "none"}
+      <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequence[0] == index ? "next3" :sequence[1] == index ? "next2" : sequence[2] == index ? 'next1' : sequence[3] == index ? "now" : sequence[4] == index ? "before1" : sequence[5] == index ? "before2" : sequence[6] == index ? "before3" : "none"}
        >
           <Card img={zar} title={carouselData[index].Philosopher} />
           
@@ -131,23 +123,21 @@ return (
       )
     })}
     </Swiper>
+
     {
       showModule &&
       <Module className="tooltip" ref={modal}>
-        {/* Start of border top */}
-        <div style={{marginTop:"-4.8%",borderTop:"2.9px solid #fe9900",display:"flex",width:"25%",justifyContent:"space-between"}}>
-        </div>
-        {/* End of border top */}
-          <span style={{fontSize:"1.5rem", marginTop:"-4.5%",textAlign:'center',color:"#4f594e"}}>{carouselData[main].Philosopher}</span>
-          <span style={{padding:"15px 5px", color:"#a58463"}}>
-            {carouselData[main].info}
-          </span>
+          <BorderTop/>
+          <Philosopher>{carouselData[main].Philosopher}</Philosopher>
+          <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
+        
         <BottomLinks>
             <CloseButton onClick={() => {setShowModule(false)}}>بستن</CloseButton>
-            <More onClick={() => {setShowModule(false)
-              navigate(`${carouselData.carousel[main].id}`);
+            <More onClick={() => {
+              navigate(`${carouselData[main].id + 1}`);
             }}>ادامه</More>
         </BottomLinks>
+
        </Module>
     }
 <Arrow className="NextSlide" >
@@ -158,10 +148,27 @@ return (
     </Container>
   );
 
-  // OutsideAlerter.propTypes = {
-  //   children: PropTypes.element.isRequired
-  // };
 };
+
+const ShortInfo =styled.span`
+padding:15px 5px; 
+color:#a58463
+`
+
+const Philosopher =styled.span`
+font-size:1.5rem; 
+margin-top:-4.5% ; 
+text-align:center;
+color:#4f594e;
+`
+
+const BorderTop =styled.div`
+margin-top:-23px;
+border-top:2.9px solid #fe9900 ;
+display:flex; width:25%;
+justify-content:space-between
+`
+
 
 const BottomLinks =styled.div`
 display:flex;
@@ -172,11 +179,8 @@ justify-content:space-between;
 `
 
 const CloseButton =styled.div`
-
-// opacity:0;
 `
 const More =styled.div`
-// opacity:0;
 `
 
 const Module =styled.div`
@@ -193,10 +197,7 @@ width:34.5vw;
 padding:20px 10px;
 background-color:white;
 border:3px solid #4f594e;
-
-
 border-radius:7.5px;
-
 z-index:10;
 `
 
@@ -222,22 +223,14 @@ position:relative;
     transform: scale(0.6);
       margin-top:-20px;
     }
-    // .tooltip{
-    //   // display:block;
-    //   margin-top:-300px;
-    //   // background-color:blue
-    // }
-    // :hover > .tooltip{
-    //   display:block;
-    // }
 }
+
 .next1{
   position:relative;
     transform: translateX(-62px) scaleX(.8);
     transition: transform .5s;
     .title{
       display:none;
-
         font-size: 1.5rem;
     }
     .imageincarousel{
@@ -251,12 +244,10 @@ position:relative;
     .title{
         font-size: 1.5rem;
       display:none;
-
     }
     .imageincarousel{
         transform: scaleY(0.8);
     }
-
 }
 
 .next2{
