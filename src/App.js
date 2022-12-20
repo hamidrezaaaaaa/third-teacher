@@ -16,6 +16,7 @@ import About from "./pages/about";
 import Team from "./components/about/team";
 import GreenSquad from "./components/about/greenSquad";
 import LogIn from "./pages/logIn";
+import Philosopher from "./components/philosopher/Philosopher";
 import SignIn from "./pages/signIn";
 import Dashboard from "./pages/dashboard";
 
@@ -30,6 +31,8 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Main />} />
               <Route path="/home/:title" element={<Home />} />
+              <Route path="/home/schools/:id" element={<Philosopher/>} />
+              <Route path="/home/philosophy/:id" element={<Philosopher/>} />
               <Route path="/Book" element={<Books />} />
               <Route path="/Book/:id" element={<PreviewBook />} />
               <Route path="/Research" element={<Research />} />

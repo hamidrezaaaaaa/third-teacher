@@ -16,17 +16,18 @@ const Card =({img,title,expand})=>{
     )
 }
 
+
 const Container =styled.div`
 display:flex;
 width:100%;
 flex-direction:column;
-// border:2px solid red;
 height:100%;
-height:300px !important;
+height:250px !important;
 align-items:center;
 justify-content:center;
 background:${props=>props.theme.background[0]};
 padding:0.764vw 0 3.125vw;
+position:relative;
 // max-width:13.889vw;
 // min-width:13.889vw;
 // min-height:21.528vw;
@@ -39,8 +40,8 @@ const Image =styled.div`
   border-radius:100%;
   margin:0 1vw 2.083vw;
   position:relative;
-  z-index:10;
-  // border:4px solid white;
+  // z-index:10;
+  z-index:0;
   &:before{
     // border:2px solid white;
     content:'';
@@ -73,7 +74,6 @@ const Title=styled.h2`
   margin:0;
   font-size:2.569vw;
   font-weight:500;
- 
   color:${props=>props.theme.textColor[1]};
 `
 

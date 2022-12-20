@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Carousel from "../components/carousel";
@@ -6,7 +6,6 @@ import Control from "../components/control";
 
 const Home = () => {
   const { title } = useParams();
-
  
   return (
     <Container>
