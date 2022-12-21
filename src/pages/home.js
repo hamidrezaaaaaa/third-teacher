@@ -33,7 +33,8 @@ const Swap = styled.div`
   margin: 0 auto;
   gap: 10px;
   padding: 3px 10px;
-  background: ${(props) => props.theme.background[2]};
+  background: ${(props) => props.theme.background[1]};
+
   .text {
     margin: 0;
     padding: 5px 10px;
@@ -44,6 +45,19 @@ const Swap = styled.div`
   .active {
     background: #ffffff;
   }
+
+  @media (max-width: 600px){
+    width: 70%;
+    .text {
+      margin: 0;
+      padding: 5px 10px;
+      font-size: 5.111vw;
+      font-weight: 300;
+      color: ${(props) => props.theme.textColor[1]};
+    }
+  }
+
+  
 `;
 
 export default Home;
