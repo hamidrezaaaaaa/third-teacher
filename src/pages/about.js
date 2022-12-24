@@ -18,9 +18,15 @@ const About = () => {
 };
 
 const Container = styled.section`
+width:95%;
+margin:0 auto;
   display: flex;
   justify-content: space-between;
   padding-left:1.736vw;
+  align-items:center;
+@media (max-width: 800px){
+ flex-direction:column;
+}
 `;
 
 const Content = styled.div`
@@ -63,6 +69,49 @@ const Content = styled.div`
       margin-bottom: 1.736vw;
     }
   }
+
+  @media (max-width: 800px){
+    border:3px solid red;
+    width: 90%;
+    padding: 6.25vw 3.25vw 4.861vw 0;
+    h1 {
+      margin: 0;
+      padding: 0;
+      color: ${(props) => props.theme.textColor[1]};
+      font-size: 4.736vw;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+      &:after {
+        content: "";
+        display: inline-flex;
+        width: 30%;
+        height: 3px;
+        background: ${(props) => props.theme.background[1]};
+      }
+    }
+    .content {
+      margin-top:1vh;
+      border: 3px solid #ffcf87;
+      padding: 2vw;
+  
+      .text,
+      .poetry {
+        margin: 0;
+        padding: 0;
+        font-size: 4.736vw;
+        line-height: 1.5rem;
+        font-weight: 400;
+        color: ${(props) => props.theme.textColor[1]};
+      }
+      .text {
+        margin-bottom: 1.736vw;
+      }
+    }
+  }
+
 `;
 const Sidbar = styled.div``;
 

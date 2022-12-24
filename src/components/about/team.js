@@ -22,19 +22,20 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar width="20%" content={sideBarData} />
+      {/* <SideBar width="20%" content={sideBarData} /> */}
     </Container>
   );
 };
 
 const Container = styled.section`
+  width:95%;
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
 `;
 
 const Content = styled.div`
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
@@ -57,16 +58,40 @@ const Content = styled.div`
       background: ${(props) => props.theme.background[1]};
     }
   }
+
+  @media (max-width: 800px){
+    h1 {
+      font-size: 4.736vw;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+      &:after {
+        content: "";
+        display: inline-flex;
+        width: 25%;
+    }
+   }
+
 `;
 
 const Gallery = styled.div`
   display: flex;
-  justify-content: space-between;
+  // border:3px solid red;
+  justify-content: space-evenly;
+  width:90%;
+  @media (max-width: 800px){
+    margin-top:5vh;
+    // border:4px solid blue;
+    // width: 40%;
+    flex-wrap:wrap;
+   }
 `;
 
 const Member = styled.div`
   display: flex;
   flex-direction: column;
+  width:20%;
   .image {
     width: 12.5vw;
     height: 12.5vw;
@@ -90,6 +115,35 @@ const Member = styled.div`
     font-size: 1.389vw;
     font-weight: 200;
   }
+
+  @media (max-width: 800px){
+    align-items:center;
+    width: 45%;
+    flex-wrap:wrap;
+    .image {
+      width: 32.5vw;
+      height: 32.5vw;
+      border: 3px solid #ffcf87;
+      margin-bottom: 4.042vw;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    h3 {
+      margin: 0;
+      color: ${(props) => props.theme.textColor[1]};
+      font-size: 4.389vw;
+      font-weight: 500;
+    }
+    .post {
+      margin: 10px 0;
+      color: ${(props) => props.theme.textColor[1]};
+      font-size: 2.389vw;
+      font-weight: 200;
+    }
+   }
 `;
 
 export default Team;

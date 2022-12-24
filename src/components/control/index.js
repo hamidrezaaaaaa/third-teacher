@@ -22,13 +22,12 @@ const Control = () => {
 };
 
 const Container = styled.div`
-
-  display: flex;
-  justify-content: center;
-  gap: 5.556vw;
-  margin-bottom: 2.778vw;
-  cursor: pointer;
-  @media (max-width: 600px){
+display: flex;
+justify-content: center;
+gap: 5.556vw;
+margin-bottom: 12.778vh important;
+cursor: pointer;
+@media (max-width: 600px){
     flex-wrap: wrap;
     width: 80vw;
     margin: 0 auto;

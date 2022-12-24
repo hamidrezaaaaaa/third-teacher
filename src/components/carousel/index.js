@@ -171,7 +171,7 @@ return (
       return (
             <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}}
              >
-                <Card style={{border:"3px solid black"}} img={zar} title={carouselData[index].Philosopher} />
+                <Card img={zar} title={carouselData[index].Philosopher} />
             </SwiperSlide>
         )
       })
@@ -286,10 +286,10 @@ position:relative;
   display: flex;
   justify-content: center;
   gap: 2.083vw;
-  margin: 4.861vw auto ;
+  margin: 0auto ;
   
   @media (max-width: 600px){
-    margin: 14.861vw auto ;
+    margin: 4.861vw auto 5vh ;
   }
   #swiper{
     @media (max-width: 600px){

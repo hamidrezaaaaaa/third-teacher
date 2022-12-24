@@ -7,7 +7,7 @@ const GreenSquad = () => {
   return (
     <Container>
       <Content>
-        <h1>مکعب سبز خلاق"</h1>
+        <h1>مکعب سبز خلاق</h1>
         <Gallery></Gallery>
       </Content>
       <SideBar width="20%" content={sideBarData} />
@@ -16,6 +16,7 @@ const GreenSquad = () => {
 };
 
 const Container = styled.section`
+width:95%;
 display: flex;
 justify-content: space-between;
 padding-left: 1.736vw;`;
@@ -44,6 +45,21 @@ const Content = styled.div`
       background: ${(props) => props.theme.background[1]};
     }
   }
+
+  @media (max-width: 800px){
+    h1 {
+      font-size: 4.736vw;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+      &:after {
+        content: "";
+        display: inline-flex;
+        width: 45%;
+    }
+   }
+
 `;
 
 const Gallery = styled.div`
