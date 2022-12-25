@@ -131,12 +131,11 @@ overflow-x: hidden;
 
 const NavbarDesktop = styled.div`
 display: flex;
+width:80%;
 justify-content: flex-start;
-padding: 3.472vw 5.556vw;
+padding: 3.472vw 0.556vw;
 align-items: center;
-gap: 5.083vw;
-// border:5px solid red;
-
+gap: 2.083vw;
 @media (max-width: 800px){
   display:none;
 }
@@ -210,8 +209,6 @@ const Container = styled.nav`
   justify-content: flex-start;
   padding: 0.472vw 5.556vw;
   align-items: center;
-  // gap: 5.083vw;
-  // border:5px solid blue;
 
   @media (max-width: 600px){
     // gap: 4vh;
@@ -357,7 +354,6 @@ const Wraper = styled.div`
     }
     &:hover {
       .drop-down {
-        // border:3px solid blue;
         text-align: center;
         position: relative;
         // display: flex;

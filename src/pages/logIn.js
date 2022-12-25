@@ -144,7 +144,7 @@ const ForgetPass = styled.p`
   cursor: pointer;
 
   @media (max-width: 800px){
-    font-size: 2.389vw;
+    font-size: 3.389vw;
     margin-top: 8vw;
     font-weight: 400;
   }

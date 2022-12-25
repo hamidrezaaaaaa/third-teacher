@@ -16,13 +16,21 @@ const GreenSquad = () => {
 };
 
 const Container = styled.section`
-width:95%;
+width:100%;
+box-sizing:border-box;
 display: flex;
 justify-content: space-between;
-padding-left: 1.736vw;`;
+padding-left: 1.736vw;
+@media (max-width: 800px){
+  width:100%;
+  align-items:center;
+  flex-direction:column;
+ }
+`;
 
 const Content = styled.div`
-  width: 60%;
+box-sizing:border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
@@ -47,6 +55,7 @@ const Content = styled.div`
   }
 
   @media (max-width: 800px){
+    padding: 6.25vw 2.75vw 4.861vw 0;
     h1 {
       font-size: 4.736vw;
       display: flex;
@@ -56,7 +65,7 @@ const Content = styled.div`
       &:after {
         content: "";
         display: inline-flex;
-        width: 45%;
+        width: 28%;
     }
    }
 

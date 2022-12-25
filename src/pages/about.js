@@ -18,15 +18,16 @@ const About = () => {
 };
 
 const Container = styled.section`
-width:95%;
+width:100%;
+box-sizing:border-box;
 margin:0 auto;
   display: flex;
   justify-content: space-between;
-  padding-left:1.736vw;
   align-items:center;
-@media (max-width: 800px){
- flex-direction:column;
-}
+  padding-left: 1.736vw;
+  @media (max-width: 800px){
+    flex-direction:column;
+    width: 90%;
 `;
 
 const Content = styled.div`
@@ -71,9 +72,12 @@ const Content = styled.div`
   }
 
   @media (max-width: 800px){
-    border:3px solid red;
-    width: 90%;
-    padding: 6.25vw 3.25vw 4.861vw 0;
+    // border:3px solid red;
+    box-sizing:border-box;
+    align-items:center;
+    width: 100%;
+    padding: 6.25vw 0vw 4.861vw 0;
+    
     h1 {
       margin: 0;
       padding: 0;
@@ -93,10 +97,12 @@ const Content = styled.div`
       }
     }
     .content {
-      margin-top:1vh;
+      width:100%;
       border: 3px solid #ffcf87;
       padding: 2vw;
-  
+      margin:1vh auto;  
+      // border:5px solid green;
+      box-sizing:border-box;
       .text,
       .poetry {
         margin: 0;

@@ -22,20 +22,28 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      {/* <SideBar width="20%" content={sideBarData} /> */}
+      <SideBar width="20%" content={sideBarData} />
     </Container>
   );
 };
 
 const Container = styled.section`
-  width:95%;
+  width:100%;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  box-sizing:border-box;
+  justify-content:center;
   padding-left: 1.736vw;
+  @media (max-width: 800px){
+    align-items:center;
+    flex-direction:column;
+    width: 90%;
+   }
 `;
 
 const Content = styled.div`
-  width: 100%;
+// border:5px solid blue;
+  width: 90%;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
@@ -60,12 +68,15 @@ const Content = styled.div`
   }
 
   @media (max-width: 800px){
+    padding: 6.25vw 0vw 4.861vw 0;
+    width: 100%;
     h1 {
       font-size: 4.736vw;
       display: flex;
       flex-direction: column;
       width: 100%;
       gap: 10px;
+      padding:0;
       &:after {
         content: "";
         display: inline-flex;
@@ -77,13 +88,11 @@ const Content = styled.div`
 
 const Gallery = styled.div`
   display: flex;
-  // border:3px solid red;
+  // border:3px solid green;
   justify-content: space-evenly;
-  width:90%;
+  width:100%;
   @media (max-width: 800px){
-    margin-top:5vh;
-    // border:4px solid blue;
-    // width: 40%;
+    margin:4vh auto 0;
     flex-wrap:wrap;
    }
 `;
@@ -118,7 +127,7 @@ const Member = styled.div`
 
   @media (max-width: 800px){
     align-items:center;
-    width: 45%;
+    width: 50%;
     flex-wrap:wrap;
     .image {
       width: 32.5vw;

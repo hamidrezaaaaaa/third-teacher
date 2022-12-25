@@ -20,7 +20,7 @@ import Philosopher from "./components/philosopher/Philosopher";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{overflowX: "hidden"}}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
 
