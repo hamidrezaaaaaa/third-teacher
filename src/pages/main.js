@@ -56,6 +56,12 @@ const Container = styled.div`
     background-size: contain;
     margin: 0 auto;
     
+    @media (max-width:801px){
+      justify-content:space-between;
+      width: 40.486vw;
+      height: 60.625vw;
+      font-size: 15.736vw !important;
+    }
     @media (max-width: 600px){
     justify-content:space-between;
       width: 60.486vw;
@@ -70,7 +76,6 @@ const Container = styled.div`
 const SelectMode = styled.div`
   position: relative;
   border-top: 4px solid #7e7f82;
-
   @media (max-width: 600px){
   }
 `;
@@ -92,6 +97,15 @@ const Content = styled.div`
     color: ${(props) => props.theme.textColor[1]};
     cursor: pointer;
   }
+
+  @media (max-width:801px){
+    width:50%;
+    justify-content:space-around;
+    .schools,
+    .philosophy {
+      font-size: 8.736vw;
+    }
+  }
   
   @media (max-width: 600px){
     justify-content:space-between;
@@ -102,6 +116,5 @@ const Content = styled.div`
     font-size: 10.736vw;
   }
   
-  // background-color:red;
   }
 `;

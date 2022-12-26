@@ -29,6 +29,12 @@ justify-content:center;
 background:${props=>props.theme.background[0]};
 padding:0.764vw 0 3.125vw;
 position:relative;
+
+@media (max-width:801px){
+background-color: #dddddd;
+height:350px ;
+}
+
 @media (max-width: 600px){
 justify-content:space-around;
 // padding:8.3vh 0;
