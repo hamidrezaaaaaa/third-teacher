@@ -24,7 +24,7 @@ margin:0 auto;
   display: flex;
   justify-content: space-between;
   align-items:center;
-  padding-left: 1.736vw;
+  // padding-left: 1.736vw;
   @media (max-width: 800px){
     flex-direction:column;
     width: 90%;
