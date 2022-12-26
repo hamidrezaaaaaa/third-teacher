@@ -4,7 +4,7 @@ import rightCover from "../../assets/pic/right.png";
 
 const SideBar = (props) => {
   return (
-    <Container width={props.width}>
+    <Container moblieborder={props.moblieborder} className="container" width={props.width}>
       <p className="text">{props.content}</p>
     </Container>
   );
@@ -48,8 +48,6 @@ const Container = styled.div`
   }
 
   @media (max-width: 800px){
-    // border:3px solid red;
-
     box-sizing:border-box;
     width:90% ;
     padding: 5vw 5vh;
@@ -78,12 +76,15 @@ const Container = styled.div`
       content: "";
       display: block;
       position: absolute;
-      left: 81.7%;
+      left:0;
+      // left: 62.7vw;
+      left: ${(props) => props.moblieborder};
+      // right:80%;
       bottom: 0;
       width: 100%;
       height: 100%;
       background-image: url(${rightCover});
-      background-size: none;
+      background-size:  none;
       background-repeat: no-repeat;
     }
 `;

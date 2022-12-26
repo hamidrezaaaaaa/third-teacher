@@ -31,6 +31,9 @@ const Text = styled.div`
   align-items: flex-start;
   padding:10px;
   cursor:pointer;
+  @media (max-width: 800px){
+    width:100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -39,6 +42,9 @@ const Title = styled.h1`
   flex-direction: column;
   align-items: center;
   cursor:pointer;
+  @media (max-width: 800px){
+    font-size: 5.736vw;
+  }
 `;
 
 const Data = styled.span`
@@ -49,9 +55,13 @@ padding-right:4vw;
 gap: 2.083vw;
 align-items: center;
 cursor:pointer;
+@media (max-width: 800px){
+  font-size: 3.736vw;
+}
 `
 
 const Image =styled.div`
+
   width:25%;
   background:${props=>props.theme.background[2]};
   border-radius:50%;
@@ -76,6 +86,34 @@ const Image =styled.div`
     object-fit:contain;
     transform: translate(-1px, 23px);
   }
+  @media (max-width: 800px){
+    width:60%;
+    background:${props=>props.theme.background[2]};
+    border-radius:50%;
+    margin: 5.083vh 1vw 2.083vw;
+    position:relative;
+    z-index:0;
+    order:-1;
+    &:before{
+      content:'';
+      display:block;
+      position: absolute;
+      padding-top:100%;
+      background-image: url(${cover});
+      background-size: contain;
+      background-repeat: no-repeat;
+      right: 20px;
+      left:-11%;
+      top:-11%;
+      z-index:-1;
+    }
+    img{
+      width:100%;
+      object-fit:contain;
+      transform: translate(-1px, 23px);
+    }
+  }
+
 `
 
 const Container = styled.div`
@@ -86,6 +124,10 @@ const Container = styled.div`
   flex-direction: row;
   height:100%;
   cursor:pointer;
+  @media (max-width: 800px){
+    flex-direction:column;
+    align-items:center;
+  }
 `;
 
 export default Philosopher;

@@ -23,10 +23,19 @@ const Container = styled.div`
   padding: 4.861vw 6.944vw;
   display: flex;
   justify-content: space-between;
-  height: 50vh;
+  height: auto;
+  align-items:center;
+  @media (max-width: 800px){
+    height: 50vh;
+    flex-direction:column;
+  }
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+@media (max-width: 800px){
+  order: 2;
+}
+`;
 
 const Cover = styled.div`
   width: 22.917vw;
@@ -57,6 +66,20 @@ const Cover = styled.div`
     top: -2.083vw;
     right: 2.083vw;
     z-index: -1;
+  }
+  @media (max-width: 800px){
+    width: 60.917vw;
+    height: 60.917vw;
+    .title {
+      order: 1;
+      text-align: center;
+      font-size: 5.778vw;
+    }
+    &:before {
+      top: -6.083vw;
+      right: 6.083vw;
+      z-index: -1;
+    }
   }
 `;
 

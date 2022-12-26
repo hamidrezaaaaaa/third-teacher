@@ -1,0 +1,24 @@
+{
+  "dashboard": [
+    {
+      "name": "اطلاعات حساب کاربری",
+      "path": ""
+    },
+    {
+      "name": "کتابخانه من",
+      "path": "library"
+    },
+    {
+      "name": "بارگذاری",
+      "path": "upload"
+    },
+    {
+      "name": "سفارش‌ها",
+      "path": "orders"
+    },
+    {
+      "name": "جست‌وجو",
+      "path": "search"
+    }
+  ]
+}

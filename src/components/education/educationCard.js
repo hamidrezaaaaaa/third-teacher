@@ -45,6 +45,14 @@ const Container = styled.div`
     right: 20px;
     z-index: -1;
   }
+
+  @media (max-width: 800px){
+    width: 30.944vw;
+    height: 30.944vw;
+
+    .title {
+      font-size: 3.736vw;
+  }
 `;
 
 export default EducationCard;

@@ -284,7 +284,6 @@ const Container = styled.div`
   justify-content: center;
   gap: 2.083vw;
   margin: 0auto ;
-  border:4px solid red;
   
   @media (max-width:801px){
   }

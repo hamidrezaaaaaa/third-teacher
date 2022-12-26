@@ -1,36 +1,84 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SideBar from "../components/sidebar";
+import { signInSchema } from "../schema";
+import { useFormik } from "formik";
+import { useState } from "react";
+import SignInForm from "../components/signInForm";
 
-const LogIn = () => {
-  const navigate = useNavigate();
+const SignIn = () => {
+  const [step, setStep] = useState(0);
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
+
+  const onSubmit = async () => {
+    setStep(1);
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      userName: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: signInSchema,
+    onSubmit,
+  });
+
   return (
     <Container>
-      <Content>
-        <Wraper>
-          <form>
-            <input placeholder="نام کاربری یا آدرس ایمیل" />
-            <input type="password" placeholder="گذرواژه" />
-            <button>ورود</button>
-          </form>
-          <ForgetPass>گذرواژه خود را فراموش کرده‌اید؟</ForgetPass>
-          <Link
-            onClick={() => {
-              navigate("/sign-in");
-            }}
-          >
-            ثبت‌نام
-          </Link>
-        </Wraper>
+      <Content step={step}>
+        {step == 0 ? (
+          <Wraper>
+            <form onSubmit={handleSubmit} autoComplete="off">
+              <input
+                placeholder="نام کاربری یا آدرس ایمیل"
+                id="userName"
+                value={values.userName}
+                onChange={handleChange}
+              />
+              {errors.userName && touched.userName && (
+                <ErrorText>{errors.userName}</ErrorText>
+              )}
+              <input
+                placeholder="گذرواژه"
+                id="password"
+                value={values.password}
+                onChange={handleChange}
+              />
+              {errors.password && touched.password && (
+                <ErrorText>{errors.password}</ErrorText>
+              )}
+              <input
+                placeholder="تکرار گذرواژه"
+                id="confirmPassword"
+                value={values.confirmPassword}
+                onChange={handleChange}
+              />
+              {errors.confirmPassword && touched.confirmPassword && (
+                <ErrorText>{errors.confirmPassword}</ErrorText>
+              )}
+              <button type="submit">ثبت‌نام</button>
+            </form>
+          </Wraper>
+        ) : (
+          <SignInForm />
+        )}
       </Content>
-      <SideBar moblieborder="81.7vw" content={sideBarData} width="20%" />
+
+      <SideBar moblieborder="82.9vw" content={sideBarData} width="20%" />
     </Container>
   );
 };
 
-const Container = styled.section`
+const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
@@ -38,34 +86,38 @@ const Container = styled.section`
     flex-direction:column;
   justify-content: center;
     align-tems:center;
+    padding-left: 0;
   }
-  `;
+`;
 
 const Content = styled.div`
-  width: 30%;
-  height: 60vh;
+  width: 60%;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
-  margin:0 auto;
-  padding: 1.25vw 0 4.861vw 0;
-
+  padding:${props=>props.step==0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
   @media (max-width: 800px){
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+    padding:6.25vw 0 4.861vw 0;
+    justify-content:center;
     height: 45vh;
+    align-tems:center;
+    padding-left: 0;
   }
 `;
 
 const Wraper = styled.div`
-// border:3px solid black;
-  width: 80%;
+  width: 40%;
   margin: auto;
-  // height:10vh;
+  
   form {
     display: flex;
     flex-direction: column;
     border: 3px solid #ffe6bf;
     padding-top: 2.778vw;
+    padding-inline: 2vw;
     position: relative;
     input {
       margin-bottom: 1.042vw;
@@ -87,7 +139,7 @@ const Wraper = styled.div`
       transform: translateY(50%);
     }
     &:before {
-      content: "ورود";
+      content: "عضویت";
       display: block;
       position: absolute;
       background: #ffffff;
@@ -99,9 +151,13 @@ const Wraper = styled.div`
       top: -12%;
     }
   }
-
+  
   @media (max-width: 800px){
+    width: 100%;
+    // border:4px solid red;
+    margin:0 auto;
     form {
+      
       border: 5px solid #ffe6bf;
       padding: 4.6vh 2.6vw 0vh;
       input {
@@ -133,29 +189,19 @@ const Wraper = styled.div`
         font-weight: 400;
         left: 50%;
         transform: translateX(-50%);
-        top: -10%;
+        top: -8%;
       }
     }
-
 `;
 
-const ForgetPass = styled.p`
+const ErrorText = styled.p`
+  color: #fc8181;
+  font-size: 1rem;
+  width: 100%;
+  text-align: right;
   margin: 0;
-  padding: 0;
-  text-align: center;
-  font-size: 1.389vw;
-  font-weight: 400;
-  color: ${(props) => props.theme.textColor[2]};
-  margin-top: 4vw;
-  cursor: pointer;
+  margin-right: 2%;
+  margin-top: -2%;
+`;
 
-  @media (max-width: 800px){
-    font-size: 3.389vw;
-    margin-top: 8vw;
-    font-weight: 400;
-  }
-`;
-const Link = styled(ForgetPass)`
-  margin-top: 1vw;
-`;
-export default LogIn;
+export default SignIn;

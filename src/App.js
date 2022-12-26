@@ -17,10 +17,12 @@ import Team from "./components/about/team";
 import GreenSquad from "./components/about/greenSquad";
 import LogIn from "./pages/logIn";
 import Philosopher from "./components/philosopher/Philosopher";
+import SignIn from "./pages/signIn";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
-    <div className="App" style={{overflowX: "hidden"}}>
+    <div className="App">
       <ThemeProvider theme={theme}>
         <GlobalStyle />
 
@@ -32,17 +34,17 @@ function App() {
               <Route path="/home/schools/:id" element={<Philosopher/>} />
               <Route path="/home/philosophy/:id" element={<Philosopher/>} />
               <Route path="/Book" element={<Books />} />
-              <Route path="/Book/:id" element={<PreviewBook/>} />
-              <Route path="/Research" element={<Research/>} />
-              <Route path="/Competition" element={<Competition/>} />
-              <Route path="/Education" element={<Education/>} />
-              <Route path="/Education/:id" element={<PreviewEducation/>} />
-              <Route path="/about" element={<About/>} />
-              <Route path="/about/team" element={<Team/>}/>
-              <Route path="/about/green-squad" element={<GreenSquad/>}/>
-              <Route path="/log-in" element={<LogIn/>}/>
-
-
+              <Route path="/Book/:id" element={<PreviewBook />} />
+              <Route path="/Research" element={<Research />} />
+              <Route path="/Competition" element={<Competition />} />
+              <Route path="/Education" element={<Education />} />
+              <Route path="/Education/:id" element={<PreviewEducation />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/about/team" element={<Team />} />
+              <Route path="/about/green-squad" element={<GreenSquad />} />
+              <Route path="/log-in" element={<LogIn />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/dashboard/*" element={<Dashboard />} />
             </Routes>
           </Layout>
         </Router>

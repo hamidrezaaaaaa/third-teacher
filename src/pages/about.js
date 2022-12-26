@@ -12,7 +12,7 @@ const About = () => {
           <p className="poetry">{data.about[0].poetry}</p>
         </div>
       </Content>
-      <SideBar content={data.about[0].sideBar} width="20%"/>
+      <SideBar moblieborder="64.2vw" content={data.about[0].sideBar} width="20%"/>
     </Container>
   );
 };
@@ -23,7 +23,7 @@ box-sizing:border-box;
 margin:0 auto;
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items:flex-start;
   padding-left: 1.736vw;
   @media (max-width: 800px){
     padding-left: 0;
@@ -36,7 +36,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
-  padding: 6.25vw 6.25vw 4.861vw 0;
+  padding: 1.25vw 6.25vw 4.861vw 0;
   h1 {
     margin: 0;
     padding: 0;

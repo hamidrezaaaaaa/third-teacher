@@ -31,7 +31,6 @@ padding:0.764vw 0 3.125vw;
 position:relative;
 
 @media (max-width:801px){
-background-color: #dddddd;
 height:350px ;
 }
 

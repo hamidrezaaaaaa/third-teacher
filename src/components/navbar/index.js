@@ -52,7 +52,9 @@ const Navbar = () => {
   return (
     <Container>
       <NavbarDesktop>
-          <Logo>
+          <Logo onClick={() => {
+            navigate("/");
+          }}>
             <SocialNetwork>
               <div className="instagram"></div>
               <div className="whatsapp"></div>
@@ -64,6 +66,8 @@ const Navbar = () => {
             <span></span>
           </Search>
       </NavbarDesktop>
+
+
       <MobileNavbar>
       <OverlayNav mobileNavbarSelecter={mobileNavbarSelecter}> 
       <CloseNavbar onClick={() => handleMobileNavbar()}>
@@ -86,7 +90,9 @@ const Navbar = () => {
           <span className="burger"></span>
         </Hubmerger>
         {/* }  */}
-        <LogoMobile>
+        <LogoMobile onClick={() => {
+            navigate("/");
+          }}>
         {/* <SocialNetwork>
               <div className="instagram"></div>
               <div className="whatsapp"></div>

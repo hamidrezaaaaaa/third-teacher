@@ -22,7 +22,7 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar width="20%" content={sideBarData} />
+      <SideBar moblieborder="62.7vw" width="20%" content={sideBarData} />
     </Container>
   );
 };
@@ -47,7 +47,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
-  padding: 6.25vw 6.25vw 4.861vw 0;
+  padding: 1.25vw 6.25vw 4.861vw 0;
   h1 {
     margin: 0;
     padding: 0;
