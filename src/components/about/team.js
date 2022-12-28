@@ -71,7 +71,7 @@ const Member = styled.div`
     width: 12.5vw;
     height: 12.5vw;
     border: 3px solid #ffcf87;
-    margin-bottom:1.042vw;
+    margin-bottom: 1.042vw;
     img {
       width: 100%;
       height: 100%;

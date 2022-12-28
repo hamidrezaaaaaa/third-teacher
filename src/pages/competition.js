@@ -6,11 +6,21 @@ const Competition = () => {
     <Container>
       <Title>مسابقات</Title>
       <Gallery>
-        <Item><p className="text">مسابقه مدرسه نور</p></Item>
-        <Item><p className="text">مسابقه مدرسه نور</p></Item>
-        <Item><p className="text">مسابقه مدرسه نور</p></Item>
-        <Item><p className="text">مسابقه مدرسه نور</p></Item>
-        <Item><p className="text">مسابقه مدرسه نور</p></Item>
+        <Item>
+          <p className="text">مسابقه مدرسه نور</p>
+        </Item>
+        <Item>
+          <p className="text">مسابقه مدرسه نور</p>
+        </Item>
+        <Item>
+          <p className="text">مسابقه مدرسه نور</p>
+        </Item>
+        <Item>
+          <p className="text">مسابقه مدرسه نور</p>
+        </Item>
+        <Item>
+          <p className="text">مسابقه مدرسه نور</p>
+        </Item>
       </Gallery>
     </Container>
   );
@@ -41,6 +51,21 @@ const Title = styled.h1`
     height: 5px;
     background: ${(props) => props.theme.background[1]};
   }
+  @media (max-width: 800px) {
+    width: 14%;
+    font-size: 4.136vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 4.736vw;
+    width: 14%;
+    &:after {
+      content: "";
+      display: inline-flex;
+      width: 100%;
+      height: 3px;
+      background: ${(props) => props.theme.background[1]};
+    }
+  }
 `;
 
 const Gallery = styled.div`
@@ -52,15 +77,15 @@ const Gallery = styled.div`
 
 const Item = styled.div`
   width: 100%;
-  padding:0.4vw  1.042vw;
+  padding: 0.4vw 1.042vw;
   border: 3px solid #fe9900;
-  cursor:pointer;
-  .text{
-    margin:0;
-    padding:0;
-    font-size:1.736vw;
-    font-weight:400;
-    color:${props=>props.theme.textColor[1]};
+  cursor: pointer;
+  .text {
+    margin: 0;
+    padding: 0;
+    font-size: 1.736vw;
+    font-weight: 400;
+    color: ${(props) => props.theme.textColor[1]};
   }
 `;
 

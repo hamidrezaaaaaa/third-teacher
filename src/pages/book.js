@@ -57,6 +57,10 @@ const Gallery = styled.div`
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding-top: 10px;
+  }
 `;
 
 export default Books;

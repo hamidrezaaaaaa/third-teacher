@@ -82,16 +82,39 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
+  @media (max-width: 800px) {
+    align-tems: center;
+    flex-direction: column;
+    justify-content: center;
+    // padding-left: 0;
+  }
 `;
 
 const Content = styled.div`
+  box-sizing: content-box;
   width: 60%;
-  height: 50vh;
   display: flex;
+  height: auto;
   flex-direction: column;
   gap: 1.736vw;
-  padding:${props=>props.step==0 ? "6.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
+  padding: ${(props) =>
+    props.step == 0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"};
 
+  @media (max-width: 800px) {
+    width: 90%;
+    margin-top: 5vh;
+    height: auto;
+  }
+
+  @media (max-width: 600px) {
+    width: 80%;
+    margin: 0 auto;
+    padding: 6.25vw 0 4.861vw 0;
+    justify-content: center;
+    height: 45vh;
+    align-tems: center;
+    padding-left: 0;
+  }
 `;
 
 const Wraper = styled.div`
@@ -124,7 +147,7 @@ const Wraper = styled.div`
       transform: translateY(50%);
     }
     &:before {
-      content: "عضویت";
+      content: "ثبت نام";
       display: block;
       position: absolute;
       background: #ffffff;
@@ -133,9 +156,89 @@ const Wraper = styled.div`
       font-weight: 400;
       left: 50%;
       transform: translateX(-50%);
-      top: -12%;
+      top: -8%;
     }
   }
+  
+  @media (max-width: 800px){
+    width: 80%;
+    form {
+      border: 5px solid #ffe6bf;
+      padding: 4.6vh 2.6vw 0vh;
+      input {
+        margin-bottom: 1.042vw;
+        border: none;
+        padding: 1.6vh 1.6vw;
+        background: ${(props) => props.theme.background[1]};
+        font-size: 2.889vw;
+        text-align: center;
+        outline: none;
+      }
+      button {
+        border: none;
+        width: fit-content;
+        margin: auto;
+        background: ${(props) => props.theme.background[1]};
+        padding: 1.5vw 4vw;
+        font-size: 3.389vw;
+        font-weight: 400;
+        transform: translateY(55%);
+      }
+      &:before {
+        content: "ثبت نام";
+        display: block;
+        position: absolute;
+        background: #ffffff;
+        padding: 1vw 2vw;
+        font-size: 3.389vw;
+        font-weight: 400;;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -10%;
+      }
+    }
+
+  @media (max-width: 600px){
+    border:3px solid black;
+    width: 100%;
+    // border:4px solid red;
+    margin:0 auto;
+    form {
+      
+      border: 5px solid #ffe6bf;
+      padding: 4.6vh 2.6vw 0vh;
+      input {
+        margin-bottom: 1.042vw;
+        border: none;
+        padding: 2.6vh 2.6vw;
+        background: ${(props) => props.theme.background[1]};
+        font-size: 4.389vw;
+        text-align: center;
+        outline: none;
+      }
+      button {
+        border: none;
+        width: fit-content;
+        margin: auto;
+        background: ${(props) => props.theme.background[1]};
+        padding: 2vw 4vw;
+        font-size: 4.389vw;
+        font-weight: 400;
+        transform: translateY(55%);
+      }
+      &:before {
+        content: "ورود";
+        display: block;
+        position: absolute;
+        background: #ffffff;
+        padding: 1vw 2vw;
+        font-size: 4.389vw;
+        font-weight: 400;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -8%;
+      }
+    }
 `;
 
 const ErrorText = styled.p`
