@@ -40,10 +40,30 @@ const Swap = styled.div`
     font-size: 1.111vw;
     font-weight: 300;
     color: ${(props) => props.theme.textColor[1]};
+    @media (min-width: 600px) and (max-width: 800px){
+      font-size: 3vw;
+    }
   }
   .active {
     background: #ffffff;
   }
+  @media (min-width: 600px) and (max-width: 800px){
+    width: 30%;
+  }
+  
+
+  @media (max-width: 600px){
+    width: 70%;
+    .text {
+      // margin: 0;
+      padding: 15px 10px;
+      font-size: 5.111vw;
+      font-weight: 300;
+      color: ${(props) => props.theme.textColor[1]};
+    }
+  }
+
+  
 `;
 
 export default Home;

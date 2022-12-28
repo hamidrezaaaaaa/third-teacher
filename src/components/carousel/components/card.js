@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import back from "../../../assets/pic/cover.png";
 
-const Card =({img,title,expand})=>{
+const Card =({img,title,index})=>{
     return(
         <Container>
           <Image className="imageincarousel">
@@ -42,6 +42,16 @@ const Image =styled.div`
   position:relative;
   // z-index:10;
   z-index:0;
+
+  @media (max-width: 800px){
+    // margin-top:100px;
+  }
+  
+  @media (max-width: 600px){
+    margin-top:3vh;
+  }
+
+
   &:before{
     // border:2px solid white;
     content:'';
@@ -75,6 +85,15 @@ const Title=styled.h2`
   font-size:2.569vw;
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
+  @media (min-width: 600px) and (max-width: 800px){
+    position:absolute;
+    top:70%;
+    font-size: 4vw;
+    // margin-top:50px;
+  }
+  @media (max-width: 600px){
+    font-size:5vh ;
+  }
 `
 
 export default Card;

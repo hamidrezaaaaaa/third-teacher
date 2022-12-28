@@ -42,6 +42,18 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   height:50vh;
+  align-items:center;
+  @media (max-width: 800px){
+    padding: 8.861vw 6.944vw;
+    height:66vh;
+    flex-direction:column;
+  }
+  @media (max-width: 600px){
+    padding: 8.861vw 6.944vw;
+    // margin-top: 5vh;
+    height:66vh;
+    flex-direction:column;
+  }
 `;
 
 const Content = styled.div`
@@ -66,6 +78,39 @@ const Content = styled.div`
     text-align: justify;
     max-height:20vw;
     overflow:auto;
+  }
+
+  @media (max-width: 800px){
+    max-width: 90%;
+    order: 2;
+    margin-top:5vh;
+    h1 {
+      font-size: 3.792vw;
+      font-weight: 500;
+      color: ${(props) => props.theme.textColor[0]};
+      margin: 0;
+      padding: 0;
+    }
+    .text {
+      max-height:40vw;
+      font-size: 3.136vw;
+    }
+  }
+  
+  @media (max-width: 600px){
+    max-width: 90%;
+    order: 2;
+    h1 {
+      font-size: 4.292vw;
+      font-weight: 500;
+      color: ${(props) => props.theme.textColor[0]};
+      margin: 0;
+      padding: 0;
+    }
+    .text {
+      max-height:40vw;
+      font-size: 3.736vw;
+    }
   }
 `;
 
@@ -108,6 +153,54 @@ const Cover = styled.div`
     top: -2.083vw;
     right: 2.083vw;
     z-index: -1;
+  }
+
+  @media (max-width: 800px){
+    width: 38.917vw;
+  height: 38.917vw;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(0px, 14px);
+    }
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      padding-top: 100%;
+      background-image: url(${back});
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: -4.083vw;
+      right: 4.083vw;
+      z-index: -1;
+    }
+  }
+
+  @media (max-width: 600px){
+    width: 55.917vw;
+  height: 55.917vw;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(0px, 14px);
+    }
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      padding-top: 100%;
+      background-image: url(${back});
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: -6.083vw;
+      right: 6.083vw;
+      z-index: -1;
+    }
   }
 `;
 
