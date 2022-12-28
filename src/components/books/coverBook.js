@@ -24,13 +24,7 @@ const Container = styled.div`
   gap: 2.083vw;
   align-items: center;
   cursor:pointer;
-  @media (max-width: 800px){
-    margin:15px 0;
-    width:45%;
-    justify-content:space-between;
-    height:200px;
-  }
-  `;
+`;
 
 const Cover = styled.div`
   width: 11.944vw;
@@ -58,30 +52,6 @@ const Cover = styled.div`
     right: 20px;
     z-index: -1;
   }
-  @media (max-width: 800px){
-    width: 28.944vw;
-    height: 28.944vw;
-  
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transform: translate(18px, 17px);
-    }
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      padding-top: 100%;
-      background-image: url(${back});
-      background-size: contain;
-      background-repeat: no-repeat;
-      top: -20px;
-      right: 20px;
-      z-index: -1;
-    }
-  }
 `;
 
 const Expand = styled.div`
@@ -99,13 +69,6 @@ const Expand = styled.div`
     font-weight: 400;
     color: ${(props) => props.theme.textColor[4]};
     text-align: center;
-  }
-  @media (max-width: 800px){
-    // height:auto;
-    width:100%;
-    .text {
-      font-size: 3.736vw;
-    }
   }
 `;
 

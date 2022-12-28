@@ -19,11 +19,7 @@ const Upload = () => {
 
 const Container = styled.div`
   background: ${(props) => props.theme.background[1]};
-  padding:3vh 2vw;
-  @media (max-width: 800px){
-    margin-top:2vh;
-      height:100%;
-    }
+  padding: 2vw;
 `;
 
 const Gallery = styled.div`
@@ -32,22 +28,12 @@ const Gallery = styled.div`
   justify-content: center;
   gap: 2vw;
   width: 90%;
-  @media (max-width: 800px){
-    width: 100%;
-    }
 `;
 
 const Item = styled.div`
-box-sizing:border-box;
   width: 100%;
   background: #ffffff;
   padding: 1.5vw;
-  @media (max-width: 800px){
-    // border:3px solid red;
-    width: 100%;
-    font-size: 3.736vw;
-    padding: 2.5vh 1.5vw;
-  }
 `;
 
 const TurnOver = styled.p`
@@ -58,9 +44,6 @@ const TurnOver = styled.p`
   font-size: 1.5vw;
   font-weight: 400;
   margin-top: 5vw;
-  @media (max-width: 800px){
-    font-size: 3.736vw;
-  }
 `;
 
 export default Upload;

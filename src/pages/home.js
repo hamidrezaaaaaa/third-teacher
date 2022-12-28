@@ -20,16 +20,10 @@ const Home = () => {
 };
 
 const Container = styled.section`
-
   display: flex;
   flex-direction: column;
-  gap: 7.5vh;
   justify-content: space-around;
-  // height:84vh;
-
-  @media (max-width: 600px){
-    gap: 4vh;
-  }
+  height:84vh;
 `;
 
 const Swap = styled.div`
@@ -37,11 +31,9 @@ const Swap = styled.div`
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  // height:300px !important;
   gap: 10px;
   padding: 3px 10px;
-  background: ${(props) => props.theme.background[1]};
-
+  background: ${(props) => props.theme.background[2]};
   .text {
     margin: 0;
     padding: 5px 10px;
@@ -52,19 +44,6 @@ const Swap = styled.div`
   .active {
     background: #ffffff;
   }
-
-  @media (max-width: 600px){
-    width: 70%;
-    .text {
-      // margin: 0;
-      padding: 15px 10px;
-      font-size: 5.111vw;
-      font-weight: 300;
-      color: ${(props) => props.theme.textColor[1]};
-    }
-  }
-
-  
 `;
 
 export default Home;

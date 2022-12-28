@@ -22,32 +22,23 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar moblieborder="62.7vw" width="20%" content={sideBarData} />
+      <SideBar width="20%" content={sideBarData} />
     </Container>
   );
 };
 
 const Container = styled.section`
-  width:100%;
-  margin: 0 auto;
   display: flex;
-  box-sizing:border-box;
-  justify-content:center;
+  justify-content: space-between;
   padding-left: 1.736vw;
-  @media (max-width: 800px){
-    align-items:center;
-    flex-direction:column;
-    width: 90%;
-   }
 `;
 
 const Content = styled.div`
-// border:5px solid blue;
-  width: 90%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
-  padding: 1.25vw 6.25vw 4.861vw 0;
+  padding: 6.25vw 6.25vw 4.861vw 0;
   h1 {
     margin: 0;
     padding: 0;
@@ -66,41 +57,16 @@ const Content = styled.div`
       background: ${(props) => props.theme.background[1]};
     }
   }
-
-  @media (max-width: 800px){
-    padding: 6.25vw 0vw 4.861vw 0;
-    width: 100%;
-    h1 {
-      font-size: 4.736vw;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 10px;
-      padding:0;
-      &:after {
-        content: "";
-        display: inline-flex;
-        width: 25%;
-    }
-   }
-
 `;
 
 const Gallery = styled.div`
   display: flex;
-  // border:3px solid green;
-  justify-content: space-evenly;
-  width:100%;
-  @media (max-width: 800px){
-    margin:4vh auto 0;
-    flex-wrap:wrap;
-   }
+  justify-content: space-between;
 `;
 
 const Member = styled.div`
   display: flex;
   flex-direction: column;
-  width:20%;
   .image {
     width: 12.5vw;
     height: 12.5vw;
@@ -124,35 +90,6 @@ const Member = styled.div`
     font-size: 1.389vw;
     font-weight: 200;
   }
-
-  @media (max-width: 800px){
-    align-items:center;
-    width: 50%;
-    flex-wrap:wrap;
-    .image {
-      width: 32.5vw;
-      height: 32.5vw;
-      border: 3px solid #ffcf87;
-      margin-bottom: 4.042vw;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-    h3 {
-      margin: 0;
-      color: ${(props) => props.theme.textColor[1]};
-      font-size: 4.389vw;
-      font-weight: 500;
-    }
-    .post {
-      margin: 10px 0;
-      color: ${(props) => props.theme.textColor[1]};
-      font-size: 2.389vw;
-      font-weight: 200;
-    }
-   }
 `;
 
 export default Team;

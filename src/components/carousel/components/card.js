@@ -12,7 +12,6 @@ const Card =({img,title,expand})=>{
           <Title className="title">
             {title}
           </Title>
-
         </Container>
     )
 }
@@ -22,24 +21,16 @@ const Container =styled.div`
 display:flex;
 width:100%;
 flex-direction:column;
-// height:100%;
-height:250px ;
+height:100%;
+height:250px !important;
 align-items:center;
 justify-content:center;
 background:${props=>props.theme.background[0]};
 padding:0.764vw 0 3.125vw;
 position:relative;
-
-@media (max-width:801px){
-height:350px ;
-}
-
-@media (max-width: 600px){
-justify-content:space-around;
-// padding:8.3vh 0;
-  height:43.5vh ;
-  // height:100%;
-}
+// max-width:13.889vw;
+// min-width:13.889vw;
+// min-height:21.528vw;
 `
 
 const Image =styled.div`
@@ -51,12 +42,6 @@ const Image =styled.div`
   position:relative;
   // z-index:10;
   z-index:0;
-
-  @media (max-width: 600px){
-    margin-top:3vh;
-  }
-
-
   &:before{
     // border:2px solid white;
     content:'';
@@ -74,7 +59,11 @@ const Image =styled.div`
     z-index:-1;
   }
   img{
+    // max-width:120px;
+    // max-height:120px;
+    // height:320px;
     width:100%;
+    // border:4px solid red;
     height:auto;
     object-fit:contain;
     transform: translate(-1px, 13px);
@@ -86,10 +75,6 @@ const Title=styled.h2`
   font-size:2.569vw;
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
-  @media (max-width: 600px){
-    // margin-top:5vh;
-    font-size:5vh ;
-  }
 `
 
 export default Card;

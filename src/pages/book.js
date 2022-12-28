@@ -28,7 +28,7 @@ const Container = styled.section`
   height: 70vh;
   display: flex;
   flex-direction: column;
-  padding: 1.861vw 6.25vw;
+  padding: 4.861vw 6.25vw;
   gap: 8.083vw;
 `;
 
@@ -46,13 +46,8 @@ const Title = styled.h1`
     content: "";
     display: inline-flex;
     width: 100%;
-    height: 3px;
+    height: 5px;
     background: ${(props) => props.theme.background[1]};
-  }
-  @media (max-width: 800px){
-    font-size: 4.736vw;
-    width: 14%;
- 
   }
 `;
 
@@ -62,9 +57,6 @@ const Gallery = styled.div`
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
-  @media (max-width: 800px){
-  width:100%;
-  }
 `;
 
 export default Books;

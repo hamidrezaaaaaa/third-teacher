@@ -44,26 +44,31 @@ const Carousel = () => {
       </Arrow>
 
       <Swiper
-      id="swiper"
-      navigation={{
-        nextEl: ".NextSlide",
-        prevEl: ".PrevSlide"
-      }
-      }
+        navigation={{
+          nextEl: ".NextSlide",
+          prevEl: ".PrevSlide",
+        }}
         dir="rtl"
-      centeredSlides={true}
-      slidesPerView={7}
-      spaceBetween={0}
-      slidesPerGroup={1}
-      loop={true}
-      noSwiping={true}
-      noSwipingSelector="div"
-      autoplay={{
-        delay: 97500,
-        disableOnInteraction: false,
-      }}
-        modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
-      className="mySwiper"
+        centeredSlides={true}
+        slidesPerView={7}
+        spaceBetween={0}
+        slidesPerGroup={1}
+        loop={true}
+        noSwiping={true}
+        noSwipingSelector="div"
+        // autoplay={{
+        //   delay: 97500,
+        //   disableOnInteraction: false,
+        // }}
+        modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
+        className="mySwiper"
+        onActiveIndexChange={(e) => {
+          let before1;
+          let next1;
+          let before2;
+          let next2;
+          let before3;
+          let next3;
 
           before1 = e.realIndex - 1;
           next1 = e.realIndex + 1;
@@ -145,54 +150,26 @@ const Carousel = () => {
           <BorderTop />
           <Philosopher>{carouselData[main].Philosopher}</Philosopher>
           <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
-        
-        <BottomLinks>
-            <CloseButton onClick={() => {setShowModule(false)}}>بستن</CloseButton>
-            <More onClick={() => {
-              navigate(`${carouselData[main].id + 1}`);
-            }}>ادامه</More>
-        </BottomLinks>
 
-       </Module>
-    }
-
-
-    {/* Mobile Carousel */}
-    <MobileCarousle>
-        <Swiper
-          navigation={{
-            nextEl: ".NextSlide",
-            prevEl: ".PrevSlide"
-          }
-          }
-            dir="rtl"
-          slidesPerView={1}
-          spaceBetween={15}
-          slidesPerGroup={1}
-          loop={true}
-          noSwiping={true}
-          autoplay={{
-            delay: 552500,
-            disableOnInteraction: false,
-          }}
-            modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
-          className="mySwiper">
-
-            {carouselData.map((i,index) =>{
-      
-      return (
-            <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}}
-             >
-                <Card img={zar} title={carouselData[index].Philosopher} />
-            </SwiperSlide>
-        )
-      })
-    }
-        </Swiper>
-    </MobileCarousle>
-
-
-      <Arrow className="NextSlide" >
+          <BottomLinks>
+            <CloseButton
+              onClick={() => {
+                setShowModule(false);
+              }}
+            >
+              بستن
+            </CloseButton>
+            <More
+              onClick={() => {
+                navigate(`${carouselData[main].id + 1}`);
+              }}
+            >
+              ادامه
+            </More>
+          </BottomLinks>
+        </Module>
+      )}
+      <Arrow className="NextSlide">
         <span></span>
         <span></span>
         <span></span>
@@ -201,39 +178,25 @@ const Carousel = () => {
   );
 };
 
-const ShortInfo =styled.span`
-padding:15px 5px; 
-color:#a58463;
-font-size:1.1rem;
-@media (max-width: 600px){
-  font-size:1.2rem;
-}
-`
+const ShortInfo = styled.span`
+  padding: 15px 5px;
+  color: #a58463;
+`;
 
-const Philosopher =styled.span`
-font-size:1.5rem; 
-margin-top:-4.5% ; 
-text-align:center;
-color:#4f594e;
-@media (max-width: 600px){
-  margin-top:-11.5% ;
-  margin-top:-27px;
-  font-size:1.75rem; 
-  // width:63.5vw;
-  // height:66%;
-}
-`
+const Philosopher = styled.span`
+  font-size: 1.5rem;
+  margin-top: -4.5%;
+  text-align: center;
+  color: #4f594e;
+`;
 
-const BorderTop =styled.div`
-margin-top:-23px;
-border-top:2.9px solid #fe9900 ;
-display:flex;
- width:25%;
-justify-content:space-between;
-@media (max-width: 600px){
-  width:40%;
-}
-`
+const BorderTop = styled.div`
+  margin-top: -23px;
+  border-top: 2.9px solid #fe9900;
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
+`;
 
 const BottomLinks = styled.div`
   display: flex;
@@ -246,82 +209,38 @@ const BottomLinks = styled.div`
 const CloseButton = styled.div``;
 const More = styled.div``;
 
-const CloseButton =styled.div`
-@media (max-width: 600px){
-  font-size:1.25rem;
-}
-
-`
-const More =styled.div`
-@media (max-width: 600px){
-  font-size:1.25rem;
-}
-`
-
-const MobileCarousle=styled.div`
-display:none;
-@media (max-width: 600px){
-  display:block;
-}
-width:70vw;
-height:45vh;
-// background-color:red
-`
-
-const Module =styled.div`
-position:absolute;
-top:75px;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-align-items:center;
-height:auto;
-height:50%;
-font-size:1rem;
-width:34.5vw;
-padding:20px 10px;
-background-color:white;
-border:3px solid #4f594e;
-border-radius:7.5px;
-z-index:10;
-@media (max-width: 600px){
-  width:63.5vw;
-  height:auto;
-  min-height:30vh;
-}
-`
+const Module = styled.div`
+  position: absolute;
+  top: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  height: 50%;
+  font-size: 1rem;
+  width: 34.5vw;
+  padding: 20px 10px;
+  background-color: white;
+  border: 3px solid #4f594e;
+  border-radius: 7.5px;
+  z-index: 10;
+`;
 
 const Container = styled.div`
-  position:relative;
+
+position:relative;
   width:85%;
   margin:auto;
   display: flex;
   justify-content: center;
   gap: 2.083vw;
-  margin: 0auto ;
-  
-  @media (max-width:801px){
-  }
-
-
-  @media (max-width: 600px){
-    margin: 4.861vw auto 5vh ;
-  }
-
-  #swiper{
-    @media (max-width: 600px){
-      display:none;
-    }
-  }
-
+  margin: 4.861vw auto;
 
   .now{
     transform: scale(1.6);
     transition: transform .5s;
     margin-top:-10px;
-    :hover{
-      cursor: pointer;
-    }
     .imageincarousel{
         transform: scaleY(1);
         margin-top: 50px;
@@ -336,16 +255,6 @@ const Container = styled.div`
   position:relative;
     transform: translateX(-62px) scaleX(.8);
     transition: transform .5s;
-
-    @media (max-width:801px){
-    // background-color:red;
-    // transform: translateX(-42px) scaleX(.8);
-
-    }
-
-    :hover{
-      cursor: pointer;
-    }
     .title{
       display:none;
         font-size: 1.5rem;
@@ -358,9 +267,6 @@ const Container = styled.div`
 .before1{
     transform:  translateX(62px) scaleX(.8);
     transition: transform .5s;
-    :hover{
-      cursor: pointer;
-    }
     .title{
         font-size: 1.5rem;
       display:none;
@@ -373,9 +279,6 @@ const Container = styled.div`
 .next2{
     transform:translateX(-42px)  scaleX(0.45);
     transition: transform 0s;
-    :hover{
-      cursor: pointer;
-    }
     .title{
       transform:scaleX(1.5);
         font-size: 1rem;
@@ -392,9 +295,6 @@ const Container = styled.div`
     background-color: rgb(162, 255, 0);
     transform:translateX(42px)  scaleX(0.45);
     transition: transform 0s;
-    :hover{
-      cursor: pointer;
-    }
     .title{
       transform:scaleX(1.5);
         font-size: 1rem;
@@ -412,9 +312,6 @@ const Container = styled.div`
     transform:   translateX(10px) scaleX(0.3);
     transition: transform 0s;
     background-color: rgb(115, 0, 255);
-    :hover{
-      cursor: pointer;
-    }
     .title{
       display:none;
 
@@ -431,10 +328,7 @@ const Container = styled.div`
     transform: translateX(-10px)   scaleX(0.3);
     transition: transform 0s;
     background-color: rgb(115, 0, 255);
-    :hover{
-      cursor: pointer;
-    }
-    
+    opacity: 1;
     .title{
       display:none;
 
@@ -456,20 +350,10 @@ const Arrow = styled.div`
   display: flex;
   gap: 0.694vw;
   align-items: center;
-  :hover{
-    cursor: pointer;
-  }
   span {
     width: 1.389vw;
     height: 1.389vw;
     background: ${(props) => props.theme.background[3]};
-  }
-  @media (max-width: 600px){
-    // display:none;
-    span {
-      width: 3.389vw;
-      height: 3.389vw;
-    }
   }
 `;
 
