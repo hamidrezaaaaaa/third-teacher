@@ -40,7 +40,20 @@ const Title = styled.h1`
     height: 3px;
     background: ${(props) => props.theme.background[1]};
   }
+
   @media (max-width: 800px){
+    font-size: 4.136vw;
+    width: 14%;
+    &:after {
+      content: "";
+      display: inline-flex;
+      width: 100%;
+      height: 3px;
+      background: ${(props) => props.theme.background[1]};
+    }
+  }
+}
+  @media (max-width: 600px){
     font-size: 4.736vw;
     width: 14%;
     &:after {
@@ -60,9 +73,14 @@ const Gallery = styled.div`
   width: 80%;
   gap: 7.736vw;
   margin: 0 auto;
-  @media (max-width: 800px){
-
+  @media (min-width: 600px) and (max-width: 800px){
+    width: 80%;
+    justify-content: space-evenly;
+  }
+  @media (max-width: 600px){
     margin: 5vh auto;
+    width: 85%;
+  justify-content: space-between;
   }
 `;
 

@@ -42,6 +42,10 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
   }
   @media (max-width: 800px){
+    width: 14%;
+    font-size: 4.136vw;
+  }
+  @media (max-width: 600px){
     font-size: 4.736vw;
     width: 14%;
     &:after {

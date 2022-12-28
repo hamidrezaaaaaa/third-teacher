@@ -15,6 +15,8 @@ import "swiper/css/navigation";
 const Carousel = () => {
   const navigate = useNavigate();
   let [sequence, setSequence] = useState([])
+  let [sequenceTablet, setSequenceTablet] = useState([])
+
   let [main,setMain] = useState()
   let [showModule,setShowModule] = useState(false)
   const modal = useRef(null);
@@ -107,7 +109,7 @@ const Carousel = () => {
         before2= 0
         before3= 13
       }
-     setSequence([next3,next2, next1 , e.realIndex , before1, before2,before3])
+     setSequence([next3, next2, next1 , e.realIndex , before1, before2, before3])
 
 }}
     >
@@ -125,23 +127,86 @@ return (
     })}
     </Swiper>
 
-    {
-      showModule &&
-      <Module className="tooltip" ref={modal}>
-          <BorderTop/>
-          <Philosopher>{carouselData[main].Philosopher}</Philosopher>
-          <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
+     {/* Tablet Carousel */}
+    <TabletCarousle>
+    <Swiper
+          id="tabletswiper"
+          navigation={{
+            nextEl: ".NextSlide",
+            prevEl: ".PrevSlide"
+          }
+        }
+          dir="rtl"
+          centeredSlides={true}
+          slidesPerView={3}
+          spaceBetween={15}
+          slidesPerGroup={1}
+          loop={true}
+          noSwiping={false}
+          autoplay={{
+            delay: 552500,
+            disableOnInteraction: false,
+          }}
+            modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
+          className="mySwiper"
+          onActiveIndexChange={(e)=> {
+            let before1
+            let next1
+            let before2
+            let next2
+            let before3
+            let next3
         
-        <BottomLinks>
-            <CloseButton onClick={() => {setShowModule(false)}}>بستن</CloseButton>
-            <More onClick={() => {
-              navigate(`${carouselData[main].id + 1}`);
-            }}>ادامه</More>
-        </BottomLinks>
+            before1 = e.realIndex - 1
+            next1 = e.realIndex + 1
+            next2 = e.realIndex + 2
+            before2 = e.realIndex -2
+            next3 = e.realIndex + 3
+            before3 = e.realIndex -3
+            
+            if(next1 == 12){
+              next3 = 0
+            }
+            if(next1 == 13){
+              next2 = 0
+              next3 = 1
+            }
+            if(next1 == 14){
+              next1 = 0
+              next2 = 1
+              next3 = 2
+            }
+             if(before1 == -1){
+                before1 = 13
+                before2= 12
+                before3= 11
+              }
+              if(before1 == 0){
+                before2= 13
+                before3= 12
+              }
+              if(before1 == 1){
+                before2= 0
+                before3= 13
+              }
+              setSequenceTablet([next3, next2, next1 , e.realIndex , before1, before2, before3])
+        
+        }}
+          >
 
-       </Module>
+            {carouselData.map((i,index) =>{
+              
+              return (
+                <SwiperSlide  key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequenceTablet[1] == index ? "tabletnext2" : sequenceTablet[2] == index ? 'tabletnext1' : sequenceTablet[3] == index ? "tabletnow" : sequenceTablet[4] == index ? "tabletbefore1" : sequenceTablet[5] == index ? "tabletbefore2" : "tabletnone"}
+                >
+                <Card img={zar} title={carouselData[index].Philosopher} />
+            </SwiperSlide>
+        )
+      })
     }
-
+    </Swiper>
+    </TabletCarousle>
+    {/*End of Tablet Carousel */}
 
     {/* Mobile Carousel */}
     <MobileCarousle>
@@ -156,7 +221,7 @@ return (
           spaceBetween={15}
           slidesPerGroup={1}
           loop={true}
-          noSwiping={true}
+          noSwiping={false}
           autoplay={{
             delay: 552500,
             disableOnInteraction: false,
@@ -176,7 +241,24 @@ return (
     }
         </Swiper>
     </MobileCarousle>
+    {/*End of Mobile Carousel */}
 
+    {
+      showModule &&
+      <Module className="tooltip" ref={modal}>
+          <BorderTop/>
+          <Philosopher>{carouselData[main].Philosopher}</Philosopher>
+          <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
+        
+        <BottomLinks>
+            <CloseButton onClick={() => {setShowModule(false)}}>بستن</CloseButton>
+            <More onClick={() => {
+              navigate(`${carouselData[main].id + 1}`);
+            }}>ادامه</More>
+        </BottomLinks>
+
+       </Module>
+    }
 
       <Arrow className="NextSlide" >
         <span></span>
@@ -202,12 +284,14 @@ font-size:1.5rem;
 margin-top:-4.5% ; 
 text-align:center;
 color:#4f594e;
+@media (min-width: 600px) and (max-width: 800px){
+  margin-top:-7% ; 
+}
 @media (max-width: 600px){
   margin-top:-11.5% ;
   margin-top:-27px;
   font-size:1.75rem; 
-  // width:63.5vw;
-  // height:66%;
+
 }
 `
 
@@ -231,19 +315,19 @@ margin-bottom:-10px;
 justify-content:space-between;
 `
 
-const CloseButton =styled.div`
+const CloseButton = styled.div`
 @media (max-width: 600px){
   font-size:1.25rem;
 }
 
 `
-const More =styled.div`
+const More = styled.div`
 @media (max-width: 600px){
   font-size:1.25rem;
 }
 `
 
-const MobileCarousle=styled.div`
+const MobileCarousle = styled.div`
 display:none;
 @media (max-width: 600px){
   display:block;
@@ -251,9 +335,119 @@ display:none;
 width:70vw;
 height:45vh;
 // background-color:red
+` 
+
+const TabletCarousle = styled.div`
+display:none;
+@media (min-width: 600px) and (max-width: 800px){
+  display:block;
+}
+width:70vw;
+height:auto;
+
+.tabletnow{
+  transform: scaleX(1.2);
+  transition: transform .5s;
+  // margin-top:-10px;
+  :hover{
+    cursor: pointer;
+  }
+  .imageincarousel{
+      transform: scaleY(1.2);
+      // margin-top: 50px;
+  }
+  .title{
+  transform: scaleY(1.2);
+    // margin-top:-20px;
+    // display:none;
+  }
+}
+
+.tabletnone{
+  transform: translateX(0px) scaleX(0.8);
+  transition: transform .5s;
+  margin-left: -10px;
+  .title{
+    display:none;
+      font-size: 1.5rem;
+  }
+  .imageincarousel{
+    transform: scaleY(0.8);
+    transition: transform .5s;
+}}
+
+.tabletnext1{
+  position:relative;
+  transform: translateX(-7px) scaleX(.8);
+  // transform: translateX(0px) scaleX(.8);
+
+  transition: transform .5s;
+
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    display:none;
+      font-size: 1.5rem;
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+      transition: transform .5s;
+  }
+}
+
+.tabletbefore1{
+  transform: translateX(7px) scaleX(.8);
+  // transform: translateX(0px) scaleX(.8);
+  transition: transform .5s;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+      // font-size: 1.5rem;
+    display:none;
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+      transition: transform .5s;
+  }
+}
+.tabletnext2{
+  transform: scaleX(0.8);
+  transition: transform 0s;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    transform:scaleX(1.5);
+      font-size: 1rem;
+    display:none;
+
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+  }
+}
+
+.tabletbefore2{
+  transform: scaleX(0.8);
+  transition: transform 0s;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    transform:scaleX(1.5);
+      font-size: 1rem;
+    display:none;
+
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+  }
+}
 `
 
-const Module =styled.div`
+const Module = styled.div`
 position:absolute;
 top:75px;
 display:flex;
@@ -269,6 +463,13 @@ background-color:white;
 border:3px solid #4f594e;
 border-radius:7.5px;
 z-index:10;
+
+@media (min-width: 600px) and (max-width: 800px){
+  top:135px;
+  width:53.5vw;
+  height:auto;
+}
+
 @media (max-width: 600px){
   width:63.5vw;
   height:auto;
@@ -284,17 +485,14 @@ const Container = styled.div`
   justify-content: center;
   gap: 2.083vw;
   margin: 0auto ;
-  
-  @media (max-width:801px){
-  }
 
-
+ 
   @media (max-width: 600px){
     margin: 4.861vw auto 5vh ;
   }
 
   #swiper{
-    @media (max-width: 600px){
+    @media (max-width: 800px){
       display:none;
     }
   }
@@ -322,12 +520,6 @@ const Container = styled.div`
     transform: translateX(-62px) scaleX(.8);
     transition: transform .5s;
 
-    @media (max-width:801px){
-    // background-color:red;
-    // transform: translateX(-42px) scaleX(.8);
-
-    }
-
     :hover{
       cursor: pointer;
     }
@@ -338,6 +530,11 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.8);
     }
+
+    
+    // @media (max-width:801px){
+    //   transform: translateX(-42px) scaleX(.8);
+    // }
 }
 
 .before1{
@@ -353,6 +550,9 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.8);
     }
+    // @media (max-width:801px){
+    //   transform: translateX(42px) scaleX(.8);
+    // }
 }
 
 .next2{
@@ -370,6 +570,9 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.45);
     }
+    // @media (max-width:801px){
+    //   transform: translateX(-22px) scaleX(.45);
+    // }
  
 }
 
@@ -389,6 +592,9 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.45);
     }
+    // @media (max-width:801px){
+    //   transform: translateX(22px) scaleX(.45);
+    // }
 
 }
 

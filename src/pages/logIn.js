@@ -38,29 +38,37 @@ const Container = styled.section`
     flex-direction:column;
   justify-content: center;
     align-tems:center;
+  padding-left: 0;
   }
   `;
 
 const Content = styled.div`
-  width: 30%;
+  width: 60%;
   height: 60vh;
+  height:auto;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
   margin:0 auto;
+box-sizing:content-box;
+align-tems:center;
   padding: 1.25vw 0 4.861vw 0;
-
   @media (max-width: 800px){
-    width: 100%;
-    height: 45vh;
+    width: 90%;
+    margin-top:5vh;
+    height: auto;
+  }
+
+  @media (max-width: 600px){
+    margin-top:5vh;
+    width: 80%;
+    height:auto;
   }
 `;
 
 const Wraper = styled.div`
-// border:3px solid black;
-  width: 80%;
+  width: 40%;
   margin: auto;
-  // height:10vh;
   form {
     display: flex;
     flex-direction: column;
@@ -101,9 +109,48 @@ const Wraper = styled.div`
   }
 
   @media (max-width: 800px){
+    width: 80%;
     form {
       border: 5px solid #ffe6bf;
-      padding: 4.6vh 2.6vw 0vh;
+      padding: 4.6vh 0.2vw 0vh;
+      input {
+        margin-bottom: 1.042vw;
+        border: none;
+        padding: 1.6vh 1.6vw;
+        background: ${(props) => props.theme.background[1]};
+        font-size: 2.889vw;
+        text-align: center;
+        outline: none;
+      }
+      button {
+        border: none;
+        width: fit-content;
+        margin: auto;
+        background: ${(props) => props.theme.background[1]};
+        padding: 1.5vw 4vw;
+        font-size: 3.389vw;
+        font-weight: 400;
+        transform: translateY(55%);
+      }
+      &:before {
+        content: "ورود";
+        display: block;
+        position: absolute;
+        background: #ffffff;
+        padding: 1vw 2vw;
+        font-size: 3.389vw;
+        font-weight: 400;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -13%;
+      }
+    }
+
+  @media (max-width: 600px){
+    width:100%;
+    form {
+      border: 5px solid #ffe6bf;
+      padding: 4.6vh 0vw 0vh;
       input {
         margin-bottom: 1.042vw;
         border: none;
@@ -150,6 +197,11 @@ const ForgetPass = styled.p`
   cursor: pointer;
 
   @media (max-width: 800px){
+    font-size: 2.389vw;
+    margin-top: 8vw;
+    font-weight: 400;
+  }
+  @media (max-width: 600px){
     font-size: 3.389vw;
     margin-top: 8vw;
     font-weight: 400;

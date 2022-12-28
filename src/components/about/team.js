@@ -42,7 +42,6 @@ const Container = styled.section`
 `;
 
 const Content = styled.div`
-// border:5px solid blue;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -126,6 +125,35 @@ const Member = styled.div`
   }
 
   @media (max-width: 800px){
+    align-items:center;
+    width: 30%;
+    flex-wrap:wrap;
+    .image {
+      width: 25.5vw;
+      height: 25.5vw;
+      border: 3px solid #ffcf87;
+      margin-bottom: 4.042vw;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    h3 {
+      margin: 0;
+      color: ${(props) => props.theme.textColor[1]};
+      font-size: 3.389vw;
+      font-weight: 500;
+    }
+    .post {
+      margin: 10px 0;
+      color: ${(props) => props.theme.textColor[1]};
+      font-size: 2.389vw;
+      font-weight: 200;
+    }
+   }
+
+  @media (max-width: 600px){
     align-items:center;
     width: 50%;
     flex-wrap:wrap;

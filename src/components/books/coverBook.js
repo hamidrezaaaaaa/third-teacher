@@ -25,7 +25,14 @@ const Container = styled.div`
   align-items: center;
   cursor:pointer;
   @media (max-width: 800px){
-    margin:15px 0;
+    margin:0 0 12vh 0;
+    width:27%;
+    justify-content:space-between;
+    height:200px;
+  }
+
+  @media (max-width: 600px){
+    margin:0 0 12vh 0;
     width:45%;
     justify-content:space-between;
     height:200px;
@@ -58,7 +65,33 @@ const Cover = styled.div`
     right: 20px;
     z-index: -1;
   }
+
   @media (max-width: 800px){
+    width: 20.944vw;
+    height: 20.944vw;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(18px, 17px);
+    }
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      padding-top: 100%;
+      background-image: url(${back});
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: -20px;
+      right: 20px;
+      z-index: -1;
+    }
+  }
+
+  @media (max-width: 600px){
     width: 28.944vw;
     height: 28.944vw;
   
@@ -90,6 +123,7 @@ const Expand = styled.div`
   justify-content: center;
   width: 14.931vw;
   height: 14.931vw;
+  max-height:75px;
   border: 3px solid #fe9900;
   padding: 1vw;
   .text {
@@ -100,7 +134,20 @@ const Expand = styled.div`
     color: ${(props) => props.theme.textColor[4]};
     text-align: center;
   }
+
   @media (max-width: 800px){
+    // height: 14.931vw;
+    margin-top:2vh;
+    // max-height:75px;
+    min-height: 100px;
+    height:auto;
+    width:100%;
+    .text {
+      font-size: 2.736vw;
+    }
+  }
+
+  @media (max-width: 600px){
     // height:auto;
     width:100%;
     .text {

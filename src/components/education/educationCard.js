@@ -47,6 +47,14 @@ const Container = styled.div`
   }
 
   @media (max-width: 800px){
+    width: 20.944vw;
+    height: 20.944vw;
+
+    .title {
+      font-size: 2.736vw;
+  }
+
+  @media (max-width: 600px){
     width: 30.944vw;
     height: 30.944vw;
 

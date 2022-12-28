@@ -11,15 +11,16 @@ const Navbar = () => {
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
   const [mobileNavbarSelecter, setMobileNavbarSelecter] = useState(false)
-  const menuItem = data.navbar.map((x, i) => {
+  
+  const menuItemDesktop = data.navbar.map((x, i) => {
     return (
       <Wraper>
         <Item
           key={i}
-          onClick={() => {
-            setSelect(i);
-            navigate(x.path);
-            handleMobileNavbar()
+          onClick={(e) => {
+              setSelect(i);
+              navigate(x.path);
+              handleMobileNavbar()
           }}
           className={select == i ? "active" : ""}
         >
@@ -27,15 +28,55 @@ const Navbar = () => {
         </Item>
         {x.dropDown && (
           <ul className="drop-down">
-            {x.dropDown.map((z, i) => {
+            {x.dropDown.map((z, g) => {
               return (
                 <li
-                  key={i}
+                  key={g}
                   onClick={() => {
                     navigate(z.path);
                     handleMobileNavbar()
+                    setSelect(i);
                   }}
                 >
+                  {console.log("key = ", g)}
+                  {z.title}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </Wraper>
+    );
+  });
+  const menuItemMobile = data.navbar.map((x, i) => {
+    return (
+      <Wraper>
+        <Item
+          key={i}
+          onClick={(e) => {
+            if(i == 0){
+              setSelect(i);
+              navigate(x.path);
+              handleMobileNavbar()
+            }
+          }}
+          className={select == i ? "active" : ""}
+        >
+          {x.section}
+        </Item>
+        {x.dropDown && (
+          <ul className="drop-down">
+            {x.dropDown.map((z, g) => {
+              return (
+                <li
+                  key={g}
+                  onClick={() => {
+                    navigate(z.path);
+                    handleMobileNavbar()
+                    setSelect(i);
+                  }}
+                >
+                  {console.log("key = ", g)}
                   {z.title}
                 </li>
               );
@@ -47,7 +88,6 @@ const Navbar = () => {
   });
   function handleMobileNavbar(){
     setMobileNavbarSelecter(x => !x)
-    console.log(mobileNavbarSelecter)
   }
   return (
     <Container>
@@ -60,7 +100,7 @@ const Navbar = () => {
               <div className="whatsapp"></div>
             </SocialNetwork>
           </Logo>
-          <Items>{menuItem}</Items>
+          <Items>{menuItemDesktop}</Items>
           <Search>
             <input type="text" placeholder="جستجو" />
             <span></span>
@@ -70,18 +110,17 @@ const Navbar = () => {
 
       <MobileNavbar>
       <OverlayNav mobileNavbarSelecter={mobileNavbarSelecter}> 
-      <CloseNavbar onClick={() => handleMobileNavbar()}>
+        <CloseNavbar onClick={() => handleMobileNavbar()}>
           <span className="closebtn">
             +
           </span>
         </CloseNavbar>
-            <Items>{menuItem}
+        <Items>{menuItemMobile}
             <Search>
               <input type="text" placeholder="جستجو" />
               <span></span>
             </Search>
-            </Items>
-            
+        </Items>
       </OverlayNav>
       <FixNavbar className="fixNavbar">
         <Hubmerger className="burgersss" onClick={() => handleMobileNavbar()}>
@@ -89,7 +128,6 @@ const Navbar = () => {
           <span className="burger"></span>
           <span className="burger"></span>
         </Hubmerger>
-        {/* }  */}
         <LogoMobile onClick={() => {
             navigate("/");
           }}>
@@ -117,14 +155,12 @@ justify-content:space-between;
 
 const OverlayNav = styled.div`
 display:flex;
-// border:3px solid red;
-height:150vh;
+height:100vh;
 position:absolute;
 position: fixed;
 top:0vh;
 overflow-y:hidden;
 touch-action: none;
-
 left:${props => props.mobileNavbarSelecter == true ? "0%" : "150%"}};
 z-index:102;
 padding:0;
@@ -133,6 +169,10 @@ transition: 0.7s;
 width:${props => props.mobileNavbarSelecter == true ? "100%" : "0"}};
 overflow-x: hidden;
 // box-sizing:border-box;
+
+@media (min-width: 600px) and (max-width: 800px){
+}
+
 `
 
 const NavbarDesktop = styled.div`
@@ -148,6 +188,9 @@ gap: 2.083vw;
 
 `
 const MobileNavbar = styled.div`
+@media (min-width: 600px) and (max-width: 800px){
+  margin-bottom:2vh;
+}
 position:relative;
 width:100%;
 margin:10px auto;
@@ -164,7 +207,7 @@ align-items:center;
 }
 
 
-@media (min-width: 600px){
+@media (min-width: 800px){
   display:none;
 
 `
@@ -208,6 +251,12 @@ z-index:101;
   width:100%;
   height:20%;
 }
+@media (min-width: 600px) and (max-width: 800px){
+  // width:100%;
+  width:7.5vw;
+  height: 6.25vw;
+  // padding-top:10px;
+  }
 `
 
 const Container = styled.nav`
@@ -273,6 +322,31 @@ const Search = styled.div`
   }
 
 
+  @media (max-width: 800px){
+    flex-direction:column;
+    position:relative;
+    input {
+      outline: none;
+      border: none;
+      background: ${(props) => props.theme.background[1]};
+      font-size: 3.736vw;
+      font-weight: 400;
+      padding: 25px 25px 25px 0;
+      width: 98%;
+      // color:white;
+    }
+    span {
+      position:absolute;
+      // display:none;
+      left:1vw;
+      width: 7.569vw;
+      height: 7.569vw;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(${search});
+    }
+  }
+
   @media (max-width: 600px){
     flex-direction:column;
     position:relative;
@@ -309,6 +383,16 @@ const Items = styled.ul`
   gap: 2vw;
   padding-right: 2vw;
 
+  @media (max-width: 800px){
+    padding:20vh 5vh;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:5vh;
+    color:white !important;
+    align-items:space-between;
+    width:100%;
+  }
+
   @media (max-width: 600px){
     padding:20vh 5vh;
     // border:3px solid white;
@@ -328,7 +412,8 @@ const Wraper = styled.div`
     display: none;
     z-index: 100;
   }
-  &:hover {
+ 
+  &:hover{
     .drop-down {
       position: absolute;
       display: flex;
@@ -349,7 +434,12 @@ const Wraper = styled.div`
       }
     }
   }
-  @media (max-width: 600px){
+  
+  @media (max-width: 800px){
+    // border:4px solid blue;
+    flex-direction:column;
+    display:flex;
+    align-items:center;
     .drop-down {
       
       margin: 20px 0 0;
@@ -368,14 +458,18 @@ const Wraper = styled.div`
         // background: red;
         // padding: 1.042vw;
         gap: 1.042vw;
+        width:100%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         li {
           color: ${(props) => props.theme.textColor[0]};
           white-space: nowrap;
           color:white;
+          width:100%;
           text-align: center;
           padding:5px 0 ;
           cursor:pointer;
+          font-size: 1.2rem;
+
           &:hover {
             color: ${(props) => props.theme.textColor[3]};
           }
@@ -409,9 +503,16 @@ const Item = styled.li`
     color: ${(props) => props.theme.textColor[3]};
   }
 
+  @media (max-width: 800px){
+    color: white;
+    width:100%;
+    text-align:center;
+    padding: 0;
+    font-size: 2.7rem;
+  }
+
   @media (max-width: 600px){
     color: white;
-    // border:2px solid yellow;
     width:100%;
     text-align:center;
     padding: 0;
