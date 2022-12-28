@@ -23,16 +23,7 @@ const Container = styled.div`
   padding: 4.861vw 6.944vw;
   display: flex;
   justify-content: space-between;
-  height: auto;
-  align-items:center;
-  @media (max-width: 800px){
-    flex-direction:column;
-
-  }
-  
-  @media (max-width: 600px){
-    height: 50vh;
-  }
+  height: 50vh;
 `;
 
 const Content = styled.div``;
@@ -66,36 +57,6 @@ const Cover = styled.div`
     top: -2.083vw;
     right: 2.083vw;
     z-index: -1;
-  }
-
-  @media (max-width: 800px){
-    width: 45.917vw;
-    height: 45.917vw;
-    .title {
-      order: 1;
-      text-align: center;
-      font-size: 4.778vw;
-    }
-    &:before {
-      top: -5.083vw;
-      right: 5.083vw;
-      z-index: -1;
-    }
-  }
-
-  @media (max-width: 600px){
-    width: 60.917vw;
-    height: 60.917vw;
-    .title {
-      order: 1;
-      text-align: center;
-      font-size: 5.778vw;
-    }
-    &:before {
-      top: -6.083vw;
-      right: 6.083vw;
-      z-index: -1;
-    }
   }
 `;
 

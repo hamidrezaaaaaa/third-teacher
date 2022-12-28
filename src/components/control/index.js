@@ -22,22 +22,11 @@ const Control = () => {
 };
 
 const Container = styled.div`
-display: flex;
-justify-content: center;
-gap: 5.556vw;
-margin-bottom: 12.778vh important;
-cursor: pointer;
-
-@media (min-width: 600px) and (max-width: 800px){
-  flex-wrap: wrap;
-  width: 80vw;
-  margin: 0 auto;
-}
-@media (max-width: 600px){
-    flex-wrap: wrap;
-    width: 80vw;
-    margin: 0 auto;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 5.556vw;
+  margin-bottom: 2.778vw;
+  cursor: pointer;
 `;
 
 const Section = styled.div`
@@ -53,22 +42,6 @@ const Section = styled.div`
     font-weight: 400;
     font-size: 1.736vw;
     color: ${(props) => props.theme.textColor[1]};
-
-    @media (min-width: 600px) and (max-width: 800px){
-      font-size: 3vw;
-    }
-    @media (max-width: 600px){
-      font-size: 5.736vw;
-    }
-  }
-  @media (min-width: 600px) and (max-width: 800px){
-    width:15vw;
-    height:15vw;
-  }
-
-  @media (max-width: 600px){
-    width:30vw;
-    height:100px;
   }
 `;
 
