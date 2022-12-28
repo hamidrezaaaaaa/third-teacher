@@ -43,7 +43,7 @@ const Dashboard = () => {
           </Routes>
         </Wraper>
       </Content>
-      <SideBar width="20%" content={data.about[0].test} />
+      <SideBar moblieborder="83vw" width="20%" content={data.about[0].test} />
     </Container>
   );
 };
@@ -52,6 +52,12 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
+  @media (max-width: 800px){
+    flex-direction:column;
+    justify-content: center;
+    align-tems:center;
+    padding-left: 0;
+  }
 `;
 
 const Content = styled.div`
@@ -61,6 +67,17 @@ const Content = styled.div`
   gap: 0.736vw;
   padding-top: 4vw;
   padding-right: 4vw;
+  @media (max-width: 800px){
+    flex-direction:column;
+    width: 90%;
+    margin: 0 auto;
+    padding:6.25vw 0 4.861vw 0;
+    justify-content:center;
+    height: auto;
+    align-tems:center;
+    padding-left: 0;
+  }
+
 `;
 
 const Menu = styled.div`
@@ -68,12 +85,20 @@ const Menu = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.042vw;
+  height:auto;
+  
+  @media (max-width: 800px){
+  flex-direction:row;
+  width: 100%; 
+  // height: 50vh;
+  }
 `;
 
 const Item = styled.div`
   width: 90%;
   padding: 0.694vw;
   text-align: center;
+  align-tems:center;
   font-size: 1.389vw;
   font-weight: 400;
   color: ${(props) => props.theme.textColor[1]};
@@ -83,10 +108,25 @@ const Item = styled.div`
     color: ${(props) => props.theme.textColor[2]};
     border-color: ${(props) => props.theme.textColor[2]};
   }
+
+  @media (max-width: 800px){
+    padding: 0.694vw;
+    font-size: 3.389vw;
+    font-weight: 400; 
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    }
 `;
 
 const Wraper = styled.div`
   width: 70%;
+  @media (max-width: 800px){
+    height:auto;
+    flex-direction:row;
+    width: 100%;
+    // display:none; 
+    }
 `;
 
 export default Dashboard;

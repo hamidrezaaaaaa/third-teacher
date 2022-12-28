@@ -13,8 +13,12 @@ const Search = () => {
 
 const Container = styled.div`
   background: ${(props) => props.theme.background[1]};
-  padding: 2vw;
+  padding:3vh 2vw;
   height: 70%;
+  @media (max-width: 800px){
+    margin-top:2vh;
+      height:100%;
+    }
 `;
 
 const SearchBox = styled.div`
