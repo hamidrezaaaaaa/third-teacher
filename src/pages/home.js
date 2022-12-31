@@ -25,7 +25,6 @@ const Container = styled.section`
   flex-direction: column;
   gap: 7.5vh;
   justify-content: space-around;
-  // height:84vh;
 
   @media (max-width: 600px){
     gap: 4vh;
@@ -62,7 +61,6 @@ const Swap = styled.div`
   @media (max-width: 600px){
     width: 70%;
     .text {
-      // margin: 0;
       padding: 15px 10px;
       font-size: 5.111vw;
       font-weight: 300;

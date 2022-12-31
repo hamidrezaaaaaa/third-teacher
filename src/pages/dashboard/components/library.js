@@ -33,7 +33,6 @@ const Gallery = styled.div`
   align-items:center;
   gap: 2vw;
   width: 90%;
-  // border:3px solid green;
   @media (max-width: 800px){
     width: 100%;
     }
@@ -45,7 +44,6 @@ width:100%;
 background:#FFFFFF;
 padding:1.5vw;
 @media (max-width: 800px){
-  // border:3px solid red;
   width: 100%;
   font-size: 3.736vw;
   padding: 2.5vh 1.5vw;

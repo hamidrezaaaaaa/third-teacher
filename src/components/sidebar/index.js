@@ -77,9 +77,7 @@ const Container = styled.div`
       display: block;
       position: absolute;
       left:0;
-      // left: 62.7vw;
       left: ${(props) => props.moblieborder};
-      // right:80%;
       bottom: 0;
       width: 100%;
       height: 100%;
@@ -118,9 +116,7 @@ const Container = styled.div`
       display: block;
       position: absolute;
       left:0;
-      // left: 62.7vw;
       left: ${(props) => props.moblieborder};
-      // right:80%;
       bottom: 0;
       width: 100%;
       height: 100%;

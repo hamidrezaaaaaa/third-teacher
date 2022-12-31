@@ -43,7 +43,6 @@ box-sizing:border-box;
   background: #ffffff;
   padding: 1.5vw;
   @media (max-width: 800px){
-    // border:3px solid red;
     width: 100%;
     font-size: 3.736vw;
     padding: 2.5vh 1.5vw;

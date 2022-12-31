@@ -87,7 +87,6 @@ const Content = styled.div`
 
 const Gallery = styled.div`
   display: flex;
-  // border:3px solid green;
   justify-content: space-evenly;
   width:100%;
   @media (max-width: 800px){

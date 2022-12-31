@@ -75,7 +75,6 @@ const Content = styled.div`
 
 
   @media (max-width: 800px){
-    // border:3px solid red;
     box-sizing:border-box;
     align-items:center;
     width: 100%;
@@ -104,7 +103,6 @@ const Content = styled.div`
       border: 3px solid #ffcf87;
       padding: 2vw;
       margin:1vh auto;  
-      // border:5px solid green;
       box-sizing:border-box;
       .text,
       .poetry {
@@ -122,7 +120,6 @@ const Content = styled.div`
   }
 
   @media (max-width: 600px){
-    // border:3px solid red;
     box-sizing:border-box;
     align-items:center;
     width: 100%;
@@ -151,7 +148,6 @@ const Content = styled.div`
       border: 3px solid #ffcf87;
       padding: 2vw;
       margin:1vh auto;  
-      // border:5px solid green;
       box-sizing:border-box;
       .text,
       .poetry {

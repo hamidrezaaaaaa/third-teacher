@@ -257,7 +257,6 @@ const Title = styled.h1`
       font-size: 3.389vw;
       color: ${(props) => props.theme.textColor[0]};
       z-index:20;
-      // margin: 02vh auto;
     }
     .form {
       margin: 0 auto;
@@ -281,7 +280,6 @@ const Title = styled.h1`
     margin: 0 auto;
     width: 100%;
     align-items:center;
-    // border:3px solid black;
     gap:3vh;
     flex-direction:column;
     justify-content: center;
@@ -301,7 +299,6 @@ const Title = styled.h1`
       width: 100%;
       border: 5px solid #ffe6bf;
       padding: 4.6vh 0vw 0vh;
-      // border:3px solid black;
       input {
         margin-bottom: 1.042vw;
         border: none;

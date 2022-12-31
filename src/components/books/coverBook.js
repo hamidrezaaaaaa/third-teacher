@@ -136,9 +136,7 @@ const Expand = styled.div`
   }
 
   @media (max-width: 800px){
-    // height: 14.931vw;
     margin-top:2vh;
-    // max-height:75px;
     min-height: 100px;
     height:auto;
     width:100%;
@@ -148,7 +146,6 @@ const Expand = styled.div`
   }
 
   @media (max-width: 600px){
-    // height:auto;
     width:100%;
     .text {
       font-size: 3.736vw;

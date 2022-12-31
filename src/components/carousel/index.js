@@ -16,11 +16,21 @@ const Carousel = () => {
   const navigate = useNavigate();
   let [sequence, setSequence] = useState([])
   let [sequenceTablet, setSequenceTablet] = useState([])
-
   let [main,setMain] = useState()
   let [showModule,setShowModule] = useState(false)
   const modal = useRef(null);
+
+  const [screenWidthSize, setScreenWidthSize] = useState(window.innerWidth);
+  const updateMedia = () => {
+    setScreenWidthSize(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   useOutsideAlerter(modal);
+  let lengthOfPhilsophesArray = carouselData.length
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -46,88 +56,40 @@ const Carousel = () => {
         <span></span>
         <span></span>
       </Arrow>
+    {600 > screenWidthSize ? 
+      <MobileCarousle>
+        <Swiper
+          navigation={{
+            nextEl: ".NextSlide",
+            prevEl: ".PrevSlide"
+          }
+          }
+            dir="rtl"
+          slidesPerView={1}
+          spaceBetween={15}
+          slidesPerGroup={1}
+          loop={true}
+          noSwiping={false}
+          autoplay={{
+            delay: 552500,
+            disableOnInteraction: false,
+          }}
+            modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
+          className="mySwiper">
 
-      <Swiper
-      id="swiper"
-      navigation={{
-        nextEl: ".NextSlide",
-        prevEl: ".PrevSlide"
-      }
-      }
-        dir="rtl"
-      centeredSlides={true}
-      slidesPerView={7}
-      spaceBetween={0}
-      slidesPerGroup={1}
-      loop={true}
-      noSwiping={true}
-      noSwipingSelector="div"
-      autoplay={{
-        delay: 97500,
-        disableOnInteraction: false,
-      }}
-        modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
-      className="mySwiper"
-
-     onActiveIndexChange={(e)=> {
-    let before1
-    let next1
-    let before2
-    let next2
-    let before3
-    let next3
-
-    before1 = e.realIndex - 1
-    next1 = e.realIndex + 1
-    next2 = e.realIndex + 2
-    before2 = e.realIndex -2
-    next3 = e.realIndex + 3
-    before3 = e.realIndex -3
-    
-    if(next1 == 12){
-      next3 = 0
-    }
-    if(next1 == 13){
-      next2 = 0
-      next3 = 1
-    }
-    if(next1 == 14){
-      next1 = 0
-      next2 = 1
-      next3 = 2
-    }
-     if(before1 == -1){
-        before1 = 13
-        before2= 12
-        before3= 11
-      }
-      if(before1 == 0){
-        before2= 13
-        before3= 12
-      }
-      if(before1 == 1){
-        before2= 0
-        before3= 13
-      }
-     setSequence([next3, next2, next1 , e.realIndex , before1, before2, before3])
-
-}}
-    >
+            {carouselData.map((i,index) =>{
       
-    {carouselData.map((i,index) =>{
-      
-return (
-      <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequence[0] == index ? "next3" :sequence[1] == index ? "next2" : sequence[2] == index ? 'next1' : sequence[3] == index ? "now" : sequence[4] == index ? "before1" : sequence[5] == index ? "before2" : sequence[6] == index ? "before3" : "none"}
-       >
-          <Card img={zar} title={carouselData[index].Philosopher} />
-          
-      </SwiperSlide>
-       
-      )
-    })}
-    </Swiper>
-
-     {/* Tablet Carousel */}
+      return (
+            <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}}
+             >
+                <Card img={zar} title={carouselData[index].Philosopher} />
+            </SwiperSlide>
+        )
+      })
+    }
+        </Swiper>
+    </MobileCarousle> : 
+     800 > screenWidthSize ? 
     <TabletCarousle>
     <Swiper
           id="tabletswiper"
@@ -164,30 +126,30 @@ return (
             next3 = e.realIndex + 3
             before3 = e.realIndex -3
             
-            if(next1 == 12){
+            if(next1 == lengthOfPhilsophesArray - 2){
               next3 = 0
             }
-            if(next1 == 13){
+            if(next1 == lengthOfPhilsophesArray - 1){
               next2 = 0
               next3 = 1
             }
-            if(next1 == 14){
+            if(next1 == lengthOfPhilsophesArray){
               next1 = 0
               next2 = 1
               next3 = 2
             }
              if(before1 == -1){
-                before1 = 13
-                before2= 12
-                before3= 11
+                before1 = lengthOfPhilsophesArray - 1
+                before2= lengthOfPhilsophesArray - 2
+                before3= lengthOfPhilsophesArray - 3 
               }
               if(before1 == 0){
-                before2= 13
-                before3= 12
+                before2= lengthOfPhilsophesArray - 1
+                before3= lengthOfPhilsophesArray - 2
               }
               if(before1 == 1){
                 before2= 0
-                before3= 13
+                before3 = lengthOfPhilsophesArray - 1
               }
               setSequenceTablet([next3, next2, next1 , e.realIndex , before1, before2, before3])
         
@@ -206,42 +168,89 @@ return (
     }
     </Swiper>
     </TabletCarousle>
-    {/*End of Tablet Carousel */}
-
-    {/* Mobile Carousel */}
-    <MobileCarousle>
-        <Swiper
-          navigation={{
-            nextEl: ".NextSlide",
-            prevEl: ".PrevSlide"
-          }
-          }
-            dir="rtl"
-          slidesPerView={1}
-          spaceBetween={15}
-          slidesPerGroup={1}
-          loop={true}
-          noSwiping={false}
-          autoplay={{
-            delay: 552500,
-            disableOnInteraction: false,
-          }}
-            modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
-          className="mySwiper">
-
-            {carouselData.map((i,index) =>{
-      
-      return (
-            <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}}
-             >
-                <Card img={zar} title={carouselData[index].Philosopher} />
-            </SwiperSlide>
-        )
-      })
+    : 
+    <Swiper
+    id="swiper"
+    navigation={{
+      nextEl: ".NextSlide",
+      prevEl: ".PrevSlide"
     }
-        </Swiper>
-    </MobileCarousle>
-    {/*End of Mobile Carousel */}
+    }
+      dir="rtl"
+    centeredSlides={true}
+    slidesPerView={7}
+    spaceBetween={0}
+    slidesPerGroup={1}
+    loop={true}
+    noSwiping={true}
+    noSwipingSelector="div"
+    autoplay={{
+      delay: 97500,
+      disableOnInteraction: false,
+    }}
+      modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
+    className="mySwiper"
+
+   onActiveIndexChange={(e)=> {
+  let before1
+  let next1
+  let before2
+  let next2
+  let before3
+  let next3
+
+  before1 = e.realIndex - 1
+  next1 = e.realIndex + 1
+  next2 = e.realIndex + 2
+  before2 = e.realIndex -2
+  next3 = e.realIndex + 3
+  before3 = e.realIndex -3
+  
+  if(next1 == lengthOfPhilsophesArray - 2){
+    next3 = 0
+  }
+  if(next1 == lengthOfPhilsophesArray - 1){
+    next2 = 0
+    next3 = 1
+  }
+  if(next1 == lengthOfPhilsophesArray){
+    next1 = 0
+    next2 = 1
+    next3 = 2
+  }
+   if(before1 == -1){
+      before1 = lengthOfPhilsophesArray - 1
+      before2 = lengthOfPhilsophesArray - 2
+      before3 = lengthOfPhilsophesArray - 3 
+    }
+    if(before1 == 0){
+      before2 = lengthOfPhilsophesArray - 1
+      before3 = lengthOfPhilsophesArray - 2
+    }
+    if(before1 == 1){
+      before2 = 0
+      before3 = lengthOfPhilsophesArray - 1
+    }
+   setSequence([next3, next2, next1 , e.realIndex , before1, before2, before3])
+
+}}
+  >
+    
+  {carouselData.map((i,index) =>{
+    
+return (
+    <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequence[0] == index ? "next3" :sequence[1] == index ? "next2" : sequence[2] == index ? 'next1' : sequence[3] == index ? "now" : sequence[4] == index ? "before1" : sequence[5] == index ? "before2" : sequence[6] == index ? "before3" : "none"}
+     >
+        <Card img={zar} title={carouselData[index].Philosopher} />
+        
+    </SwiperSlide>
+     
+    )
+  })}
+  </Swiper>
+
+}
+    
 
     {
       showModule &&
@@ -328,38 +337,29 @@ const More = styled.div`
 `
 
 const MobileCarousle = styled.div`
-display:none;
 @media (max-width: 600px){
   display:block;
 }
 width:70vw;
 height:45vh;
-// background-color:red
 ` 
 
 const TabletCarousle = styled.div`
-display:none;
-@media (min-width: 600px) and (max-width: 800px){
-  display:block;
-}
 width:70vw;
 height:auto;
 
 .tabletnow{
   transform: scaleX(1.2);
   transition: transform .5s;
-  // margin-top:-10px;
   :hover{
     cursor: pointer;
   }
   .imageincarousel{
       transform: scaleY(1.2);
-      // margin-top: 50px;
   }
   .title{
   transform: scaleY(1.2);
-    // margin-top:-20px;
-    // display:none;
+  
   }
 }
 
@@ -379,8 +379,6 @@ height:auto;
 .tabletnext1{
   position:relative;
   transform: translateX(-7px) scaleX(.8);
-  // transform: translateX(0px) scaleX(.8);
-
   transition: transform .5s;
 
   :hover{
@@ -398,13 +396,11 @@ height:auto;
 
 .tabletbefore1{
   transform: translateX(7px) scaleX(.8);
-  // transform: translateX(0px) scaleX(.8);
   transition: transform .5s;
   :hover{
     cursor: pointer;
   }
   .title{
-      // font-size: 1.5rem;
     display:none;
   }
   .imageincarousel{
@@ -530,11 +526,6 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.8);
     }
-
-    
-    // @media (max-width:801px){
-    //   transform: translateX(-42px) scaleX(.8);
-    // }
 }
 
 .before1{
@@ -550,9 +541,6 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.8);
     }
-    // @media (max-width:801px){
-    //   transform: translateX(42px) scaleX(.8);
-    // }
 }
 
 .next2{
@@ -570,10 +558,6 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.45);
     }
-    // @media (max-width:801px){
-    //   transform: translateX(-22px) scaleX(.45);
-    // }
- 
 }
 
 .before2{
@@ -592,10 +576,6 @@ const Container = styled.div`
     .imageincarousel{
         transform: scaleY(0.45);
     }
-    // @media (max-width:801px){
-    //   transform: translateX(22px) scaleX(.45);
-    // }
-
 }
 
 .next3{
@@ -656,7 +636,6 @@ const Arrow = styled.div`
     background: ${(props) => props.theme.background[3]};
   }
   @media (max-width: 600px){
-    // display:none;
     span {
       width: 3.389vw;
       height: 3.389vw;

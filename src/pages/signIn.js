@@ -86,7 +86,6 @@ const Container = styled.div`
     align-tems:center;
     flex-direction:column;
     justify-content: center;
-    // padding-left: 0;
   }
 `;
 
@@ -110,7 +109,6 @@ box-sizing:content-box;
     margin: 0 auto;
     padding:6.25vw 0 4.861vw 0;
     justify-content:center;
-    // height: 45vh;
     align-tems:center;
     padding-left: 0;
   }
@@ -200,7 +198,6 @@ const Wraper = styled.div`
 
   @media (max-width: 600px){
     width: 100%;
-    // border:4px solid red;
     margin:0 auto;
     form {
       

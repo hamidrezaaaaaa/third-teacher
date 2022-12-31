@@ -50,7 +50,6 @@ const Container = styled.div`
   }
   @media (max-width: 600px){
     padding: 8.861vw 6.944vw;
-    // margin-top: 5vh;
     height:66vh;
     flex-direction:column;
   }
@@ -58,7 +57,6 @@ const Container = styled.div`
 
 const Content = styled.div`
   max-width: 70%;
-  // max-height: 20.833vw;
   display: flex;
   flex-direction: column;
   gap: 2.083vw;

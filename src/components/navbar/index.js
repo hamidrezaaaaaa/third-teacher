@@ -147,7 +147,6 @@ width:90vw;
 margin:0px auto;
 display:flex;
 align-items:center;
-// border:4px solid red;
 justify-content:space-between;
 `
 
@@ -166,7 +165,6 @@ background-color: #444444;
 transition: 0.7s;
 width:${props => props.mobileNavbarSelecter == true ? "100%" : "0"}};
 overflow-x: hidden;
-// box-sizing:border-box;
 
 @media (min-width: 600px) and (max-width: 800px){
 }
@@ -195,13 +193,10 @@ margin:10px auto;
 display:flex;
 justify-content: space-between;
 align-items:center;
-// border:10px solid black;
-
 .close {
   font-size: 5rem;
   font-weight: 600;
   display: inline-block;
-  // transform: rotate(45deg);
 }
 
 
@@ -250,10 +245,8 @@ z-index:101;
   height:20%;
 }
 @media (min-width: 600px) and (max-width: 800px){
-  // width:100%;
   width:7.5vw;
   height: 6.25vw;
-  // padding-top:10px;
   }
 `
 
@@ -264,7 +257,6 @@ const Container = styled.nav`
   align-items: center;
 
   @media (max-width: 600px){
-    // gap: 4vh;
     padding: 3.472vw 0vw;
   }
 `;
@@ -298,7 +290,6 @@ align-items:center;
 `;
 
 const Search = styled.div`
-  // border:3px solid red;
   display: flex;
   align-items: center;
   justify-content:center;
@@ -331,11 +322,9 @@ const Search = styled.div`
       font-weight: 400;
       padding: 25px 25px 25px 0;
       width: 98%;
-      // color:white;
     }
     span {
       position:absolute;
-      // display:none;
       left:1vw;
       width: 7.569vw;
       height: 7.569vw;
@@ -356,11 +345,9 @@ const Search = styled.div`
       font-weight: 400;
       padding: 25px 25px 25px 0;
       width: 100%;
-      // color:white;
     }
     span {
       position:absolute;
-      // display:none;
       left:0;
       width: 10.569vw;
       height: 10.569vw;
@@ -373,7 +360,6 @@ const Search = styled.div`
 `;
 
 const Items = styled.ul`
-// border:3px solid red;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -393,7 +379,6 @@ const Items = styled.ul`
 
   @media (max-width: 600px){
     padding:20vh 5vh;
-    // border:3px solid white;
     flex-direction:column;
     justify-content:flex-start;
     gap:5vh;
@@ -420,7 +405,6 @@ const Wraper = styled.div`
       padding: 1.042vw;
       gap: 1.042vw;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      // top:30px;
       li {
         color: ${(props) => props.theme.textColor[0]};
         white-space: nowrap;
@@ -434,7 +418,6 @@ const Wraper = styled.div`
   }
   
   @media (max-width: 800px){
-    // border:4px solid blue;
     flex-direction:column;
     display:flex;
     align-items:center;
@@ -450,11 +433,8 @@ const Wraper = styled.div`
       .drop-down {
         text-align: center;
         position: relative;
-        // display: flex;
         flex-direction: column;
         background: #444444;
-        // background: red;
-        // padding: 1.042vw;
         gap: 1.042vw;
         width:100%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

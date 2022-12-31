@@ -91,7 +91,6 @@ const Item = styled.div`
     color: ${(props) => props.theme.textColor[1]};
   }
   @media (max-width: 800px){
-    // border:3px solid red;
     width: 100%;
     font-size: 3.736vw;
     padding: 2.5vh 0vw;
