@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Card from "./components/card";
-import carouselData from "../../data/Philosophers.js";
+// import carouselData from "../../data/Philosophers.js";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
+import { BaseBackURL } from "../constant/api";
+import axios from "axios";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,6 +20,7 @@ const Carousel = () => {
 
   let [main, setMain] = useState();
   let [showModule, setShowModule] = useState(false);
+  const [carouselData, setCarouselData] = useState([]);
   const modal = useRef(null);
   useOutsideAlerter(modal);
 
@@ -36,6 +39,25 @@ const Carousel = () => {
       };
     }, [ref]);
   }
+
+  const getCarouselData = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}philosophes`,
+    };
+    axios(config)
+      .then((res) => {
+        setCarouselData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getCarouselData();
+  }, []);
+
 
   return (
     <Container>
@@ -148,10 +170,7 @@ const Carousel = () => {
                   : "none"
               }
             >
-              <Card
-                img={carouselData.zar}
-                title={carouselData[index].Philosopher}
-              />
+              <Card img={carouselData[index].image} title={carouselData[index].Philosopher} />
             </SwiperSlide>
           );
         })}
@@ -305,8 +324,8 @@ const Carousel = () => {
       {showModule && (
         <Module className="tooltip" ref={modal}>
           <BorderTop />
-          <Philosopher>{carouselData[main].Philosopher}</Philosopher>
-          <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
+          <Philosopher>{carouselData[main].name}</Philosopher>
+          <ShortInfo>{carouselData[main].summary}</ShortInfo>
 
           <BottomLinks>
             <CloseButton

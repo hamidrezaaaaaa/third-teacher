@@ -4,14 +4,40 @@ import { signInSchema } from "../schema";
 import { useFormik } from "formik";
 import { useState } from "react";
 import SignInForm from "../components/signInForm";
+import { BaseBackURL } from "../components/constant/api";
+import axios from "axios";
 
 const SignIn = () => {
   const [step, setStep] = useState(0);
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
 
-  const onSubmit = async () => {
-    setStep(1);
+  const onSubmit = async (values, resetForm) => {
+    let data = JSON.stringify({
+      "email": values.userName,
+      "password": values.password
+    });
+
+
+    let config = {
+      method: "post",
+      url: `${BaseBackURL}user/sign-up`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((res) => {
+        console.log(res);
+        setStep(1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(data)
   };
 
   const {
@@ -98,23 +124,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 1.736vw;
   padding: ${(props) =>
-    props.step == 0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"};
-
-  @media (max-width: 800px) {
-    width: 90%;
-    margin-top: 5vh;
-    height: auto;
-  }
-
-  @media (max-width: 600px) {
-    width: 80%;
-    margin: 0 auto;
-    padding: 6.25vw 0 4.861vw 0;
-    justify-content: center;
-    // height: 45vh;
-    align-tems: center;
-    padding-left: 0;
-  }
+    props.step == 0 ? "6.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"};
 `;
 
 const Wraper = styled.div`
