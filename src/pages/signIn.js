@@ -111,7 +111,7 @@ const Content = styled.div`
     margin: 0 auto;
     padding: 6.25vw 0 4.861vw 0;
     justify-content: center;
-    height: 45vh;
+    // height: 45vh;
     align-tems: center;
     padding-left: 0;
   }
@@ -199,7 +199,6 @@ const Wraper = styled.div`
     }
 
   @media (max-width: 600px){
-    border:3px solid black;
     width: 100%;
     // border:4px solid red;
     margin:0 auto;
@@ -249,6 +248,14 @@ const ErrorText = styled.p`
   margin: 0;
   margin-right: 2%;
   margin-top: -2%;
+  @media (max-width: 800px) {
+    font-size: 2.5vw;
+    padding: 0.7vh;
+  }
+  @media (max-width: 600px) {
+    font-size: 4vw;
+    padding: 0.7vh;
+  }
 `;
 
 export default SignIn;

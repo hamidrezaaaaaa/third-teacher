@@ -38,7 +38,6 @@ const Navbar = () => {
                     setSelect(i);
                   }}
                 >
-                  {console.log("key = ", g)}
                   {z.title}
                 </li>
               );
@@ -76,7 +75,6 @@ const Navbar = () => {
                     setSelect(i);
                   }}
                 >
-                  {console.log("key = ", g)}
                   {z.title}
                 </li>
               );
