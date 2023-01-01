@@ -1,24 +1,57 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useUser } from "../../../context/useContext";
+import axios from "axios";
+import { BaseBackURL } from "../../../components/constant/api";
+import jwt_decoded from "jwt-decode";
 
 const PersonalInformation = () => {
   const { state, dispatch } = useUser();
+  const [info, setInfo] = useState({});
+  const token = state.token;
+  const decoded = jwt_decoded(token);
+
+
+  const getInformation = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}user/${decoded.userId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setInfo(response.data.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getInformation();
+  }, []);
+
+  console.log("decoded token", info);
 
 
   return (
     <Container>
       <Form>
-        <input placeholder="نام" />
-        <input placeholder="نام‌ خانوادگی" />
-        <input placeholder="تولد" />
-        <input placeholder="تحصیلات" />
-        <input placeholder="دانشگاه" />
-        <input placeholder="شغل" />
-        <input placeholder="تلفن همراه" />
-        <input placeholder="آدرس ایمیل" />
-        <input placeholder="استان" />
-        <input placeholder="آدرس" />
-        <input placeholder="کدپستی" />
+        <input placeholder="نام"  value={info.firstname}/>
+        <input placeholder="نام‌ خانوادگی" value={info.lastname}/>
+        <input placeholder="تولد" value={info.birtday}/>
+        <input placeholder="تحصیلات"  value={info.education}/>
+        <input placeholder="دانشگاه" value={info.university} />
+        <input placeholder="شغل" value={info.job} />
+        <input placeholder="تلفن همراه" value={info.mobilenumber}/>
+        <input placeholder="آدرس ایمیل" value={info.email}/>
+        <input placeholder="استان" value={info.province} />
+        <input placeholder="آدرس" value={info.address}/>
+        <input placeholder="کدپستی" value={info.postcode}/>
       </Form>
     </Container>
   );
