@@ -2,13 +2,51 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { signInFormSchema } from "../../schema";
+import { useUser } from "../../context/useContext";
+import { BaseBackURL } from "../constant/api";
+import axios from "axios";
 
 const SignInForm = () => {
+  const { state, dispatch } = useUser();
   const navigate = useNavigate();
 
-  const onSubmit = async () => {
-    navigate("/dashboard");
+  const onSubmit = async (values) => {
+    let data = JSON.stringify({
+      "email": `${values.email}`,
+      "password": `${state.password}`,
+      "firstname": `${values.firstName}`,
+      "lastname": `${values.lastName}`,
+      "birtday": `${values.birthPlace}`,
+      "education": `${values.education}`,
+      "university": `${values.university}`,
+      "job": `${values.job}`,
+      "mobilenumber": `${values.phoneNumber}`,
+      "province": `${values.province}`,
+      "address": `${values.address}`,
+      "postcode": `${values.postCode}`
+    });
+
+    let config = {
+      method: "post",
+      url: `${BaseBackURL}user/sign-up`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+    console.log(data)
+
+    axios(config)
+      .then((result) => {
+        console.log(result);
+        navigate("/log-in");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log('sag')
+      });
   };
+
 
   const {
     values,
@@ -27,7 +65,7 @@ const SignInForm = () => {
       university: "",
       job: "",
       phoneNumber: "",
-      email: "",
+      email: state.email,
       province: "",
       address: "",
       postCode: "",
@@ -40,7 +78,7 @@ const SignInForm = () => {
     <Container>
       <Title>عضویت</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <div className="form" >
+        <div className="form">
           <input
             placeholder="نام"
             id="firstName"
@@ -140,29 +178,28 @@ const SignInForm = () => {
           )}
         </div>
         <button type="submit">عضویت</button>
-
       </Form>
     </Container>
   );
 };
 
 const Container = styled.div`
-box-sizing:border-box;
-@media (max-width: 800px){
-  padding:0px 0vw 0 1vw;
-  width: 92%;
-  box-sizing:border-box;
-  margin:0 auto;
-  margin-top: -2vh;
-}
-@media (max-width: 600px){
-  heigth: auto;
-  width: 100%;
-  padding:0px 0vw 0 1vw;
-  width: 100%;
-  box-sizing:border-box;
-  margin:0 auto;
-}
+  box-sizing: border-box;
+  @media (max-width: 800px) {
+    padding: 0px 0vw 0 1vw;
+    width: 92%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: -2vh;
+  }
+  @media (max-width: 600px) {
+    heigth: auto;
+    width: 100%;
+    padding: 0px 0vw 0 1vw;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
 `;
 
 const Title = styled.h1`
@@ -210,16 +247,16 @@ const Title = styled.h1`
   }
 
   `;
-  
-  const Form = styled.form`
+
+const Form = styled.form`
   display: flex;
   justify-content: space-between;
   .form {
     display: flex;
-  flex-direction: column;
-  gap: 0.736vw;
-  width: 100%;
-  input {
+    flex-direction: column;
+    gap: 0.736vw;
+    width: 100%;
+    input {
       outline: none;
       width: 100%;
       padding: 0.5vw;
@@ -237,18 +274,17 @@ const Title = styled.h1`
     padding: 0.694vw 1.389vw;
     font-size: 1.389vw;
     color: ${(props) => props.theme.textColor[0]};
-    z-index:20;
+    z-index: 20;
   }
-  
-  @media (max-width: 800px){
-    
+
+  @media (max-width: 800px) {
     margin: 0 auto;
     width: 100%;
-    align-items:center;
-    gap:3vh;
-    flex-direction:column;
+    align-items: center;
+    gap: 3vh;
+    flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     button {
       margin-top: auto;
       border: none;
@@ -256,7 +292,7 @@ const Title = styled.h1`
       padding: 1.694vw 3.389vw;
       font-size: 3.389vw;
       color: ${(props) => props.theme.textColor[0]};
-      z-index:20;
+      z-index: 20;
       // margin: 02vh auto;
     }
     .form {
@@ -276,16 +312,16 @@ const Title = styled.h1`
     }
   }
 
-  @media (max-width: 600px){
-    box-sizing:border-box;
+  @media (max-width: 600px) {
+    box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
-    align-items:center;
+    align-items: center;
     // border:3px solid black;
-    gap:3vh;
-    flex-direction:column;
+    gap: 3vh;
+    flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     button {
       margin-top: auto;
       border: none;
@@ -294,7 +330,7 @@ const Title = styled.h1`
       padding: 2vw 4vw;
       font-size: 4.389vw;
       color: ${(props) => props.theme.textColor[0]};
-      z-index:20;
+      z-index: 20;
     }
     .form {
       margin: 0 auto;
@@ -311,10 +347,8 @@ const Title = styled.h1`
         text-align: center;
         outline: none;
       }
-    
     }
   }
-
 `;
 
 const ErrorText = styled.p`
@@ -325,12 +359,11 @@ const ErrorText = styled.p`
   margin: 0;
   margin-right: 2%;
   margin-top: -2%;
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     font-size: 2.5vw;
-    padding:0.7vh;
-
+    padding: 0.7vh;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 3.5vw;
   }
 `;

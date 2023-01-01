@@ -4,40 +4,18 @@ import { signInSchema } from "../schema";
 import { useFormik } from "formik";
 import { useState } from "react";
 import SignInForm from "../components/signInForm";
-import { BaseBackURL } from "../components/constant/api";
-import axios from "axios";
+import { useUser } from "../context/useContext";
 
 const SignIn = () => {
+  const { state, dispatch } = useUser();
   const [step, setStep] = useState(0);
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
 
-  const onSubmit = async (values, resetForm) => {
-    let data = JSON.stringify({
-      "email": values.userName,
-      "password": values.password
-    });
-
-
-    let config = {
-      method: "post",
-      url: `${BaseBackURL}user/sign-up`,
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then((res) => {
-        console.log(res);
-        setStep(1);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    console.log(data)
+  const onSubmit = async (values) => {
+    dispatch({ type: "SET_EMAIL", payload: values.userName });
+    dispatch({ type: "SET_PASSWORD", payload: values.password });
+    setStep(1);
   };
 
   const {

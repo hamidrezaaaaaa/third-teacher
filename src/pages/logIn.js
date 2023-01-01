@@ -3,14 +3,40 @@ import { useFormik } from "formik";
 import { logInSchema } from "../schema";
 import styled from "styled-components";
 import SideBar from "../components/sidebar";
+import { BaseBackURL } from "../components/constant/api";
+import axios from "axios";
+import { useUser } from "../context/useContext";
 
 const LogIn = () => {
+  const { state, dispatch } = useUser();
   const navigate = useNavigate();
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
 
-  const onSubmit = async () => {
-    navigate("/dashboard");
+  const onSubmit = async (values) => {
+    var data = JSON.stringify({
+      email: `${values.userName}`,
+      password: `${values.password}`,
+    });
+
+    var config = {
+      method: "post",
+      url: `${BaseBackURL}user/login`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        dispatch({ type: "SET_TOKEN", payload: response.data.token });
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const {
