@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { useUser } from "../../../context/useContext";
 
 const PersonalInformation = () => {
+  const { state, dispatch } = useUser();
+
+
   return (
     <Container>
       <Form>
