@@ -2,20 +2,51 @@ import styled from "styled-components";
 import SideBar from "../components/sidebar";
 import { signInSchema } from "../schema";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignInForm from "../components/signInForm";
 import { useUser } from "../context/useContext";
+import { BaseBackURL } from "../components/constant/api";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const { state, dispatch } = useUser();
   const [step, setStep] = useState(0);
+  const [users, setUsers] = useState([]);
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
 
+  const getUsers = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}user`,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   const onSubmit = async (values) => {
-    dispatch({ type: "SET_EMAIL", payload: values.userName });
-    dispatch({ type: "SET_PASSWORD", payload: values.password });
-    setStep(1);
+    if (users.find((x) => x.email === values.userName)) {
+      toast.error("ایمیل تکراری است!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      dispatch({ type: "SET_EMAIL", payload: values.userName });
+      dispatch({ type: "SET_PASSWORD", payload: values.password });
+      setStep(1);
+    }
   };
 
   const {

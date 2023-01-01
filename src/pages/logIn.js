@@ -6,6 +6,8 @@ import SideBar from "../components/sidebar";
 import { BaseBackURL } from "../components/constant/api";
 import axios from "axios";
 import { useUser } from "../context/useContext";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogIn = () => {
   const { state, dispatch } = useUser();
@@ -35,7 +37,12 @@ const LogIn = () => {
         navigate("/dashboard");
       })
       .catch((error) => {
-        console.log(error);
+        if(error.response.statusText === "Unauthorized"){
+          toast.error("ایمیل یا رمز عبور اشتباه است!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+        console.log("sag",error);
       });
   };
 

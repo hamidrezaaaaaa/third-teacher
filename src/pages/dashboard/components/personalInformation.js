@@ -11,7 +11,6 @@ const PersonalInformation = () => {
   const token = state.token;
   const decoded = jwt_decoded(token);
 
-
   const getInformation = () => {
     let config = {
       method: "get",
@@ -37,21 +36,20 @@ const PersonalInformation = () => {
 
   console.log("decoded token", info);
 
-
   return (
     <Container>
       <Form>
-        <input placeholder="نام"  value={info.firstname}/>
-        <input placeholder="نام‌ خانوادگی" value={info.lastname}/>
-        <input placeholder="تولد" value={info.birtday}/>
-        <input placeholder="تحصیلات"  value={info.education}/>
+        <input placeholder="نام" value={info.firstname} />
+        <input placeholder="نام‌ خانوادگی" value={info.lastname} />
+        <input placeholder="تولد" value={info.birtday} />
+        <input placeholder="تحصیلات" value={info.education} />
         <input placeholder="دانشگاه" value={info.university} />
         <input placeholder="شغل" value={info.job} />
-        <input placeholder="تلفن همراه" value={info.mobilenumber}/>
-        <input placeholder="آدرس ایمیل" value={info.email}/>
+        <input placeholder="تلفن همراه" value={info.mobilenumber} />
+        <input placeholder="آدرس ایمیل" value={info.email} />
         <input placeholder="استان" value={info.province} />
-        <input placeholder="آدرس" value={info.address}/>
-        <input placeholder="کدپستی" value={info.postcode}/>
+        <input placeholder="آدرس" value={info.address} />
+        <input placeholder="کدپستی" value={info.postcode} />
       </Form>
     </Container>
   );

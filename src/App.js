@@ -20,6 +20,8 @@ import Philosopher from "./components/philosopher/Philosopher";
 import SignIn from "./pages/signIn";
 import Dashboard from "./pages/dashboard";
 import { UserState } from "./context/useContext";
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
@@ -50,6 +52,7 @@ function App() {
               </Routes>
             </Layout>
           </Router>
+          <ToastContainer />
         </ThemeProvider>
       </UserState>
     </div>
