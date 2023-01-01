@@ -1,0 +1,32 @@
+{
+    "adminDashboard": [
+      {
+        "name": "کاربران",
+        "path": ""
+      },
+      {
+        "name": "فیلسوفان",
+        "path": "philosophes"
+      },
+      {
+        "name": "مدارس",
+        "path": "schools"
+      },
+      {
+        "name": "مسابقات",
+        "path": "competitions"
+      },
+      {
+        "name": "پژوهشات",
+        "path": "researchs"
+      },
+      {
+        "name": "کتاب ها",
+        "path": "books"
+      },
+      {
+        "name": "آموزشات",
+        "path": "educations"
+      }
+    ]
+  }

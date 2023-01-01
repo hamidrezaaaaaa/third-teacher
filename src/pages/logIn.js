@@ -63,7 +63,6 @@ const LogIn = () => {
     onSubmit,
   });
 
-  console.log(values);
 
   return (
     <Container>
