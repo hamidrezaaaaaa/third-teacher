@@ -53,6 +53,7 @@ const Content = styled.div`
 
     .text,
     .poetry {
+      
       margin: 0;
       padding: 0;
       font-size: 1.736vw;
@@ -64,10 +65,10 @@ const Content = styled.div`
     }
   }
 
-  @media (max-width: 800px) {
-    // border:3px solid red;
-    box-sizing: border-box;
-    align-items: center;
+
+  @media (max-width: 800px){
+    box-sizing:border-box;
+    align-items:center;
     width: 100%;
     padding: 6.25vw 0vw 4.861vw 0;
 
@@ -93,15 +94,14 @@ const Content = styled.div`
       width: 100%;
       border: 3px solid #ffcf87;
       padding: 2vw;
-      margin: 1vh auto;
-      // border:5px solid green;
-      box-sizing: border-box;
+      margin:1vh auto;  
+      box-sizing:border-box;
       .text,
       .poetry {
         margin: 0;
         padding: 0;
         font-size: 3.736vw;
-        line-height: 2.5rem;
+        line-height:2.5rem;
         font-weight: 400;
         color: ${(props) => props.theme.textColor[1]};
       }
@@ -111,13 +111,12 @@ const Content = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
-    // border:3px solid red;
-    box-sizing: border-box;
-    align-items: center;
+  @media (max-width: 600px){
+    box-sizing:border-box;
+    align-items:center;
     width: 100%;
     padding: 6.25vw 0vw 4.861vw 0;
-
+    
     h1 {
       margin: 0;
       padding: 0;
@@ -137,12 +136,11 @@ const Content = styled.div`
       }
     }
     .content {
-      width: 100%;
+      width:100%;
       border: 3px solid #ffcf87;
       padding: 2vw;
-      margin: 1vh auto;
-      // border:5px solid green;
-      box-sizing: border-box;
+      margin:1vh auto;  
+      box-sizing:border-box;
       .text,
       .poetry {
         margin: 0;

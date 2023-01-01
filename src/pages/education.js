@@ -73,14 +73,14 @@ const Gallery = styled.div`
   width: 80%;
   gap: 7.736vw;
   margin: 0 auto;
-  @media (min-width: 600px) and (max-width: 800px) {
+  @media (min-width: 600px) and (max-width: 800px){
     width: 80%;
     justify-content: space-evenly;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     margin: 5vh auto;
     width: 85%;
-    justify-content: space-between;
+  justify-content: space-between;
   }
 `;
 

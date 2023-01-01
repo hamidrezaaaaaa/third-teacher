@@ -51,12 +51,12 @@ const Title = styled.h1`
     height: 5px;
     background: ${(props) => props.theme.background[1]};
   }
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     width: 14%;
     font-size: 4.136vw;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     font-size: 4.736vw;
     width: 14%;
     &:after {
@@ -86,6 +86,11 @@ const Item = styled.div`
     font-size: 1.736vw;
     font-weight: 400;
     color: ${(props) => props.theme.textColor[1]};
+  }
+  @media (max-width: 800px){
+    width: 100%;
+    font-size: 3.736vw;
+    padding: 2.5vh 0vw;
   }
 `;
 

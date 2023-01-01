@@ -22,7 +22,18 @@ const Carousel = () => {
   let [showModule, setShowModule] = useState(false);
   const [carouselData, setCarouselData] = useState([]);
   const modal = useRef(null);
+
+  const [screenWidthSize, setScreenWidthSize] = useState(window.innerWidth);
+  const updateMedia = () => {
+    setScreenWidthSize(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   useOutsideAlerter(modal);
+  let lengthOfPhilsophesArray = carouselData.length
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -66,118 +77,8 @@ const Carousel = () => {
         <span></span>
         <span></span>
       </Arrow>
-
-      <Swiper
-        navigation={{
-          nextEl: ".NextSlide",
-          prevEl: ".PrevSlide",
-        }}
-        dir="rtl"
-        centeredSlides={true}
-        slidesPerView={7}
-        spaceBetween={0}
-        slidesPerGroup={1}
-        loop={true}
-        noSwiping={true}
-        noSwipingSelector="div"
-        // autoplay={{
-        //   delay: 97500,
-        //   disableOnInteraction: false,
-        // }}
-        modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
-        className="mySwiper"
-        onActiveIndexChange={(e) => {
-          let before1;
-          let next1;
-          let before2;
-          let next2;
-          let before3;
-          let next3;
-
-          before1 = e.realIndex - 1;
-          next1 = e.realIndex + 1;
-          next2 = e.realIndex + 2;
-          before2 = e.realIndex - 2;
-          next3 = e.realIndex + 3;
-          before3 = e.realIndex - 3;
-
-          before1 = e.realIndex - 1;
-          next1 = e.realIndex + 1;
-          next2 = e.realIndex + 2;
-          before2 = e.realIndex - 2;
-          next3 = e.realIndex + 3;
-          before3 = e.realIndex - 3;
-
-          if (next1 == 12) {
-            next3 = 0;
-          }
-          if (next1 == 13) {
-            next2 = 0;
-            next3 = 1;
-          }
-          if (next1 == 14) {
-            next1 = 0;
-            next2 = 1;
-            next3 = 2;
-          }
-          if (before1 == -1) {
-            before1 = 13;
-            before2 = 12;
-            before3 = 11;
-          }
-          if (before1 == 0) {
-            before2 = 13;
-            before3 = 12;
-          }
-          if (before1 == 1) {
-            before2 = 0;
-            before3 = 13;
-          }
-          setSequence([
-            next3,
-            next2,
-            next1,
-            e.realIndex,
-            before1,
-            before2,
-            before3,
-          ]);
-        }}
-      >
-        {carouselData.map((i, index) => {
-          return (
-            <SwiperSlide
-              key={i}
-              onClick={() => {
-                setShowModule(true);
-                setMain(index);
-              }}
-              className={
-                sequence[0] == index
-                  ? "next3"
-                  : sequence[1] == index
-                  ? "next2"
-                  : sequence[2] == index
-                  ? "next1"
-                  : sequence[3] == index
-                  ? "now"
-                  : sequence[4] == index
-                  ? "before1"
-                  : sequence[5] == index
-                  ? "before2"
-                  : sequence[6] == index
-                  ? "before3"
-                  : "none"
-              }
-            >
-              <Card img={carouselData[index].image} title={carouselData[index].Philosopher} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-
-      {/* Tablet Carousel */}
-      <TabletCarousle>
+    {600 > screenWidthSize ? 
+      <MobileCarousle>
         <Swiper
           id="tabletswiper"
           navigation={{
@@ -271,15 +172,193 @@ const Carousel = () => {
                 }
               >
                 <Card
-                  img={carouselData.zar}
+                  img={carouselData.image}
                   title={carouselData[index].Philosopher}
                 />
               </SwiperSlide>
             );
           })}
         </Swiper>
-      </TabletCarousle>
-      {/*End of Tablet Carousel */}
+    </MobileCarousle> : 
+     800 > screenWidthSize ? 
+    <TabletCarousle>
+    <Swiper
+          id="tabletswiper"
+          navigation={{
+            nextEl: ".NextSlide",
+            prevEl: ".PrevSlide"
+          }
+        }
+          dir="rtl"
+          centeredSlides={true}
+          slidesPerView={3}
+          spaceBetween={15}
+          slidesPerGroup={1}
+          loop={true}
+          noSwiping={false}
+          autoplay={{
+            delay: 552500,
+            disableOnInteraction: false,
+          }}
+            modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
+          className="mySwiper"
+          onActiveIndexChange={(e)=> {
+            let before1
+            let next1
+            let before2
+            let next2
+            let before3
+            let next3
+        
+            before1 = e.realIndex - 1
+            next1 = e.realIndex + 1
+            next2 = e.realIndex + 2
+            before2 = e.realIndex -2
+            next3 = e.realIndex + 3
+            before3 = e.realIndex -3
+            
+            if(next1 == lengthOfPhilsophesArray - 2){
+              next3 = 0
+            }
+            if(next1 == lengthOfPhilsophesArray - 1){
+              next2 = 0
+              next3 = 1
+            }
+            if(next1 == lengthOfPhilsophesArray){
+              next1 = 0
+              next2 = 1
+              next3 = 2
+            }
+             if(before1 == -1){
+                before1 = lengthOfPhilsophesArray - 1
+                before2= lengthOfPhilsophesArray - 2
+                before3= lengthOfPhilsophesArray - 3 
+              }
+              if(before1 == 0){
+                before2= lengthOfPhilsophesArray - 1
+                before3= lengthOfPhilsophesArray - 2
+              }
+              if(before1 == 1){
+                before2= 0
+                before3 = lengthOfPhilsophesArray - 1
+              }
+              setSequenceTablet([next3, next2, next1 , e.realIndex , before1, before2, before3])
+        
+        }}
+          >
+
+            {carouselData.map((i,index) =>{
+              
+              return (
+                <SwiperSlide  key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequenceTablet[1] == index ? "tabletnext2" : sequenceTablet[2] == index ? 'tabletnext1' : sequenceTablet[3] == index ? "tabletnow" : sequenceTablet[4] == index ? "tabletbefore1" : sequenceTablet[5] == index ? "tabletbefore2" : "tabletnone"}
+                >
+                <Card img={carouselData.image} title={carouselData[index].Philosopher} />
+            </SwiperSlide>
+        )
+      })
+    }
+    </Swiper>
+    </TabletCarousle>
+    : 
+    <Swiper
+    id="swiper"
+    navigation={{
+      nextEl: ".NextSlide",
+      prevEl: ".PrevSlide"
+    }
+    }
+      dir="rtl"
+    centeredSlides={true}
+    slidesPerView={7}
+    spaceBetween={0}
+    slidesPerGroup={1}
+    loop={true}
+    noSwiping={true}
+    noSwipingSelector="div"
+    autoplay={{
+      delay: 97500,
+      disableOnInteraction: false,
+    }}
+      modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
+    className="mySwiper"
+
+   onActiveIndexChange={(e)=> {
+  let before1
+  let next1
+  let before2
+  let next2
+  let before3
+  let next3
+
+  before1 = e.realIndex - 1
+  next1 = e.realIndex + 1
+  next2 = e.realIndex + 2
+  before2 = e.realIndex -2
+  next3 = e.realIndex + 3
+  before3 = e.realIndex -3
+  
+  if(next1 == lengthOfPhilsophesArray - 2){
+    next3 = 0
+  }
+  if(next1 == lengthOfPhilsophesArray - 1){
+    next2 = 0
+    next3 = 1
+  }
+  if(next1 == lengthOfPhilsophesArray){
+    next1 = 0
+    next2 = 1
+    next3 = 2
+  }
+   if(before1 == -1){
+      before1 = lengthOfPhilsophesArray - 1
+      before2 = lengthOfPhilsophesArray - 2
+      before3 = lengthOfPhilsophesArray - 3 
+    }
+    if(before1 == 0){
+      before2 = lengthOfPhilsophesArray - 1
+      before3 = lengthOfPhilsophesArray - 2
+    }
+    if(before1 == 1){
+      before2 = 0
+      before3 = lengthOfPhilsophesArray - 1
+    }
+   setSequence([next3, next2, next1 , e.realIndex , before1, before2, before3])
+
+}}
+  >
+    
+  {carouselData.map((i,index) =>{
+    
+return (
+    <SwiperSlide key={i} onClick={() => {setShowModule(true); setMain(index)}} className={sequence[0] == index ? "next3" :sequence[1] == index ? "next2" : sequence[2] == index ? 'next1' : sequence[3] == index ? "now" : sequence[4] == index ? "before1" : sequence[5] == index ? "before2" : sequence[6] == index ? "before3" : "none"}
+     >
+        <Card img={carouselData.image} title={carouselData[index].Philosopher} />
+        
+    </SwiperSlide>
+     
+    )
+  })}
+  </Swiper>
+
+}
+    
+
+    {
+      showModule &&
+      <Module className="tooltip" ref={modal}>
+          <BorderTop/>
+          <Philosopher>{carouselData[main].Philosopher}</Philosopher>
+          <ShortInfo>{carouselData[main].shortInfo}</ShortInfo>
+        
+        <BottomLinks>
+            <CloseButton onClick={() => {setShowModule(false)}}>بستن</CloseButton>
+            <More onClick={() => {
+              navigate(`${carouselData[main].id + 1}`);
+            }}>ادامه</More>
+        </BottomLinks>
+
+       </Module>
+    }
 
       {/* Mobile Carousel */}
       <MobileCarousle>
@@ -311,7 +390,7 @@ const Carousel = () => {
                 }}
               >
                 <Card
-                  img={carouselData.zar}
+                  img={carouselData.image}
                   title={carouselData[index].Philosopher}
                 />
               </SwiperSlide>
@@ -355,10 +434,16 @@ const Carousel = () => {
   );
 };
 
-const ShortInfo = styled.span`
-  padding: 15px 5px;
-  color: #a58463;
-`;
+const ShortInfo =styled.span`
+padding:15px 5px; 
+color:#a58463;
+font-size:1.1rem;
+@media (max-width: 600px){
+  font-size:1.2rem;
+}
+
+`
+
 
 const Philosopher = styled.span`
   font-size: 1.5rem;
@@ -383,173 +468,154 @@ const BorderTop = styled.div`
   justify-content: space-between;
 `;
 
-const BottomLinks = styled.div`
-  display: flex;
-  width: 98%;
-  margin: auto;
-  margin-bottom: -10px;
-  justify-content: space-between;
-`;
-
 const CloseButton = styled.div`
-  @media (max-width: 600px) {
-    font-size: 1.25rem;
-  }
-`;
+@media (max-width: 600px){
+  font-size:1.25rem;
+}
+
+`
 const More = styled.div`
-  @media (max-width: 600px) {
-    font-size: 1.25rem;
-  }
-`;
+@media (max-width: 600px){
+  font-size:1.25rem;
+}
+`
 
 const MobileCarousle = styled.div`
-  display: none;
-  @media (max-width: 600px) {
-    display: block;
-  }
-  width: 70vw;
-  height: 45vh;
-  // background-color:red
-`;
+@media (max-width: 600px){
+  display:block;
+}
+width:70vw;
+height:45vh;
+` 
 
 const TabletCarousle = styled.div`
-  display: none;
-  @media (min-width: 600px) and (max-width: 800px) {
-    display: block;
-  }
-  width: 70vw;
-  height: auto;
+width:70vw;
+height:auto;
 
-  .tabletnow {
-    transform: scaleX(1.2);
-    transition: transform 0.5s;
-    // margin-top:-10px;
-    :hover {
-      cursor: pointer;
-    }
-    .imageincarousel {
+.tabletnow{
+  transform: scaleX(1.2);
+  transition: transform .5s;
+  :hover{
+    cursor: pointer;
+  }
+  .imageincarousel{
       transform: scaleY(1.2);
-      // margin-top: 50px;
-    }
-    .title {
-      transform: scaleY(1.2);
-      // margin-top:-20px;
-      // display:none;
-    }
   }
+  .title{
+  transform: scaleY(1.2);
+  
+  }
+}
 
-  .tabletnone {
-    transform: translateX(0px) scaleX(0.8);
-    transition: transform 0.5s;
-    margin-left: -10px;
-    .title {
-      display: none;
+.tabletnone{
+  transform: translateX(0px) scaleX(0.8);
+  transition: transform .5s;
+  margin-left: -10px;
+  .title{
+    display:none;
       font-size: 1.5rem;
-    }
-    .imageincarousel {
-      transform: scaleY(0.8);
-      transition: transform 0.5s;
-    }
   }
+  .imageincarousel{
+    transform: scaleY(0.8);
+    transition: transform .5s;
+}}
 
-  .tabletnext1 {
-    position: relative;
-    transform: translateX(-7px) scaleX(0.8);
-    // transform: translateX(0px) scaleX(.8);
+.tabletnext1{
+  position:relative;
+  transform: translateX(-7px) scaleX(.8);
+  transition: transform .5s;
 
-    transition: transform 0.5s;
-
-    :hover {
-      cursor: pointer;
-    }
-    .title {
-      display: none;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    display:none;
       font-size: 1.5rem;
-    }
-    .imageincarousel {
-      transform: scaleY(0.8);
-      transition: transform 0.5s;
-    }
   }
+  .imageincarousel{
+      transform: scaleY(0.8);
+      transition: transform .5s;
+  }
+}
 
-  .tabletbefore1 {
-    transform: translateX(7px) scaleX(0.8);
-    // transform: translateX(0px) scaleX(.8);
-    transition: transform 0.5s;
-    :hover {
-      cursor: pointer;
-    }
-    .title {
-      // font-size: 1.5rem;
-      display: none;
-    }
-    .imageincarousel {
-      transform: scaleY(0.8);
-      transition: transform 0.5s;
-    }
+.tabletbefore1{
+  transform: translateX(7px) scaleX(.8);
+  transition: transform .5s;
+  :hover{
+    cursor: pointer;
   }
-  .tabletnext2 {
-    transform: scaleX(0.8);
-    transition: transform 0s;
-    :hover {
-      cursor: pointer;
-    }
-    .title {
-      transform: scaleX(1.5);
+  .title{
+    display:none;
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+      transition: transform .5s;
+  }
+}
+.tabletnext2{
+  transform: scaleX(0.8);
+  transition: transform 0s;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    transform:scaleX(1.5);
       font-size: 1rem;
-      display: none;
-    }
-    .imageincarousel {
-      transform: scaleY(0.8);
-    }
-  }
+    display:none;
 
-  .tabletbefore2 {
-    transform: scaleX(0.8);
-    transition: transform 0s;
-    :hover {
-      cursor: pointer;
-    }
-    .title {
-      transform: scaleX(1.5);
-      font-size: 1rem;
-      display: none;
-    }
-    .imageincarousel {
-      transform: scaleY(0.8);
-    }
   }
-`;
+  .imageincarousel{
+      transform: scaleY(0.8);
+  }
+}
+
+.tabletbefore2{
+  transform: scaleX(0.8);
+  transition: transform 0s;
+  :hover{
+    cursor: pointer;
+  }
+  .title{
+    transform:scaleX(1.5);
+      font-size: 1rem;
+    display:none;
+
+  }
+  .imageincarousel{
+      transform: scaleY(0.8);
+  }
+}
+`
 
 const Module = styled.div`
-  position: absolute;
-  top: 75px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: auto;
-  height: 50%;
-  font-size: 1rem;
-  width: 34.5vw;
-  padding: 20px 10px;
-  background-color: white;
-  border: 3px solid #4f594e;
-  border-radius: 7.5px;
-  z-index: 10;
+position:absolute;
+top:75px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+align-items:center;
+height:auto;
+height:50%;
+font-size:1rem;
+width:34.5vw;
+padding:20px 10px;
+background-color:white;
+border:3px solid #4f594e;
+border-radius:7.5px;
+z-index:10;
 
-  @media (min-width: 600px) and (max-width: 800px) {
-    top: 135px;
-    width: 53.5vw;
-    height: auto;
-  }
+@media (min-width: 600px) and (max-width: 800px){
+  top:135px;
+  width:53.5vw;
+  height:auto;
+}
 
-  @media (max-width: 600px) {
-    width: 63.5vw;
-    height: auto;
-    min-height: 30vh;
-  }
-`;
+@media (max-width: 600px){
+  width:63.5vw;
+  height:auto;
+  min-height:30vh;
+}
+`
 
 const Container = styled.div`
 
@@ -637,10 +703,6 @@ position:relative;
     .imageincarousel{
         transform: scaleY(0.45);
     }
-    // @media (max-width:801px){
-    //   transform: translateX(-22px) scaleX(.45);
-    // }
- 
 }
 
 .before2{
@@ -656,10 +718,6 @@ position:relative;
     .imageincarousel{
         transform: scaleY(0.45);
     }
-    // @media (max-width:801px){
-    //   transform: translateX(22px) scaleX(.45);
-    // }
-
 }
 
 .next3{
@@ -710,6 +768,15 @@ const Arrow = styled.div`
     height: 1.389vw;
     background: ${(props) => props.theme.background[3]};
   }
+  @media (max-width: 600px){
+    span {
+      width: 3.389vw;
+      height: 3.389vw;
+    }
+  }
 `;
+
+
+const BottomLinks = styled.div``
 
 export default Carousel;

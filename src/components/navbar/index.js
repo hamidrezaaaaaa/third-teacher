@@ -10,17 +10,17 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
-  const [mobileNavbarSelecter, setMobileNavbarSelecter] = useState(false);
-
+  const [mobileNavbarSelecter, setMobileNavbarSelecter] = useState(false)
+  
   const menuItemDesktop = data.navbar.map((x, i) => {
     return (
       <Wraper>
         <Item
           key={i}
           onClick={(e) => {
-            setSelect(i);
-            navigate(x.path);
-            handleMobileNavbar();
+              setSelect(i);
+              navigate(x.path);
+              handleMobileNavbar()
           }}
           className={select == i ? "active" : ""}
         >
@@ -34,7 +34,7 @@ const Navbar = () => {
                   key={g}
                   onClick={() => {
                     navigate(z.path);
-                    handleMobileNavbar();
+                    handleMobileNavbar()
                     setSelect(i);
                   }}
                 >
@@ -53,10 +53,10 @@ const Navbar = () => {
         <Item
           key={i}
           onClick={(e) => {
-            if (i == 0) {
+            if(i == 0){
               setSelect(i);
               navigate(x.path);
-              handleMobileNavbar();
+              handleMobileNavbar()
             }
           }}
           className={select == i ? "active" : ""}
@@ -71,7 +71,7 @@ const Navbar = () => {
                   key={g}
                   onClick={() => {
                     navigate(z.path);
-                    handleMobileNavbar();
+                    handleMobileNavbar()
                     setSelect(i);
                   }}
                 >
@@ -84,8 +84,8 @@ const Navbar = () => {
       </Wraper>
     );
   });
-  function handleMobileNavbar() {
-    setMobileNavbarSelecter((x) => !x);
+  function handleMobileNavbar(){
+    setMobileNavbarSelecter(x => !x)
   }
   return (
     <Container>
@@ -93,47 +93,45 @@ const Navbar = () => {
         <Logo
           onClick={() => {
             navigate("/");
-          }}
-        >
-          <SocialNetwork>
-            <div className="instagram"></div>
-            <div className="whatsapp"></div>
-          </SocialNetwork>
-        </Logo>
-        <Items>{menuItemDesktop}</Items>
-        <Search>
-          <input type="text" placeholder="جستجو" />
-          <span></span>
-        </Search>
+          }}>
+            <SocialNetwork>
+              <div className="instagram"></div>
+              <div className="whatsapp"></div>
+            </SocialNetwork>
+          </Logo>
+          <Items>{menuItemDesktop}</Items>
+          <Search>
+            <input type="text" placeholder="جستجو" />
+            <span></span>
+          </Search>
       </NavbarDesktop>
 
       <Logo />
 
       <MobileNavbar>
-        <OverlayNav mobileNavbarSelecter={mobileNavbarSelecter}>
-          <CloseNavbar onClick={() => handleMobileNavbar()}>
-            <span className="closebtn">+</span>
-          </CloseNavbar>
-          <Items>
-            {menuItemMobile}
+      <OverlayNav mobileNavbarSelecter={mobileNavbarSelecter}> 
+        <CloseNavbar onClick={() => handleMobileNavbar()}>
+          <span className="closebtn">
+            +
+          </span>
+        </CloseNavbar>
+        <Items>{menuItemMobile}
             <Search>
               <input type="text" placeholder="جستجو" />
               <span></span>
             </Search>
-          </Items>
-        </OverlayNav>
-        <FixNavbar className="fixNavbar">
-          <Hubmerger className="burgersss" onClick={() => handleMobileNavbar()}>
-            <span className="burger"></span>
-            <span className="burger"></span>
-            <span className="burger"></span>
-          </Hubmerger>
-          <LogoMobile
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            {/* <SocialNetwork>
+        </Items>
+      </OverlayNav>
+      <FixNavbar className="fixNavbar">
+        <Hubmerger className="burgersss" onClick={() => handleMobileNavbar()}>
+          <span className="burger"></span>
+          <span className="burger"></span>
+          <span className="burger"></span>
+        </Hubmerger>
+        <LogoMobile onClick={() => {
+            navigate("/");
+          }}>
+        {/* <SocialNetwork>
               <div className="instagram"></div>
               <div className="whatsapp"></div>
             </SocialNetwork> */}
@@ -145,13 +143,12 @@ const Navbar = () => {
 };
 
 const FixNavbar = styled.div`
-  width: 90vw;
-  margin: 0px auto;
-  display: flex;
-  align-items: center;
-  // border:4px solid red;
-  justify-content: space-between;
-`;
+width:90vw;
+margin:0px auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+`
 
 const OverlayNav = styled.div`
 display:flex;
@@ -161,14 +158,13 @@ position: fixed;
 top:0vh;
 overflow-y:hidden;
 touch-action: none;
-left:${(props) => (props.mobileNavbarSelecter == true ? "0%" : "150%")}};
+left:${props => props.mobileNavbarSelecter == true ? "0%" : "150%"}};
 z-index:102;
 padding:0;
 background-color: #444444;
 transition: 0.7s;
 width:${(props) => (props.mobileNavbarSelecter == true ? "100%" : "0")}};
 overflow-x: hidden;
-// box-sizing:border-box;
 
 @media (min-width: 600px) and (max-width: 800px){
 }
@@ -196,13 +192,10 @@ margin:10px auto;
 display:flex;
 justify-content: space-between;
 align-items:center;
-// border:10px solid black;
-
 .close {
   font-size: 5rem;
   font-weight: 600;
   display: inline-block;
-  // transform: rotate(45deg);
 }
 
 
@@ -238,32 +231,33 @@ const CloseNavbar = styled.div`
 `;
 
 const Hubmerger = styled.div`
-  width: 12vw;
-  height: 10vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 101;
-  .burger {
-    border-radius: 7.5px;
-    background-color: black;
-    width: 100%;
-    height: 20%;
+width:12vw;
+height: 10vw;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+z-index:101;
+.burger{
+  border-radius:7.5px;
+  background-color:black;
+  width:100%;
+  height:20%;
+}
+@media (min-width: 600px) and (max-width: 800px){
+  width:7.5vw;
+  height: 6.25vw;
   }
-  @media (min-width: 600px) and (max-width: 800px) {
-    // width:100%;
-    width: 7.5vw;
-    height: 6.25vw;
-    // padding-top:10px;
-  }
-`;
+`
 
 const Container = styled.nav`
   display: flex;
   justify-content: flex-start;
   padding: 3.472vw 5.556vw;
   align-items: center;
-  gap: 2.083vw;
+
+  @media (max-width: 600px){
+    padding: 3.472vw 0vw;
+  }
 `;
 const SocialNetwork = styled.div`
   display: flex;
@@ -337,9 +331,32 @@ const Search = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
-    flex-direction: column;
-    position: relative;
+  @media (max-width: 800px){
+    flex-direction:column;
+    position:relative;
+    input {
+      outline: none;
+      border: none;
+      background: ${(props) => props.theme.background[1]};
+      font-size: 3.736vw;
+      font-weight: 400;
+      padding: 25px 25px 25px 0;
+      width: 98%;
+    }
+    span {
+      position:absolute;
+      left:1vw;
+      width: 7.569vw;
+      height: 7.569vw;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(${search});
+    }
+  }
+
+  @media (max-width: 600px){
+    flex-direction:column;
+    position:relative;
     input {
       outline: none;
       border: none;
@@ -348,12 +365,10 @@ const Search = styled.div`
       font-weight: 400;
       padding: 25px 25px 25px 0;
       width: 100%;
-      // color:white;
     }
     span {
-      position: absolute;
-      // display:none;
-      left: 0;
+      position:absolute;
+      left:0;
       width: 10.569vw;
       height: 10.569vw;
       background-repeat: no-repeat;
@@ -371,24 +386,23 @@ const Items = styled.ul`
   gap: 2vw;
   padding-right: 2vw;
 
-  @media (max-width: 800px) {
-    padding: 20vh 5vh;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 5vh;
-    color: white !important;
-    align-items: space-between;
-    width: 100%;
+  @media (max-width: 800px){
+    padding:20vh 5vh;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:5vh;
+    color:white !important;
+    align-items:space-between;
+    width:100%;
   }
 
-  @media (max-width: 600px) {
-    padding: 20vh 5vh;
-    // border:3px solid white;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 5vh;
-    align-items: space-between;
-    width: 100%;
+  @media (max-width: 600px){
+    padding:20vh 5vh;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:5vh;
+    align-items:space-between;
+    width:100%;
   }
 `;
 
@@ -410,7 +424,6 @@ const Wraper = styled.div`
       padding: 1.042vw;
       gap: 1.042vw;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      // top:30px;
       li {
         color: ${(props) => props.theme.textColor[0]};
         white-space: nowrap;
@@ -424,7 +437,6 @@ const Wraper = styled.div`
   }
   
   @media (max-width: 800px){
-    // border:4px solid blue;
     flex-direction:column;
     display:flex;
     align-items:center;
@@ -440,11 +452,8 @@ const Wraper = styled.div`
       .drop-down {
         text-align: center;
         position: relative;
-        // display: flex;
         flex-direction: column;
         background: #444444;
-        // background: red;
-        // padding: 1.042vw;
         gap: 1.042vw;
         width:100%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -491,10 +500,18 @@ const Item = styled.li`
     color: ${(props) => props.theme.textColor[3]};
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     color: white;
-    width: 100%;
-    text-align: center;
+    width:100%;
+    text-align:center;
+    padding: 0;
+    font-size: 2.7rem;
+  }
+
+  @media (max-width: 600px){
+    color: white;
+    width:100%;
+    text-align:center;
     padding: 0;
     font-size: 2.7rem;
   }

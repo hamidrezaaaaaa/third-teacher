@@ -109,35 +109,35 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
-  @media (max-width: 800px) {
-    flex-direction: column;
-    justify-content: center;
-    align-tems: center;
-    padding-left: 0;
+  @media (max-width: 800px){
+    flex-direction:column;
+  justify-content: center;
+    align-tems:center;
+  padding-left: 0;
   }
 `;
 
 const Content = styled.div`
   width: 60%;
   height: 60vh;
-  height: auto;
+  height:auto;
   display: flex;
   flex-direction: column;
   gap: 1.736vw;
-  margin: 0 auto;
-  box-sizing: content-box;
-  align-tems: center;
+  margin:0 auto;
+box-sizing:content-box;
+align-tems:center;
   padding: 1.25vw 0 4.861vw 0;
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     width: 90%;
-    margin-top: 5vh;
+    margin-top:5vh;
     height: auto;
   }
 
-  @media (max-width: 600px) {
-    margin-top: 5vh;
+  @media (max-width: 600px){
+    margin-top:5vh;
     width: 80%;
-    height: auto;
+    height:auto;
   }
 `;
 
@@ -271,12 +271,12 @@ const ForgetPass = styled.p`
   margin-top: 4vw;
   cursor: pointer;
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     font-size: 2.389vw;
     margin-top: 8vw;
     font-weight: 400;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     font-size: 3.389vw;
     margin-top: 8vw;
     font-weight: 400;

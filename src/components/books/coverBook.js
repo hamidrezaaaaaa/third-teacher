@@ -27,12 +27,19 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2.083vw;
   align-items: center;
-  cursor: pointer;
-  @media (max-width: 800px) {
-    margin: 0 0 12vh 0;
-    width: 27%;
-    justify-content: space-between;
-    height: 200px;
+  cursor:pointer;
+  @media (max-width: 800px){
+    margin:0 0 12vh 0;
+    width:27%;
+    justify-content:space-between;
+    height:200px;
+  }
+
+  @media (max-width: 600px){
+    margin:0 0 12vh 0;
+    width:45%;
+    justify-content:space-between;
+    height:200px;
   }
 
   @media (max-width: 600px) {
@@ -70,10 +77,10 @@ const Cover = styled.div`
     z-index: -1;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     width: 20.944vw;
     height: 20.944vw;
-
+  
     img {
       width: 100%;
       height: 100%;
@@ -95,7 +102,7 @@ const Cover = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     width: 28.944vw;
     height: 28.944vw;
 
@@ -127,7 +134,7 @@ const Expand = styled.div`
   justify-content: center;
   width: 14.931vw;
   height: 14.931vw;
-  max-height: 75px;
+  max-height:75px;
   border: 3px solid #fe9900;
   padding: 1vw;
   .text {
@@ -139,21 +146,18 @@ const Expand = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 800px) {
-    // height: 14.931vw;
-    margin-top: 2vh;
-    // max-height:75px;
+  @media (max-width: 800px){
+    margin-top:2vh;
     min-height: 100px;
-    height: auto;
-    width: 100%;
+    height:auto;
+    width:100%;
     .text {
       font-size: 2.736vw;
     }
   }
 
-  @media (max-width: 600px) {
-    // height:auto;
-    width: 100%;
+  @media (max-width: 600px){
+    width:100%;
     .text {
       font-size: 3.736vw;
     }

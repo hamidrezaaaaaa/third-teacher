@@ -28,9 +28,17 @@ const Gallery = styled.div`
   justify-content: center;
   gap: 2vw;
   width: 90%;
+  @media (max-width: 800px){
+    width: 100%;
+    }
 `;
 
-const Item = styled.div`
+const Item =styled.div`
+box-sizing:border-box;
+width:100%;
+background:#FFFFFF;
+padding:1.5vw;
+@media (max-width: 800px){
   width: 100%;
   background: #ffffff;
   padding: 1.5vw;

@@ -14,34 +14,42 @@ const Card = ({ img, title, index }) => {
   );
 };
 
+
+
 const Container = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  height: 100%;
-  height: 250px !important;
+  height: 250px;
   align-items: center;
   justify-content: center;
   background: ${(props) => props.theme.background[0]};
   padding: 0.764vw 0 3.125vw;
   position: relative;
-  // max-width:13.889vw;
-  // min-width:13.889vw;
-  // min-height:21.528vw;
+
+  @media (max-width: 801px) {
+    height: 350px;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: space-around;
+    height: 43.5vh;
+  }
 `;
 
 const Image = styled.div`
   width: 80%;
-  //  height:100%;
   background: ${(props) => props.theme.background[2]};
   border-radius: 100%;
   margin: 0 1vw 2.083vw;
   position: relative;
-  // z-index:10;
   z-index: 0;
 
   @media (max-width: 800px) {
-    // margin-top:100px;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 3vh;
   }
 
   @media (max-width: 600px) {
@@ -49,7 +57,6 @@ const Image = styled.div`
   }
 
   &:before {
-    // border:2px solid white;
     content: "";
     display: block;
     position: absolute;
@@ -58,8 +65,6 @@ const Image = styled.div`
     background-image: url(${back});
     background-size: contain;
     background-repeat: no-repeat;
-    // right: 20px;
-    // top: -20px;
     left: -11%;
     top: -11%;
     z-index: -1;
@@ -85,7 +90,6 @@ const Title = styled.h2`
     position: absolute;
     top: 70%;
     font-size: 4vw;
-    // margin-top:50px;
   }
   @media (max-width: 600px) {
     font-size: 5vh;

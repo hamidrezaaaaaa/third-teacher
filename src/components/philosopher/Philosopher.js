@@ -63,31 +63,31 @@ const Title = styled.h1`
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  cursor:pointer;
 
-  @media (max-width: 800px) {
-    font-size: 3.792vw;
+  @media (max-width: 800px){
+    font-size: 3.792vw
   }
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     font-size: 5.736vw;
   }
 `;
 
 const Data = styled.span`
-  color: #875c30;
-  display: flex;
-  flex-direction: column;
-  padding-right: 4vw;
-  gap: 2.083vw;
-  align-items: center;
-  cursor: pointer;
-  @media (max-width: 800px) {
-    font-size: 3.136vw;
-  }
+color:#875c30;
+display: flex;
+flex-direction: column;
+padding-right:4vw;
+gap: 2.083vw;
+align-items: center;
+cursor:pointer;
+@media (max-width: 800px){
+  font-size: 3.136vw;
+}
 
-  @media (max-width: 600px) {
-    font-size: 3.736vw;
-  }
+@media (max-width: 600px){
+  font-size: 3.736vw;
+}
 `;
 
 const Image = styled.div`
@@ -116,10 +116,38 @@ const Image = styled.div`
     transform: translate(-1px, 23px);
   }
 
-  @media (max-width: 800px) {
-    width: 38.917vw;
-    background: ${(props) => props.theme.background[2]};
-    border-radius: 50%;
+  @media (max-width: 800px){
+    width:38.917vw;
+    background:${props=>props.theme.background[2]};
+    border-radius:50%;
+    margin: 5.083vh 1vw 2.083vw;
+    position:relative;
+    z-index:0;
+    order:-1;
+    &:before{
+      content:'';
+      display:block;
+      position: absolute;
+      padding-top:100%;
+      background-image: url(${cover});
+      background-size: contain;
+      background-repeat: no-repeat;
+      right: 20px;
+      left:-11%;
+      top:-11%;
+      z-index:-1;
+    }
+    img{
+      width:100%;
+      object-fit:contain;
+      transform: translate(-1px, 23px);
+    }
+  }
+
+  @media (max-width: 600px){
+    width:60%;
+    background:${props=>props.theme.background[2]};
+    border-radius:50%;
     margin: 5.083vh 1vw 2.083vw;
     position: relative;
     z-index: 0;
@@ -143,6 +171,7 @@ const Image = styled.div`
       transform: translate(-1px, 23px);
     }
   }
+  
 
   @media (max-width: 600px) {
     width: 60%;
@@ -189,6 +218,11 @@ const Container = styled.div`
     padding: 8.861vw 6.944vw;
     height: 66vh;
     flex-direction: column;
+  }
+  @media (max-width: 600px){
+    padding: 8.861vw 6.944vw;
+    height:66vh;
+    flex-direction:column;
   }
 `;
 

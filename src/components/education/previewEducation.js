@@ -24,12 +24,13 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   height: auto;
-  align-items: center;
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
+  align-items:center;
+  @media (max-width: 800px){
+    flex-direction:column;
 
-  @media (max-width: 600px) {
+  }
+  
+  @media (max-width: 600px){
     height: 50vh;
   }
 `;
@@ -67,7 +68,7 @@ const Cover = styled.div`
     z-index: -1;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     width: 45.917vw;
     height: 45.917vw;
     .title {
@@ -82,7 +83,7 @@ const Cover = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 600px){
     width: 60.917vw;
     height: 60.917vw;
     .title {

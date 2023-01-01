@@ -68,6 +68,12 @@ const Menu = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.042vw;
+  height:auto;
+  
+  @media (max-width: 800px){
+  flex-direction:row;
+  width: 100%; 
+  }
 `;
 
 const Item = styled.div`
@@ -87,6 +93,11 @@ const Item = styled.div`
 
 const Wraper = styled.div`
   width: 70%;
+  @media (max-width: 800px){
+    height:auto;
+    flex-direction:row;
+    width: 100%;
+    }
 `;
 
 export default Dashboard;
