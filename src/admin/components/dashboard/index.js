@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import data from "../../../data/adminDashboard.json";
-import Competitions from "./components/competitions";
-import Philosophes from "./components/philosophes";
-import Researchs from "./components/researchs";
-import Schools from "./components/schools";
-import Users from "./components/users";
-import Educations from "./components/educations";
-import Books from "./components/books";
+import Competitions from "./components/competitions/competitions";
+import Philosophes from "./components/philosophes/philosophes";
+import Researchs from "./components/researches/researchs";
+import Schools from "./components/schools/schools";
+import Users from "./components/users/users";
+import Educations from "./components/educations/educations";
+import Books from "./components/books/books";
 
 const MainDashboard = () => {
   const navigate = useNavigate();

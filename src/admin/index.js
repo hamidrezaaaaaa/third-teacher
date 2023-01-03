@@ -23,7 +23,7 @@ const Container = styled.section`
   align-items: center;
   background-color: #0e1116;
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
 `;
 
 export default AdminDashboard;
