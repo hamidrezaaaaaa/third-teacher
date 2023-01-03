@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BaseBackURL } from "../../../../../components/constant/api";
 import axios from "axios";
 import { useFormik } from "formik";
 import { signInFormSchema } from "../../../../../schema";
+import Modal from "react-modal";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "../../../../../context/useContext";
 
-const AddUserForm = () => {
+//style for modal
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "#4C5675",
+    border: "none",
+    width: "40%",
+  },
+};
+
+const AddUser = () => {
+  const { state, dispatch } = useUser();
+  const [addUserModal, setAddUserModal] = useState(false);
+
+
+  useEffect(() => {
+    setAddUserModal(true)
+  }, []);
+
 
   const onSubmit = async (values) => {
     let data = JSON.stringify({
@@ -37,10 +66,14 @@ const AddUserForm = () => {
 
     axios(config)
       .then((result) => {
-        console.log(result);
-        toast.success("کاربر جدید ایجاد شد", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        if (result) {
+          toast.success("کاربر جدید ایجاد شد", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          setAddUserModal(false);
+          dispatch({ type: "SET_UPDATE", payload: !state.update });
+
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -55,6 +88,7 @@ const AddUserForm = () => {
         }
       });
   };
+ 
 
   const {
     values,
@@ -84,6 +118,11 @@ const AddUserForm = () => {
   });
 
   return (
+    <Modal
+    isOpen={addUserModal}
+    onRequestClose={() => setAddUserModal(false)}
+    style={customStyles}
+  >
     <Form onSubmit={handleSubmit} autoComplete="off">
       <input
         placeholder="نام"
@@ -161,7 +200,9 @@ const AddUserForm = () => {
         value={values.email}
         onChange={handleChange}
       />
-      {errors.email && touched.email && <ErrorText>{errors.email}</ErrorText>}
+      {errors.email && touched.email && (
+        <ErrorText>{errors.email}</ErrorText>
+      )}
       <input
         placeholder="استان"
         id="province"
@@ -192,11 +233,12 @@ const AddUserForm = () => {
 
       <Box>
         <button type="submit">افزودن</button>
-        <div className="close" >
+        <div className="close" onClick={() => setAddUserModal(false)}>
           انصراف
         </div>
       </Box>
     </Form>
+  </Modal>
   );
 };
 
@@ -253,4 +295,4 @@ const Box = styled.div`
   }
 `;
 
-export default AddUserForm;
+export default AddUser;

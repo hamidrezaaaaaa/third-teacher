@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BaseBackURL } from "../../../../../components/constant/api";
-import Modal from "react-modal";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faFilePen } from "@fortawesome/free-solid-svg-icons";
-import { useFormik } from "formik";
-import { signInFormSchema } from "../../../../../schema";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import AddUser from "./addUser";
+import EditUser from "./editUser";
+import Modal from "react-modal";
 
+import { useUser } from "../../../../../context/useContext";
+
+//style for modal
 const customStyles = {
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.75)",
@@ -29,9 +30,16 @@ const customStyles = {
 };
 
 const Users = () => {
+  const { state, dispatch } = useUser();
   const [user, setUser] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [addUserModal, setAddUserModal] = useState(false);
+  const [editUserModal, setEditUserModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [selectUser, setSelectUser] = useState({});
+
+  //function for get all users
   const getUsers = () => {
     let config = {
       method: "get",
@@ -48,11 +56,20 @@ const Users = () => {
       });
   };
 
+  //get all users
   useEffect(() => {
     getUsers();
     console.log("reload");
   }, [refresh]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setEditUserModal(false);
+      setRefresh(!refresh);
+    }, 5000);
+  }, [state.update]);
+
+  //function for delete special user
   const deleteUser = (userId) => {
     var config = {
       method: "delete",
@@ -69,6 +86,7 @@ const Users = () => {
       });
   };
 
+  //generate row of user table
   const tableCell = user.map((item, i) => {
     return (
       <tr key={i}>
@@ -77,102 +95,37 @@ const Users = () => {
         <td>{item.lastname}</td>
         <td>{item.email}</td>
         <td>{item.job}</td>
-        <td onClick={()=> {deleteUser(item.userId)}}>
+        <td
+          onClick={() => {
+            // deleteUser(item.userId);
+            // setUserId(item.userId);
+            setSelectUser(item);
+            setDeleteModal(true);
+          }}
+        >
           <FontAwesomeIcon icon={faTrashCan} />
         </td>
-        <td>
+        <td
+          onClick={() => {
+            setEditUserModal(true);
+            setUserId(item.userId);
+          }}
+        >
           <FontAwesomeIcon icon={faFilePen} />
         </td>
       </tr>
     );
   });
 
-  const onSubmit = async (values) => {
-    let data = JSON.stringify({
-      email: `${values.email}`,
-      password: `${values.password}`,
-      firstname: `${values.firstName}`,
-      lastname: `${values.lastName}`,
-      birtday: `${values.birthPlace}`,
-      education: `${values.education}`,
-      university: `${values.university}`,
-      job: `${values.job}`,
-      mobilenumber: `${values.phoneNumber}`,
-      province: `${values.province}`,
-      address: `${values.address}`,
-      postcode: `${values.postCode}`,
-    });
-
-    let config = {
-      method: "post",
-      url: `${BaseBackURL}user/sign-up`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-    console.log(data);
-
-    axios(config)
-      .then((result) => {
-        if (result) {
-          toast.success("کاربر جدید ایجاد شد", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          setAddUserModal(false);
-          setRefresh(!refresh);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.data.message === "Email already exists") {
-          toast.error("با ایمیل وارد شده یکبار ثبت نام شده است", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-        } else {
-          toast.error("مشکل در برقراری ارتباط با سرور", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-        }
-      });
-  };
-
-  const {
-    values,
-    errors,
-    touched,
-    isSubmitting,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-  } = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      password: "",
-      birthPlace: "",
-      education: "",
-      university: "",
-      job: "",
-      phoneNumber: "",
-      email: "",
-      province: "",
-      address: "",
-      postCode: "",
-    },
-    validationSchema: signInFormSchema,
-    onSubmit,
-  });
-
   return (
     <Container>
-      <AddUser
+      <AddUserButton
         onClick={() => {
           setAddUserModal(true);
         }}
       >
         افزودن کاربر
-      </AddUser>
+      </AddUserButton>
       <table>
         <thead>
           <tr>
@@ -193,127 +146,48 @@ const Users = () => {
           )}{" "}
         </tbody>
       </table>
+      {/* addUser modal */}
+      {addUserModal && <AddUser />}
 
+      {/* editUser modal */}
+      {editUserModal && <EditUser userId={userId} users={user} />}
+
+      {/* deleteUser modal */}
       <Modal
-        isOpen={addUserModal}
-        onRequestClose={() => setAddUserModal(false)}
+        isOpen={deleteModal}
+        onRequestClose={() => setDeleteModal(false)}
         style={customStyles}
+        ariaHideApp={false}
       >
-        <Form onSubmit={handleSubmit} autoComplete="off">
-          <input
-            placeholder="نام"
-            id="firstName"
-            value={values.firstName}
-            onChange={handleChange}
-          />
-          {errors.firstName && touched.firstName && (
-            <ErrorText>{errors.firstName}</ErrorText>
-          )}
-          <input
-            placeholder="نام‌ خانوادگی"
-            id="lastName"
-            value={values.lastName}
-            onChange={handleChange}
-          />
-          {errors.lastName && touched.lastName && (
-            <ErrorText>{errors.lastName}</ErrorText>
-          )}
-          <input
-            placeholder="رمز عبور"
-            id="password"
-            value={values.password}
-            onChange={handleChange}
-          />
-          {errors.password && touched.password && (
-            <ErrorText>{errors.password}</ErrorText>
-          )}
-          <input
-            placeholder="تولد"
-            id="birthPlace"
-            value={values.birthPlace}
-            onChange={handleChange}
-          />
-          {errors.birthPlace && touched.birthPlace && (
-            <ErrorText>{errors.birthPlace}</ErrorText>
-          )}
-          <input
-            placeholder="تحصیلات"
-            id="education"
-            value={values.education}
-            onChange={handleChange}
-          />
-          {errors.education && touched.education && (
-            <ErrorText>{errors.education}</ErrorText>
-          )}
-          <input
-            placeholder="دانشگاه"
-            id="university"
-            value={values.university}
-            onChange={handleChange}
-          />
-          {errors.university && touched.university && (
-            <ErrorText>{errors.university}</ErrorText>
-          )}
-          <input
-            placeholder="شغل"
-            id="job"
-            value={values.job}
-            onChange={handleChange}
-          />
-          {errors.job && touched.job && <ErrorText>{errors.job}</ErrorText>}
-          <input
-            placeholder="تلفن همراه"
-            id="phoneNumber"
-            value={values.phoneNumber}
-            onChange={handleChange}
-          />
-          {errors.phoneNumber && touched.phoneNumber && (
-            <ErrorText>{errors.phoneNumber}</ErrorText>
-          )}
-          <input
-            placeholder="آدرس ایمیل"
-            id="email"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && touched.email && (
-            <ErrorText>{errors.email}</ErrorText>
-          )}
-          <input
-            placeholder="استان"
-            id="province"
-            value={values.province}
-            onChange={handleChange}
-          />
-          {errors.province && touched.province && (
-            <ErrorText>{errors.province}</ErrorText>
-          )}
-          <input
-            placeholder="آدرس"
-            id="address"
-            value={values.address}
-            onChange={handleChange}
-          />
-          {errors.address && touched.address && (
-            <ErrorText>{errors.address}</ErrorText>
-          )}
-          <input
-            placeholder="کدپستی"
-            id="postCode"
-            value={values.postCode}
-            onChange={handleChange}
-          />
-          {errors.postCode && touched.postCode && (
-            <ErrorText>{errors.postCode}</ErrorText>
-          )}
-
-          <Box>
-            <button type="submit">افزودن</button>
-            <div className="close" onClick={() => setAddUserModal(false)}>
+        <DeleteContainer>
+          <h3>آیا از حذف کاربر ذیل اطمینان دارید؟</h3>
+          <div className="row">
+            <p className="text">نام و نام خانوادگی</p>
+            <p className="text">{`${selectUser.firstname} ${selectUser.lastname}`}</p>
+          </div>
+          <div className="row">
+            <p className="text"> آدرس ایمیل</p>
+            <p className="text">{selectUser.email}</p>
+          </div>
+          <div className="submit-row">
+            <button className="confirm"
+              onClick={() => {
+                deleteUser(selectUser.userId);
+                setDeleteModal(false);
+              }}
+            >
+              تایید
+            </button>
+            <button
+            className="cansel"
+              onClick={() => {
+                setDeleteModal(false);
+              }}
+            >
               انصراف
-            </div>
-          </Box>
-        </Form>
+            </button>
+          </div>
+        </DeleteContainer>
       </Modal>
     </Container>
   );
@@ -358,7 +232,7 @@ const Container = styled.div`
   }
 `;
 
-const AddUser = styled.div`
+const AddUserButton = styled.div`
   background-color: #cb9cf2;
   padding: 1vw;
   border-radius: 4px;
@@ -368,56 +242,42 @@ const AddUser = styled.div`
   font-weight: 500;
 `;
 
-const Form = styled.form`
-  width: 100%;
+const DeleteContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1vw;
-  align-items: center;
-  input {
-    width: 95%;
-    outline: none;
-    padding: 0.7vw;
-    border-radius: 4px;
-    border: none;
+  align-items:center;
+  h3 {
+    font-size:2vw;
+    margin:0;
+    color:#8F7595;
   }
-`;
-
-const ErrorText = styled.p`
-  color: #fc8181;
-  font-size: 1vw;
-  width: 100%;
-  text-align: right;
-  margin: 0;
-  margin-right: 2%;
-  margin-top: -2%;
-  @media (max-width: 800px) {
-    font-size: 2.5vw;
-    padding: 0.7vh;
+  .row{
+    width:80%;
+    display:flex;
+    justify-content:space-between;
+    .text{
+      margin:0;
+      font-size:1.5vw;
+      font-weight:500;
+      color:#8F7595;
+    }
   }
-  @media (max-width: 600px) {
-    font-size: 3.5vw;
-  }
-`;
-
-const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 40%;
-  button {
-    border: none;
-    padding: 1vw 2vw;
-    background-color: #cb9cf2;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .close {
-    background-color: #616283;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 1vw 2vw;
-    font-size: 1.2vw;
+  .submit-row{
+    width:50%;
+    display:flex;
+    justify-content:space-between;
+    .confirm,.cansel{
+      border:none;
+      border-radius:4px;
+      padding:1vw;
+      background-color:#616283;
+      width:40%;
+      cursor:pointer;
+    }
+    .confirm{
+      background-color:#CB9CF2;
+    }
   }
 `;
 

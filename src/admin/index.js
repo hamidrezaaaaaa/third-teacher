@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   const { state, dispatch } = useUser();
 
   return(
-    <Container>
+    <Container login={state.adminAccess}>
         {state.adminAccess ? (<MainDashboard/> ):(<LoginForm/>)}
     </Container>
   )
@@ -23,7 +23,7 @@ const Container = styled.section`
   align-items: center;
   background-color: #0e1116;
   width: 100%;
-  // height: 100vh;
+ height: ${props=> !props.login ? '100vh':'auto'};
 `;
 
 export default AdminDashboard;
