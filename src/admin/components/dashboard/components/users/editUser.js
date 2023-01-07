@@ -28,15 +28,10 @@ const customStyles = {
   },
 };
 
-const EditUser = ({ users, userId }) => {
+const EditUser = ({ user,onClose,visible}) => {
   const { state, dispatch } = useUser();
-  const [editUserModal, setEditUserModal] = useState(false);
 
-  useEffect(() => {
-    setEditUserModal(true);
-  }, []);
-
-  const user = users.find((x) => x.userId === userId);
+  console.log('user',user)
 
   const onSubmit = async (values) => {
     let data = JSON.stringify({
@@ -56,7 +51,7 @@ const EditUser = ({ users, userId }) => {
 
     var config = {
       method: "patch",
-      url: `${BaseBackURL}user/${userId}`,
+      url: `${BaseBackURL}user/${user.userId}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -69,7 +64,7 @@ const EditUser = ({ users, userId }) => {
         toast.success("اصلاحات جدید ایجاد شد", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setEditUserModal(false);
+        onClose(false);
         dispatch({ type: "SET_UPDATE", payload: !state.update });
       })
       .catch((error) => {
@@ -104,13 +99,14 @@ const EditUser = ({ users, userId }) => {
       postCode: user.postcode,
     },
     validationSchema: signInFormSchema,
+    enableReinitialize: true,
     onSubmit,
   });
 
   return (
     <Modal
-      isOpen={editUserModal}
-      onRequestClose={() => setEditUserModal(false)}
+      isOpen={visible}
+      onRequestClose={() => onClose(false)}
       style={customStyles}
       ariaHideApp={false}
     >
@@ -222,7 +218,9 @@ const EditUser = ({ users, userId }) => {
 
         <Box>
           <button type="submit">اصلاح</button>
-          <div className="close" onClick={() => setEditUserModal(false)}>
+          <div className="close" onClick={() => {onClose(false);
+          
+          }}>
             انصراف
           </div>
         </Box>

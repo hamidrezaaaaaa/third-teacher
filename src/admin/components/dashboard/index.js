@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import data from "../../../data/adminDashboard.json";
 import Competitions from "./components/competitions/competitions";
-import Philosophes from "./components/philosophes/philosophes";
+import Philosophes from "./components/philosophes/philosophers";
 import Researchs from "./components/researches/researchs";
 import Schools from "./components/schools/schools";
 import Users from "./components/users/users";

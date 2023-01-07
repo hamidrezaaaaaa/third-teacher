@@ -28,14 +28,8 @@ const customStyles = {
   },
 };
 
-const AddUser = () => {
+const AddUser = ({visible,onClose}) => {
   const { state, dispatch } = useUser();
-  const [addUserModal, setAddUserModal] = useState(false);
-
-
-  useEffect(() => {
-    setAddUserModal(true)
-  }, []);
 
 
   const onSubmit = async (values) => {
@@ -70,7 +64,7 @@ const AddUser = () => {
           toast.success("کاربر جدید ایجاد شد", {
             position: toast.POSITION.TOP_RIGHT,
           });
-          setAddUserModal(false);
+          onClose(false);
           dispatch({ type: "SET_UPDATE", payload: !state.update });
 
         }
@@ -119,9 +113,10 @@ const AddUser = () => {
 
   return (
     <Modal
-    isOpen={addUserModal}
-    onRequestClose={() => setAddUserModal(false)}
+    isOpen={visible}
+    onRequestClose={() => onClose(false)}
     style={customStyles}
+    ariaHideApp={false}
   >
     <Form onSubmit={handleSubmit} autoComplete="off">
       <input
@@ -233,7 +228,7 @@ const AddUser = () => {
 
       <Box>
         <button type="submit">افزودن</button>
-        <div className="close" onClick={() => setAddUserModal(false)}>
+        <div className="close" onClick={() => onClose(false)}>
           انصراف
         </div>
       </Box>

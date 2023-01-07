@@ -8,7 +8,6 @@ import { faFilePen } from "@fortawesome/free-solid-svg-icons";
 import AddUser from "./addUser";
 import EditUser from "./editUser";
 import Modal from "react-modal";
-
 import { useUser } from "../../../../../context/useContext";
 
 //style for modal
@@ -97,8 +96,6 @@ const Users = () => {
         <td>{item.job}</td>
         <td
           onClick={() => {
-            // deleteUser(item.userId);
-            // setUserId(item.userId);
             setSelectUser(item);
             setDeleteModal(true);
           }}
@@ -108,7 +105,7 @@ const Users = () => {
         <td
           onClick={() => {
             setEditUserModal(true);
-            setUserId(item.userId);
+            setSelectUser(item);
           }}
         >
           <FontAwesomeIcon icon={faFilePen} />
@@ -147,10 +144,10 @@ const Users = () => {
         </tbody>
       </table>
       {/* addUser modal */}
-      {addUserModal && <AddUser />}
+      <AddUser visible={addUserModal} onClose={setAddUserModal} />
 
       {/* editUser modal */}
-      {editUserModal && <EditUser userId={userId} users={user} />}
+       <EditUser user={selectUser} visible={editUserModal} onClose={setEditUserModal} />
 
       {/* deleteUser modal */}
       <Modal
