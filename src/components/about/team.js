@@ -22,7 +22,7 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar moblieborder="62.7vw" width="20%" content={sideBarData} />
+      <SideBar moblieborder="86%" tabletborder="90%" width="20%" content={sideBarData} />
     </Container>
   );
 };
@@ -127,6 +127,7 @@ const Member = styled.div`
     align-items:center;
     width: 30%;
     flex-wrap:wrap;
+    margin-bottom:5vh;
     .image {
       width: 25.5vw;
       height: 25.5vw;

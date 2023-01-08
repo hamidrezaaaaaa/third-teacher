@@ -29,6 +29,11 @@ background:${props=>props.theme.background[0]};
 padding:0.764vw 0 3.125vw;
 position:relative;
 
+@media (min-width:1400px){
+  min-height:300px ;
+  height:70%;
+}
+
 @media (max-width:801px){
 height:350px ;
 }

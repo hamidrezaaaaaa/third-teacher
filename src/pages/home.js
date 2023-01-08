@@ -25,7 +25,8 @@ const Container = styled.section`
   flex-direction: column;
   gap: 7.5vh;
   justify-content: space-around;
-
+  
+  padding-bottom:4vh;
   @media (max-width: 600px){
     gap: 4vh;
   }

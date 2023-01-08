@@ -25,7 +25,8 @@ const LogIn = () => {
           </Link>
         </Wraper>
       </Content>
-      <SideBar moblieborder="81.7vw" content={sideBarData} width="20%" />
+      {/* <SideBar moblieborder="81.7vw" content={sideBarData} width="20%" /> */}
+      <SideBar moblieborder="95%" tabletborder="95%" content={sideBarData} width="20%" />
     </Container>
   );
 };
@@ -35,6 +36,8 @@ const Container = styled.section`
   justify-content: space-between;
   padding-left: 1.736vw;
   @media (max-width: 800px){
+    width: 90%;
+    margin: auto;
     flex-direction:column;
   justify-content: center;
     align-tems:center;

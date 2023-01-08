@@ -29,13 +29,14 @@ const Container = styled.div`
     width:27%;
     justify-content:space-between;
     height:200px;
+    height:auto;
   }
 
   @media (max-width: 600px){
-    margin:0 0 12vh 0;
+    margin:0 0 10vh 0;
     width:45%;
     justify-content:space-between;
-    height:200px;
+    height:auto;
   }
   `;
 
@@ -69,7 +70,7 @@ const Cover = styled.div`
   @media (max-width: 800px){
     width: 20.944vw;
     height: 20.944vw;
-  
+    
     img {
       width: 100%;
       height: 100%;
@@ -94,6 +95,7 @@ const Cover = styled.div`
   @media (max-width: 600px){
     width: 28.944vw;
     height: 28.944vw;
+
   
     img {
       width: 100%;

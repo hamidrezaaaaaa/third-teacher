@@ -4,7 +4,7 @@ import rightCover from "../../assets/pic/right.png";
 
 const SideBar = (props) => {
   return (
-    <Container moblieborder={props.moblieborder} className="container" width={props.width}>
+    <Container tabletborder={props.tabletborder} moblieborder={props.moblieborder} className="container" width={props.width}>
       <p className="text">{props.content}</p>
     </Container>
   );
@@ -49,7 +49,7 @@ const Container = styled.div`
 
   @media (max-width: 800px){
     box-sizing:border-box;
-    width:90% ;
+    width: 100% ;
     padding: 5vw 5vh;
     display: flex;
     position: relative;
@@ -69,20 +69,19 @@ const Container = styled.div`
       width: 100%;
       height: 100%;
       background-image: url(${leftCover});
-      background-size: none;
+      background-size: contain;
       background-repeat: no-repeat;
     }
     &:after {
       content: "";
       display: block;
       position: absolute;
-      left:0;
-      left: ${(props) => props.moblieborder};
+      left: ${(props) => props.tabletborder};
       bottom: 0;
       width: 100%;
       height: 100%;
       background-image: url(${rightCover});
-      background-size:  none;
+      background-size:  contain;
       background-repeat: no-repeat;
     }
 

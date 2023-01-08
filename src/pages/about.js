@@ -12,13 +12,15 @@ const About = () => {
           <p className="poetry">{data.about[0].poetry}</p>
         </div>
       </Content>
-      <SideBar moblieborder="64.2vw" content={data.about[0].sideBar} width="20%"/>
+      {/* <SideBar moblieborder="64.2vw" content={data.about[0].sideBar} width="20%"/> */}
+      <SideBar moblieborder="87%" tabletborder="90%" content={data.about[0].sideBar} width="20%"/>
     </Container>
   );
 };
 
 const Container = styled.section`
 width:100%;
+// border:3px solid blue;
 box-sizing:border-box;
 margin:0 auto;
   display: flex;
@@ -154,9 +156,9 @@ const Content = styled.div`
         margin: 0;
         padding: 0;
         font-size: 4.736vw;
-        line-height: 1.5rem;
         font-weight: 400;
         color: ${(props) => props.theme.textColor[1]};
+        line-height:2.5rem;
       }
       .text {
         margin-bottom: 1.736vw;
