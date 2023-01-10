@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import instagram from "../../assets/icon/instagram.png";
 import whatsapp from "../../assets/icon/instagram.png";
@@ -10,8 +10,16 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [select, setSelect] = useState(0);
   const navigate = useNavigate();
-  const [mobileNavbarSelecter, setMobileNavbarSelecter] = useState(false)
-  
+  const [mobileNavbarSelecter, setMobileNavbarSelecter] = useState(false);
+
+  const [screenWidthSize, setScreenWidthSize] = useState(window.innerWidth);
+  const updateMedia = () => {
+    setScreenWidthSize(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
   const menuItemDesktop = data.navbar.map((x, i) => {
     return (
       <Wraper>
@@ -89,6 +97,7 @@ const Navbar = () => {
   }
   return (
     <Container>
+      {800 < screenWidthSize ?
       <NavbarDesktop>
         <Logo
           onClick={() => {
@@ -105,9 +114,7 @@ const Navbar = () => {
             <span></span>
           </Search>
       </NavbarDesktop>
-
-      <Logo />
-
+      :
       <MobileNavbar>
       <OverlayNav mobileNavbarSelecter={mobileNavbarSelecter}> 
         <CloseNavbar onClick={() => handleMobileNavbar()}>
@@ -138,6 +145,7 @@ const Navbar = () => {
           </LogoMobile>
         </FixNavbar>
       </MobileNavbar>
+    } 
     </Container>
   );
 };
@@ -172,16 +180,13 @@ overflow-x: hidden;
 `;
 
 const NavbarDesktop = styled.div`
-  display: flex;
-  width: 80%;
-  justify-content: flex-start;
-  padding: 3.472vw 0.556vw;
-  align-items: center;
-  gap: 2.083vw;
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
+display: flex;
+width:80%;
+justify-content: flex-start;
+padding: 3.472vw 0.556vw;
+align-items: center;
+gap: 2.083vw;
+`
 const MobileNavbar = styled.div`
 @media (min-width: 600px) and (max-width: 800px){
   margin-bottom:2vh;
@@ -198,19 +203,15 @@ align-items:center;
   display: inline-block;
 }
 
-
-@media (min-width: 800px){
-  display:none;
-
-`;
+`
 
 const LogoMobile = styled.div`
-  height: 8vh;
-  width: 8vh;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url(${logo});
-`;
+width:14vw;
+height: 11.66vw;
+background-repeat: no-repeat;
+background-size: contain;
+background-image: url(${logo});
+`
 
 const CloseNavbar = styled.div`
   width: 12vw;

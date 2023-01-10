@@ -17,10 +17,14 @@ const Education = () => {
 
 const Container = styled.section`
   height: 70vh;
+  height:auto;
   display: flex;
   flex-direction: column;
-  padding: 4.861vw 6.25vw;
-  gap: 8.083vw;
+  padding: 1.861vw 6.25vw 4vh;
+  gap: 3.083vw;
+  @media (max-width: 800px){
+    gap: 8.083vw;
+  };
 `;
 
 const Title = styled.h1`

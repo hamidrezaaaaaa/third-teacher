@@ -108,7 +108,7 @@ const SignIn = () => {
         )}
       </Content>
 
-      <SideBar content={sideBarData} width="20%" />
+      <SideBar moblieborder="94%" tabletborder="95%" content={sideBarData} width="15%" />
     </Container>
   );
 };
@@ -118,6 +118,9 @@ const Container = styled.div`
   justify-content: space-between;
   padding-left: 1.736vw;
   @media (max-width: 800px){
+    padding-left: 0;
+    width: 90%;
+    margin: auto;
     align-tems:center;
     flex-direction:column;
     justify-content: center;
@@ -131,12 +134,16 @@ box-sizing:content-box;
   height:auto;
   flex-direction: column;
   gap: 1.736vw;
-  padding:${props=>props.step==0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
+  // padding:${props=>props.step==0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
+  padding:${"2.25vw 6.25vw 4.861vw 0"}  ;
 
   @media (max-width: 800px){
     width: 90%;
+    padding-left: 0;
+    margin: 0 auto;
     margin-top:5vh;
     height: auto;
+    padding:${props=>props.step==0 ? "2.25vw 0vw 4.861vw 0" : "3vw 0vw 4.861vw 0"}  
   }
 
   @media (max-width: 600px){
@@ -151,7 +158,8 @@ box-sizing:content-box;
 
 const Wraper = styled.div`
   width: 40%;
-  margin: auto;
+  margin:  auto;
+  box-sizing:border-box;
   form {
     display: flex;
     flex-direction: column;

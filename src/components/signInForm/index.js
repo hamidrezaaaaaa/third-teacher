@@ -184,6 +184,7 @@ const SignInForm = () => {
 };
 
 const Container = styled.div`
+width:100%;
 box-sizing:border-box;
 @media (max-width: 800px){
   padding:0px 0vw 0 1vw;
@@ -258,7 +259,7 @@ const Title = styled.h1`
   width: 100%;
   input {
       outline: none;
-      width: 100%;
+      width: 70%;
       padding: 0.5vw;
       border: none;
       background: ${(props) => props.theme.background[1]};
@@ -273,6 +274,7 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
     padding: 0.694vw 1.389vw;
     font-size: 1.389vw;
+    padding:3vh;
     color: ${(props) => props.theme.textColor[0]};
     z-index: 20;
   }
@@ -374,6 +376,7 @@ const Title = styled.h1`
       border: 5px solid #ffe6bf;
       padding: 4.6vh 2.6vw 0vh;
       input {
+        width: 100%;
         margin-bottom: 1.042vw;
         border: none;
         padding: 1.6vh 0vw;

@@ -93,7 +93,7 @@ const Carousel = () => {
           loop={true}
           noSwiping={false}
           autoplay={{
-            delay: 552500,
+            delay: 4000,
             disableOnInteraction: false,
           }}
           modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
@@ -197,7 +197,7 @@ const Carousel = () => {
           loop={true}
           noSwiping={false}
           autoplay={{
-            delay: 552500,
+            delay: 4000,
             disableOnInteraction: false,
           }}
             modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
@@ -276,7 +276,7 @@ const Carousel = () => {
     noSwiping={true}
     noSwipingSelector="div"
     autoplay={{
-      delay: 97500,
+      delay: 224000,
       disableOnInteraction: false,
     }}
       modules={[Autoplay,Pagination,EffectCoverflow, Navigation]}
@@ -656,9 +656,9 @@ position:relative;
 
 .next1{
   position:relative;
-    transform: translateX(-62px) scaleX(.8);
+  
+    transform: translateX(-45%) scale(.8,1);
     transition: transform .5s;
-
     :hover{
       cursor: pointer;
     }
@@ -677,7 +677,7 @@ position:relative;
 }
 
 .before1{
-    transform:  translateX(62px) scaleX(.8);
+    transform: translateX(45%)  scale(.8,1);;
     transition: transform .5s;
     .title{
         font-size: 1.5rem;
@@ -692,8 +692,11 @@ position:relative;
 }
 
 .next2{
-    transform:translateX(-42px)  scaleX(0.45);
-    transition: transform 0s;
+    transform: translateX(-30%) scale(.45,1);;
+    transition: transform .5s;
+    :hover{
+      cursor: pointer;
+    }
     .title{
       transform:scaleX(1.5);
         font-size: 1rem;
@@ -707,8 +710,11 @@ position:relative;
 
 .before2{
     background-color: rgb(162, 255, 0);
-    transform:translateX(42px)  scaleX(0.45);
-    transition: transform 0s;
+    transform: translateX(30%) scale(.45,1);
+    transition: transform .5s;
+    :hover{
+      cursor: pointer;
+    }
     .title{
       transform:scaleX(1.5);
         font-size: 1rem;
@@ -721,9 +727,8 @@ position:relative;
 }
 
 .next3{
-    opacity: 1;
-    transform:   translateX(10px) scaleX(0.3);
-    transition: transform 0s;
+    transform: translateX(8%) scale(.3,1);
+    transition: transform .5s;
     background-color: rgb(115, 0, 255);
     .title{
       display:none;
@@ -738,8 +743,8 @@ position:relative;
 }
 
 .before3{
-    transform: translateX(-10px)   scaleX(0.3);
-    transition: transform 0s;
+    transform: translateX(-8%) scale(.3,1);
+    transition: transform .5s;
     background-color: rgb(115, 0, 255);
     opacity: 1;
     .title{

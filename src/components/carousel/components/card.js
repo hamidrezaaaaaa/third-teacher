@@ -27,14 +27,19 @@ const Container = styled.div`
   padding: 0.764vw 0 3.125vw;
   position: relative;
 
-  @media (max-width: 801px) {
-    height: 350px;
-  }
+@media (min-width:1400px){
+  min-height:300px ;
+  height:70%;
+}
 
-  @media (max-width: 600px) {
-    justify-content: space-around;
-    height: 43.5vh;
-  }
+@media (max-width:801px){
+height:350px ;
+}
+
+@media (max-width: 600px){
+justify-content:space-around;
+  height:43.5vh ;
+}
 `;
 
 const Image = styled.div`
