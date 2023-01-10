@@ -1,23 +1,46 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React,{useEffect,useState} from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import carouselData from "../../data/Philosophers";
-import cover from "../../assets/pic/cover2.png"
-import zar from "../../assets/pic/zartosht.png"
+import cover from "../../assets/pic/cover2.png";
+import { BaseBackURL } from "../../constant/api";
+import axios from "axios";
+
+
 function Philosopher() {
-  const {id} = useParams()
+  const {id} = useParams();
+  const [data, setData] = useState({});
+
+  const getCarouselData = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}philosophes`,
+    };
+    axios(config)
+      .then((res) => {
+        setData(res.data.find((item) => parseInt(item.id) === parseInt(id)));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getCarouselData();
+  }, []);
+
+  
 return (
   <Container>
     <Text>
       <Title>
-      {carouselData[id-1].Philosopher} {id}
+      {data.name}
       </Title>
       <Data>
-      {carouselData[id-1].longInfo}
+      {data.description}
       </Data>
     </Text>
     <Image>
-      <img src={carouselData[3].image}></img>
+    <img src={`${BaseBackURL}uploads/${data.imageurl}`}></img>
     </Image>
   </Container>
 )
@@ -91,6 +114,7 @@ const Image =styled.div`
   }
   img{
     width:100%;
+    border-radius:100%;
     object-fit:contain;
     transform: translate(-1px, 23px);
   }

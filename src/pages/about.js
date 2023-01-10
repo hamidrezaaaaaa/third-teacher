@@ -13,7 +13,7 @@ const About = () => {
         </div>
       </Content>
       {/* <SideBar moblieborder="64.2vw" content={data.about[0].sideBar} width="20%"/> */}
-      <SideBar moblieborder="87%" tabletborder="90%" content={data.about[0].sideBar} width="20%"/>
+      <SideBar moblieborder="87%" tabletborder="85%" content={data.about[0].sideBar} width="20%"/>
     </Container>
   );
 };

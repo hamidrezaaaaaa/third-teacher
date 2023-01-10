@@ -4,7 +4,7 @@ import rightCover from "../../assets/pic/right.png";
 
 const SideBar = (props) => {
   return (
-    <Container tabletborder={props.tabletborder} moblieborder={props.moblieborder} className="container" width={props.width}>
+    <Container tabletborder={props.tabletborder} moblieborder={props.moblieborder} desktopBorder={props.desktopBorder} className="container" width={props.width}>
       <p className="text">{props.content}</p>
     </Container>
   );
@@ -16,11 +16,13 @@ const Container = styled.div`
   display: flex;
   position: relative;
   margin-top: -7%;
+  justify-content: flex-end;
   .text {
     margin: auto;
     color: ${(props) => props.theme.textColor[1]};
     font-size: 1.736vw;
     font-weight: 400;
+    width:85%;
   }
   &:before {
     content: "";
@@ -38,7 +40,7 @@ const Container = styled.div`
     content: "";
     display: block;
     position: absolute;
-    left: 67%;
+    left: ${props=>props.desktopBorder?props.desktopBorder:'48%'};
     bottom: 0;
     width: 100%;
     height: 100%;

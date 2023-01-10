@@ -19,36 +19,42 @@ import LogIn from "./pages/logIn";
 import Philosopher from "./components/philosopher/Philosopher";
 import SignIn from "./pages/signIn";
 import Dashboard from "./pages/dashboard";
+import { UserState } from "./context/useContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
+      <UserState>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
 
-        <Router>
-          <Layout>
-            <Routes>
-              <Route exact path="/" element={<Main />} />
-              <Route path="/home/:title" element={<Home />} />
-              <Route path="/home/schools/:id" element={<Philosopher/>} />
-              <Route path="/home/philosophy/:id" element={<Philosopher/>} />
-              <Route path="/Book" element={<Books />} />
-              <Route path="/Book/:id" element={<PreviewBook />} />
-              <Route path="/Research" element={<Research />} />
-              <Route path="/Competition" element={<Competition />} />
-              <Route path="/Education" element={<Education />} />
-              <Route path="/Education/:id" element={<PreviewEducation />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/about/team" element={<Team />} />
-              <Route path="/about/green-squad" element={<GreenSquad />} />
-              <Route path="/log-in" element={<LogIn />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/dashboard/*" element={<Dashboard />} />
-            </Routes>
-          </Layout>
-        </Router>
-      </ThemeProvider>
+          <Router>
+            <Layout>
+              <Routes>
+                <Route exact path="/" element={<Main />} />
+                <Route path="/home/:title" element={<Home />} />
+                <Route path="/home/schools/:id" element={<Philosopher />} />
+                <Route path="/home/philosophy/:id" element={<Philosopher />} />
+                <Route path="/Book" element={<Books />} />
+                <Route path="/Book/:id" element={<PreviewBook />} />
+                <Route path="/Research" element={<Research />} />
+                <Route path="/Competition" element={<Competition />} />
+                <Route path="/Education" element={<Education />} />
+                <Route path="/Education/:id" element={<PreviewEducation />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/about/team" element={<Team />} />
+                <Route path="/about/green-squad" element={<GreenSquad />} />
+                <Route path="/log-in" element={<LogIn />} />
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/dashboard/*" element={<Dashboard />} />
+              </Routes>
+            </Layout>
+          </Router>
+          <ToastContainer />
+        </ThemeProvider>
+      </UserState>
     </div>
   );
 }

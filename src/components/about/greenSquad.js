@@ -11,7 +11,7 @@ const GreenSquad = () => {
         <Gallery></Gallery>
       </Content>
       {/* <SideBar moblieborder="72.7vw" width="20%" content={sideBarData} /> */}
-      <SideBar moblieborder="87%" tabletborder="90%" width="20%" content={sideBarData} />
+      <SideBar moblieborder="87%" tabletborder="85%" width="20%" content={sideBarData} />
     </Container>
   );
 };

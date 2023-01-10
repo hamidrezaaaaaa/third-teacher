@@ -2,16 +2,50 @@ import styled from "styled-components";
 import SideBar from "../components/sidebar";
 import { signInSchema } from "../schema";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import SignInForm from "../components/signInForm";
+import { useUser } from "../context/useContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { BaseBackURL } from "../constant/api";
 
 const SignIn = () => {
+  const { state, dispatch } = useUser();
   const [step, setStep] = useState(0);
+  const [users, setUsers] = useState([]);
   const sideBarData =
     "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
 
-  const onSubmit = async () => {
-    setStep(1);
+  const getUsers = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}user`,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const onSubmit = async (values) => {
+    if (users.find((x) => x.email === values.userName)) {
+      toast.error("ایمیل تکراری است!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      dispatch({ type: "SET_EMAIL", payload: values.userName });
+      dispatch({ type: "SET_PASSWORD", payload: values.password });
+      setStep(1);
+    }
   };
 
   const {
@@ -73,7 +107,13 @@ const SignIn = () => {
         )}
       </Content>
 
-      <SideBar moblieborder="94%" tabletborder="95%" content={sideBarData} width="15%" />
+      <SideBar
+        moblieborder="94%"
+        tabletborder="95%"
+        desktopBorder="65%"
+        content={sideBarData}
+        width="15%"
+      />
     </Container>
   );
 };
@@ -82,41 +122,43 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 1.736vw;
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     padding-left: 0;
     width: 90%;
     margin: auto;
-    align-tems:center;
-    flex-direction:column;
+    align-tems: center;
+    flex-direction: column;
     justify-content: center;
   }
 `;
 
 const Content = styled.div`
-box-sizing:content-box;
+  box-sizing: content-box;
   width: 60%;
   display: flex;
-  height:auto;
+  height: auto;
   flex-direction: column;
   gap: 1.736vw;
-  // padding:${props=>props.step==0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
-  padding:${"2.25vw 6.25vw 4.861vw 0"}  ;
+  // padding:${(props) =>
+    props.step == 0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
+  padding: ${"2.25vw 6.25vw 4.861vw 0"};
 
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     width: 90%;
     padding-left: 0;
     margin: 0 auto;
-    margin-top:5vh;
+    margin-top: 5vh;
     height: auto;
-    padding:${props=>props.step==0 ? "2.25vw 0vw 4.861vw 0" : "3vw 0vw 4.861vw 0"}  
+    padding: ${(props) =>
+      props.step == 0 ? "2.25vw 0vw 4.861vw 0" : "3vw 0vw 4.861vw 0"};
   }
 
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     width: 80%;
     margin: 0 auto;
-    padding:6.25vw 0 4.861vw 0;
-    justify-content:center;
-    align-tems:center;
+    padding: 6.25vw 0 4.861vw 0;
+    justify-content: center;
+    align-tems: center;
     padding-left: 0;
   }
 `;
@@ -252,15 +294,13 @@ const ErrorText = styled.p`
   margin: 0;
   margin-right: 2%;
   margin-top: -2%;
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     font-size: 2.5vw;
-    padding:0.7vh;
-
+    padding: 0.7vh;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 4vw;
-    padding:0.7vh;
-
+    padding: 0.7vh;
   }
 `;
 

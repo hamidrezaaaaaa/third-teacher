@@ -22,7 +22,7 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar moblieborder="86%" tabletborder="90%" width="20%" content={sideBarData} />
+      <SideBar moblieborder="86%" tabletborder="84%" width="20%" content={sideBarData} />
     </Container>
   );
 };

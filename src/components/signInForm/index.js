@@ -2,12 +2,49 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import { signInFormSchema } from "../../schema";
+import { useUser } from "../../context/useContext";
+import { BaseBackURL } from "../../constant/api";
+import axios from "axios";
 
 const SignInForm = () => {
   const navigate = useNavigate();
+  const { state, dispatch } = useUser();
 
-  const onSubmit = async () => {
-    navigate("/dashboard");
+  const onSubmit = async (values) => {
+    let data = JSON.stringify({
+      "email": `${values.email}`,
+      "password": `${state.password}`,
+      "firstname": `${values.firstName}`,
+      "lastname": `${values.lastName}`,
+      "birtday": `${values.birthPlace}`,
+      "education": `${values.education}`,
+      "university": `${values.university}`,
+      "job": `${values.job}`,
+      "mobilenumber": `${values.phoneNumber}`,
+      "province": `${values.province}`,
+      "address": `${values.address}`,
+      "postcode": `${values.postCode}`
+    });
+
+    let config = {
+      method: "post",
+      url: `${BaseBackURL}user/sign-up`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+    console.log(data)
+
+    axios(config)
+      .then((result) => {
+        console.log(result);
+        navigate("/log-in");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log('sag')
+      });
   };
 
   const {
@@ -27,7 +64,7 @@ const SignInForm = () => {
       university: "",
       job: "",
       phoneNumber: "",
-      email: "",
+      email: state.email,
       province: "",
       address: "",
       postCode: "",

@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import back from "../../../assets/pic/cover.png";
+import { BaseBackURL } from "../../../constant/api";
 
 const Card =({img,title,index})=>{
     return(
         <Container>
           <Image className="imageincarousel">
-            <img src={img} alt="philosophy"/>
+            <img src={`${BaseBackURL}uploads/${img}`} alt="philosophy"/>
             <div className="curtain"></div>
           </Image>
           <Title className="title">
@@ -30,7 +31,7 @@ padding:0.764vw 0 3.125vw;
 position:relative;
 
 @media (min-width:1400px){
-  min-height:300px ;
+  min-height:500px ;
   height:70%;
 }
 
@@ -76,6 +77,7 @@ const Image =styled.div`
   }
   img{
     width:100%;
+    border-radius:100%;
     height:auto;
     object-fit:contain;
     transform: translate(-1px, 13px);
