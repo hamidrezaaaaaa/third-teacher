@@ -104,7 +104,7 @@ const Carousel = () => {
             {carouselData.map((i, index) => {
               return (
                 <SwiperSlide
-                  key={i}
+                  key={index}
                   onClick={() => {
                     setShowModule(true);
                     setMain(index);
@@ -191,7 +191,7 @@ const Carousel = () => {
             {carouselData.map((i, index) => {
               return (
                 <SwiperSlide
-                  key={i}
+                  key={index}
                   onClick={() => {
                     setShowModule(true);
                     setMain(index);
@@ -291,7 +291,7 @@ const Carousel = () => {
           {carouselData.map((i, index) => {
             return (
               <SwiperSlide
-                key={i}
+                key={index}
                 onClick={() => {
                   setShowModule(true);
                   setMain(index);

@@ -22,7 +22,7 @@ const Navbar = () => {
   });
   const menuItemDesktop = data.navbar.map((x, i) => {
     return (
-      <Wraper>
+      <Wraper key={i}>
         <Item
           key={i}
           onClick={(e) => {
