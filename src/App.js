@@ -22,6 +22,7 @@ import Dashboard from "./pages/dashboard";
 import { UserState } from "./context/useContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminDashboard from "./admin"
 
 function App() {
   return (
@@ -49,6 +50,8 @@ function App() {
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/dashboard/*" element={<Dashboard />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/*" element={<AdminDashboard />} />
               </Routes>
             </Layout>
           </Router>

@@ -34,3 +34,23 @@ export const logInSchema = yup.object().shape({
     phoneNumber: yup.number("لطفا کیبود خود را به زبان انگلیسی تغییر دهید").required("لطفا شماره تماس  را وارد کنید"),
     address: yup.string().min(5 ,'لطفا حداقل ۵ کاراکتر وارد کنید').required("لطفا  آدرس را وارد کنید"),
   });
+
+  export const addPhilosopherSchema = yup.object().shape({
+    personal: yup.string().required("لطفا نام فیلسوف را وارد کنید"),
+    summary: yup.string().required("لطفا شرح خلاصه فیلسوف را تکمیل کنید"),
+    description: yup.string().required("لطفا معرفی فیلسوف را تکمیل کنید"),
+    imageurl:yup
+      .mixed()
+      .required("لطفا تصویر فیلسوف را بارگزاری کنید")
+      .test("fileSize", "حجم فایل زیاد است ", (value) => {
+          return value && value.size  <= 2000000;
+      })
+      .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .jpeg, .jpg and .png", (value) => {
+          return value && (
+              value.type === "image/jpeg" ||
+              value.type === "image/png" 
+          );
+      }),
+  
+  
+  });
