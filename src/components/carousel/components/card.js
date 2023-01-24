@@ -4,6 +4,8 @@ import back from "../../../assets/pic/cover.png";
 import { BaseBackURL } from "../../../constant/api";
 
 const Card =({img,title,index})=>{
+
+  console.log(title)
     return(
         <Container>
           <Image className="imageincarousel">
@@ -46,7 +48,8 @@ justify-content:space-around;
 `
 
 const Image =styled.div`
-  width:80%;
+  width:50%;
+ 
   background:${props=>props.theme.background[2]};
   border-radius:100%;
   margin:0 1vw 2.083vw;
@@ -59,6 +62,7 @@ const Image =styled.div`
   
   @media (max-width: 600px){
     margin-top:3vh;
+    // width:70%;
   }
 
 
@@ -89,6 +93,7 @@ const Title=styled.h2`
   font-size:2.569vw;
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
+  white-space:nowrap;
   @media (min-width: 600px) and (max-width: 800px){
     position:absolute;
     top:70%;

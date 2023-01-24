@@ -125,7 +125,7 @@ const AddPhilosophers = ({onClose,visible}) => {
             id="imageurl"
             name="imageurl"
             type="file"
-            value={values.imageurl}
+            // value={values.imageurl}
             onChange={(event) => {
               console.log('hamid')
               setFieldValue("imageurl", event.target.files[0]);
@@ -141,7 +141,7 @@ const AddPhilosophers = ({onClose,visible}) => {
           </div>
         </Box>
       </Form>
-      <input type="file"/>
+      
     </Modal>
   );
 };
@@ -167,18 +167,18 @@ const Form = styled.form`
     font-size: 1.2vw;
     font-weight: 500;
   }
-  // input[type="file"] {
-  //   width:95%;
-  //   background:white;
-  //   padding:0;
-  //   ::-webkit-file-upload-button {
-  //       background: #CB9CF2;
-  //       color: #616283;
-  //       border:none;
-  //       padding:1vw;
-  //       border-radius:4px;
-  //     }
-  // }
+  input[type="file"] {
+    width:95%;
+    background:white;
+    padding:0;
+    ::-webkit-file-upload-button {
+        background: #CB9CF2;
+        color: #616283;
+        border:none;
+        padding:1vw;
+        border-radius:4px;
+      }
+  }
  
 `;
 

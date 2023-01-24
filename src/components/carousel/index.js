@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Card from "./components/card";
-import zar from "../../assets/pic/zartosht.png";
-// import carouselData from "../../data/Philosophers.js";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
@@ -40,6 +38,8 @@ const Carousel = () => {
   useEffect(() => {
     getCarouselData();
   }, []);
+
+  console.log(carouselData)
 
   const modal = useRef(null);
 
