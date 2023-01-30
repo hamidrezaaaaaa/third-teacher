@@ -5,7 +5,7 @@ import { BaseBackURL } from "../../../constant/api";
 
 const Card =({img,title,index})=>{
 
-  console.log(title)
+  // console.log(title)
     return(
         <Container>
           <Image className="imageincarousel">
@@ -94,10 +94,13 @@ const Title=styled.h2`
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
   white-space:nowrap;
+  white-space: initial;
+  text-align:center;
   @media (min-width: 600px) and (max-width: 800px){
+    width:90%;
     position:absolute;
     top:70%;
-    font-size: 4vw;
+    font-size: 3vw;
   }
   @media (max-width: 600px){
     font-size:5vh ;
