@@ -11,7 +11,6 @@ import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { next } from "dom7";
 
 const Carousel = () => {
   const navigate = useNavigate();
