@@ -16,79 +16,59 @@ import { next } from "dom7";
 const Carousel = () => {
   const navigate = useNavigate();
   let [sequence, setSequence] = useState([]);
-  let [sequenceTablet, setSequenceTablet] = useState([0, 6, 5, 4, 3, 2, 1]);
+  let [sequenceTablet, setSequenceTablet] = useState([]);
   let [main, setMain] = useState();
   let [showModule, setShowModule] = useState(false);
   let [carouselData, setCarouselData] = useState([]);
   let [desktopCarousleNumber, setDesktopCarousleNumber] = useState(7);
   let [tabletCarousleNumber, setTabletCarousleNumber] = useState(5);
-
   let [lengthOfCarousel,setLengthOfCarousel] = useState()
   
-let mamaddd =[
-
-  {
-     "id":6,
-     "personal":"جابر بن حیان",
-     "imageurl":"jaber.jpeg9q2w31l6lda1v5hm",
-     "summary":"ابوموسی جابر بن حیان ( ۱۰۰ ش ۷۲۱ م – ۱۹۴ش ۸۱۵ م ) دانشمند و کیمیاگر و فیلسوف ایرانی[۹][۳][۴][۵] بود. وی از اعضای دارالحکمه و از مترجمان نهضت ترجمه بود. او را پدر علم شیمی نامیده‌اند و بسیاری از روش‌ها (مانند تقطیر) و انواع ابزارهای اساسی شیمی مانند قرع و انبیق را به او نسبت می‌دهند",
-     "description":"برخی زندگی وی را بین ۱۰۰ و ۱۹۴ هجری دانسته‌اند.[۱۱] برخی بین ۱۰۳ و ۲۰۰ هجری ذکر کرده‌اند.[۱۲] دانشنامهٔ بریتانیکا آنرا ۷۲۱ تا ۸۱۵ میلادی میداند.[۳] شکوفایی علمی جابر بن حیان در اواخر قرن دوم هجری/ حدود هفتصد و هفتاد و شش میلادی بود. [۱۳] جابر در شهر توس از توابع خراسان متولد شد. پدر او که یک داروساز شناخته شده و شیعه بود، به دلیل نقشی که در براندازی حکومت اموی داشت، به قتل رسید. جابر به نوشته‌های باقی‌مانده از پدرش علاقه‌مند شد و به ادامهٔ حرفهٔ او پرداخت. او با شوق و علاقه به یادگیری علوم دیگر نیز می‌پرداخت. همین، سبب هجرت او از توس به کوفه شد.\r\n\r\n",
-     "createdAt":"2023-01-24T09:43:31.000Z",
-     "updatedAt":"2023-01-24T09:43:31.000Z"
-  },
-  {
-     "id":7,
-     "personal":"فیثاغورس",
-     "imageurl":"fisaghores.jpg9q2w31l6lda1w89m",
-     "summary":"فیثاغورِس یا پیثاگُراس (به یونانی: Πυθαγόρας)یا پیساگراز،[۱] مهیار مهرپرستی، فیلسوف و ریاضیدان یونان باستان سده ششم پیش از میلاد بود. او نخستین کسی بود که توانست اصول پراکنده‌ای را که ریاضیدانان نخستین عمدتاً با استقرا و آزمون و خطا کشف کرده بودند، بر پایهٔ اصول و براهین قیاسی بنا کند",
-     "description":"فیثاغورس در جزیره ساموس، نزدیک کرانه‌های ایونی، زاده شد. او در عهد قبل از ارشمیدس، زنون، کسنوفانس و اودوکس (۵۶۹ تا ۵۰۰) پیش از میلاد می‌زیست.\r\n\r\nدر جوانی به سفرهای زیادی رفت و این امکان را پیدا کرد تا با افکار مصریان باستان، بابلیان و مهرپرستان ایران آشنا شود. تقریباً، ۲۲ سال در سرزمین‌های خارج از یونان بود و چون پولوکراتوس (شاه یونان) برای او نزد فرعون مصر سفارش کرده بود به آمازیس رفته و توانست به سادگی به رازهای کاهنان مصری دست یابد. سال‌ها در مصر ساکن بود و در خدمت کاهنان و روحانیان مصری به شاگردی پرداخت و علوم مختلف آموخت. سپس از آنجا روانه بابل شد و شاگردی را از نو آغاز کرد. او در بابل به حالت اسارت زندگی می‌کرد تا اینکه به همراه داریوش اول به پارس آمد و از تخت جمشید که در حال ساخت بود دیدن کرد.\r\n\r\nدر حدود سال ۵۳۰ قبل از میلاد، از مصر بازگشت، و در زادگاه خود مکتب اخوتی (که امروزه برچسب مکتب پیساگوراس بر آن خورده‌است) را بنیان گذاشت که طرز فکر اشراقی داشت. هدف او از بنیان نهادن این مکتب این بود که بتواند مطالب عالی ریاضیات و مطالبی را تحت عنوان نظریه‌های فیزیکی و اخلاقی تدریس کند و پیشرفت دهد\r\n",
-     "createdAt":"2023-01-24T09:44:21.000Z",
-     "updatedAt":"2023-01-24T09:44:21.000Z"
-  }
-]
-
-let newArray = []
-for (let i in mamaddd){
-  newArray[i]= +i;
-}
-
-
-
-
-// const getCarouselData = () => {
-  //   let config = {
-    //     method: "get",
-    //     url: `${BaseBackURL}philosophes`,
-    //   };
-    //   axios(config)
-    //     .then((res) => {
-      //       setCarouselData(res.data);
-      //     })
-      //     .catch((err) => {""
-        //       console.log(err);
-        //     });
-        // };
-  // let lengthOfCarousel
-
-
-  if(newArray.length == 2){
-    newArray[2] = newArray[0]
-    newArray[3] = newArray[1]
-    mamaddd[2] = mamaddd [0]
-    mamaddd[3] = mamaddd [1]
-  }
-  console.log("mamad length is :", newArray.length)
-
-  useEffect(() => {
-    // getCarouselData();
-    setCarouselData(mamaddd);
-    setLengthOfCarousel(mamaddd.length)
-  }, []);
-  
-  useEffect(() => {
-    if(screenWidthSize > 768){
+const getCarouselData = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}philosophes`,
+    };
+    axios(config)
+    .then((res) => {
       let array = []
-      let b = 0
+      if(res.data.length == 2){
+        array = res.data;
+        array[2] = array[0]
+        array[3] = array[1]
+      }
+      else{
+        array = res.data
+      }
+
+      setCarouselData(array);
+      setLengthOfCarousel(array.length)
+    })
+    .catch((err) => {""
+        console.log(err);
+    });
+    };
+
+      useEffect(() => {
+        getCarouselData();
+      }, []);
+
+        let newArray = []
+        for (let i in carouselData){
+          newArray[i]= +i;
+        }
+        
+        if(newArray.length == 2){
+          newArray[2] = newArray[0]
+          newArray[3] = newArray[1]
+        }
+
+        
+
+        useEffect(() => {
+          if(screenWidthSize > 768){
+            let array = []
+            let b = 0
       for(let i = carouselData.length - desktopCarousleNumber ; i < carouselData.length ; i++){
         array[b] = i ;
         b = b + 1;
@@ -144,7 +124,6 @@ for (let i in mamaddd){
       };
     }, [ref]);
   }
-// console.log("sequence is :", sequence)
   return (
     <Container>
       <Arrow className="PrevSlide">

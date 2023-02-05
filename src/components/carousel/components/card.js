@@ -97,9 +97,11 @@ const Title=styled.h2`
   white-space: initial;
   text-align:center;
   @media (min-width: 600px) and (max-width: 800px){
+    overflow:hidden;
     width:90%;
     position:absolute;
     top:70%;
+
     font-size: 3vw;
   }
   @media (max-width: 600px){
