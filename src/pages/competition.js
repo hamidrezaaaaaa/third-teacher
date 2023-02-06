@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const Competition = () => {
   return (
     <Container>
+      <PreviousDesktop position="-19.2vh" />
       <Title>مسابقات</Title>
       <Gallery>
         <Item><p className="text">مسابقه مدرسه نور</p></Item>

@@ -4,55 +4,36 @@ import rightCover from "../../assets/pic/right.png";
 
 const SideBar = (props) => {
   return (
-    <Container tabletborder={props.tabletborder} moblieborder={props.moblieborder} desktopBorder={props.desktopBorder} className="container" width={props.width}>
+    <Container className="container" width={props.width}>
       <p className="text">{props.content}</p>
+      <BorderTop />
+      <BorderBottom />
     </Container>
   );
 };
 
 const Container = styled.div`
   width: ${(props) => props.width};
-  padding: 2vw;
+  border-left:2.5px solid #07baa6;
+  border-right:2.5px solid #07baa6;
+  padding: 5vw 2vw;
   display: flex;
   position: relative;
   margin-top: -7%;
   justify-content: flex-end;
+  margin-bottom:100px;
   .text {
     margin: auto;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.736vw;
+    font-size: 1.336vw;
     font-weight: 400;
     width:85%;
   }
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${leftCover});
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: ${props=>props.desktopBorder?props.desktopBorder:'48%'};
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${rightCover});
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-
+  
   @media (max-width: 800px){
     box-sizing:border-box;
     width: 100% ;
-    padding: 5vw 5vh;
+    padding: 12vw 5vh;
     display: flex;
     position: relative;
     margin:4vh auto ;
@@ -62,35 +43,11 @@ const Container = styled.div`
       font-size: 3.736vw;
       font-weight: 400;
     }
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url(${leftCover});
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      left: ${(props) => props.tabletborder};
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url(${rightCover});
-      background-size:  contain;
-      background-repeat: no-repeat;
-    }
-
+  
   @media (max-width: 600px){
     box-sizing:border-box;
     width:90% ;
-    padding: 5vw 5vh;
+    padding: 15vw 2vh;
     display: flex;
     position: relative;
     margin:4vh auto ;
@@ -100,31 +57,25 @@ const Container = styled.div`
       font-size: 3.736vw;
       font-weight: 400;
     }
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url(${leftCover});
-      background-size: none;
-      background-repeat: no-repeat;
-    }
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      left:0;
-      left: ${(props) => props.moblieborder};
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url(${rightCover});
-      background-size:  none;
-      background-repeat: no-repeat;
-    }
-`;
+    `
+    const BorderTop  = styled.div`
+    width:50%;
+    height:2px;
+    background-color: #07baa6;
+    position:absolute;
+    top:0;
+    right:0
+    `
+    const BorderBottom  = styled.div`
+    width:50%;
+    height:2px;
+    box-sizing:border-box;
+    background-color: #07baa6;
+    position:absolute;
+    bottom:0;
+    left:0
+    
+    `
+    ;
 
 export default SideBar;

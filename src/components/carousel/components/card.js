@@ -105,7 +105,7 @@ const Title=styled.h2`
     font-size: 3vw;
   }
   @media (max-width: 600px){
-    font-size:5vh ;
+    font-size:4.5vh ;
   }
 `
 

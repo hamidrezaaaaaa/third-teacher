@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../../data/book.json";
 import back from "../../assets/pic/cover2.png";
-
+import PreviousDesktop from "../previousLink/previousDesktop";
 const PreviewBook = () => {
   const { id } = useParams();
   const [index, setIndex] = useState(1);
@@ -23,6 +23,7 @@ const PreviewBook = () => {
 
   return (
     <Container>
+      <PreviousDesktop position="-93.3vh" />
       <Content>
         <h1>{source.name}</h1>
         <p className="text">{page.page}</p>

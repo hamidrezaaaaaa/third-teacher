@@ -342,7 +342,7 @@ const Title = styled.h1`
       input {
         margin-bottom: 1.042vw;
         border: none;
-        padding: 1.6vh 0vw;
+        padding: 2.2vh 0vw;
         background: ${(props) => props.theme.background[1]};
         font-size: 4.389vw;
         text-align: center;

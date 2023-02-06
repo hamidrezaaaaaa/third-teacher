@@ -58,9 +58,10 @@ const Section = styled.div`
       font-size: 3vw;
     }
     @media (max-width: 600px){
-      font-size: 5.736vw;
+      font-size: 5.111vw;
     }
   }
+  
   @media (min-width: 600px) and (max-width: 800px){
     width:15vw;
     height:15vw;
@@ -68,7 +69,8 @@ const Section = styled.div`
 
   @media (max-width: 600px){
     width:30vw;
-    height:100px;
+    padding:25px 5px;
+    height:auto;
   }
 `;
 

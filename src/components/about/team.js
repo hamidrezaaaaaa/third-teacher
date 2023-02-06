@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import SideBar from "../sidebar";
 import data from "../../data/about.json";
+import PreviousDesktop from "../previousLink/previousDesktop";
+
 
 const Team = () => {
   const sideBarData = data.about[0].sideBar;
@@ -18,11 +20,12 @@ const Team = () => {
 
   return (
     <Container>
+      <PreviousDesktop position="-22.5vh" />
       <Content>
         <h1>معرفی اعضا</h1>
         <Gallery>{members}</Gallery>
       </Content>
-      <SideBar moblieborder="86%" tabletborder="84%" width="20%" content={sideBarData} />
+      <SideBar width="17%" content={sideBarData} />
     </Container>
   );
 };

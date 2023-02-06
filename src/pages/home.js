@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Carousel from "../components/carousel";
 import Control from "../components/control";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const Home = () => {
   const { title } = useParams();
  
   return (
     <Container>
+      <PreviousDesktop position="-103vh" />
       <Carousel/>
       <Control/>
       <Swap>

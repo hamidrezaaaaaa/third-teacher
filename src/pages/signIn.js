@@ -8,6 +8,7 @@ import { useUser } from "../context/useContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { BaseBackURL } from "../constant/api";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const SignIn = () => {
   const { state, dispatch } = useUser();
@@ -24,7 +25,7 @@ const SignIn = () => {
 
     axios(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         setUsers(response.data);
       })
       .catch((error) => {
@@ -68,6 +69,7 @@ const SignIn = () => {
 
   return (
     <Container>
+      <PreviousDesktop position="-22.5vh" />
       <Content step={step}>
         {step == 0 ? (
           <Wraper>
@@ -112,8 +114,9 @@ const SignIn = () => {
         tabletborder="95%"
         desktopBorder="65%"
         content={sideBarData}
-        width="15%"
+        width="14.2%"
       />
+      
     </Container>
   );
 };
@@ -255,7 +258,7 @@ const Wraper = styled.div`
       input {
         margin-bottom: 1.042vw;
         border: none;
-        padding: 2.6vh 2.6vw;
+        padding: 2.2vh 2.6vw;
         background: ${(props) => props.theme.background[1]};
         font-size: 4.389vw;
         text-align: center;

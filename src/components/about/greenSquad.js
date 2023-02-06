@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import SideBar from "../sidebar";
 import data from "../../data/about.json";
+import PreviousDesktop from "../previousLink/previousDesktop";
 
 const GreenSquad = () => {
     const sideBarData = data.about[0].sideBar;
   return (
     <Container>
+      <PreviousDesktop position="-22.5vh" />
       <Content>
         <h1>مکعب سبز خلاق</h1>
         <Gallery></Gallery>
       </Content>
-      {/* <SideBar moblieborder="72.7vw" width="20%" content={sideBarData} /> */}
-      <SideBar moblieborder="87%" tabletborder="85%" width="20%" content={sideBarData} />
+      <SideBar width="17.65%" content={sideBarData} />
     </Container>
   );
 };

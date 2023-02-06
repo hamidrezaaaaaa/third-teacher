@@ -6,6 +6,7 @@ import logo from "../../assets/logo/logo.png";
 import search from "../../assets/icon/search.png";
 import data from "../../data/navbar.json";
 import { useNavigate } from "react-router-dom";
+import PreviousTablet from "../previousLink/previousTablet";
 
 const Navbar = () => {
   const [select, setSelect] = useState(0);
@@ -121,7 +122,8 @@ const Navbar = () => {
             +
           </span>
         </CloseNavbar>
-        <Items>{menuItemMobile}
+        <Items>
+          {menuItemMobile}
             <Search>
               <input type="text" placeholder="جستجو" />
               <span></span>
@@ -134,15 +136,16 @@ const Navbar = () => {
           <span className="burger"></span>
           <span className="burger"></span>
         </Hubmerger>
+        <PreviousTablet />
         <LogoMobile onClick={() => {
-            navigate("/");
-          }}>
+          navigate("/");
+        }}>
         {/* <SocialNetwork>
               <div className="instagram"></div>
               <div className="whatsapp"></div>
             </SocialNetwork> */}
         </LogoMobile>
-        </FixNavbar>
+      </FixNavbar>
       </MobileNavbar>
     } 
     </Container>
@@ -337,6 +340,7 @@ const Search = styled.div`
 
   @media (max-width: 600px){
     flex-direction:column;
+    align-items:center;
     position:relative;
     input {
       outline: none;
@@ -344,7 +348,7 @@ const Search = styled.div`
       background: ${(props) => props.theme.background[1]};
       font-size: 4.736vw;
       font-weight: 400;
-      padding: 25px 25px 25px 0;
+      padding: 20px 25px 20px 0;
       width: 100%;
     }
     span {
@@ -367,7 +371,6 @@ const Items = styled.ul`
   display: flex;
   gap: 2vw;
   padding-right: 2vw;
-
   @media (max-width: 800px){
     padding:20vh 5vh;
     flex-direction:column;
@@ -495,7 +498,7 @@ const Item = styled.li`
     width:100%;
     text-align:center;
     padding: 0;
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
 
 `;

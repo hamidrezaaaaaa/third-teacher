@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EducationCard from "../components/education/educationCard";
 import data from "../data/education.json";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const Education = () => {
   const source = data.education.map((item, i) => {
@@ -9,6 +10,7 @@ const Education = () => {
   });
   return (
     <Container>
+      <PreviousDesktop position="-19.2vh" />
       <Title>آموزش</Title>
       <Gallery>{source}</Gallery>
     </Container>

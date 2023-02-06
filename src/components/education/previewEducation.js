@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../../data/education.json";
 import back from "../../assets/pic/cover2.png";
+import PreviousDesktop from "../previousLink/previousDesktop";
 
 const PreviewEducation = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const PreviewEducation = () => {
 
   return (
     <Container>
+      <PreviousDesktop position="-101.35vh" />
       <Content></Content>
       <Cover>
         <h2 className="title">{source.name}</h2>

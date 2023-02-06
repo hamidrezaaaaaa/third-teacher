@@ -4,7 +4,7 @@ import styled from "styled-components";
 import cover from "../../assets/pic/cover2.png";
 import { BaseBackURL } from "../../constant/api";
 import axios from "axios";
-
+import PreviousDesktop from "../previousLink/previousDesktop";
 
 function Philosopher() {
   const {id} = useParams();
@@ -31,6 +31,7 @@ function Philosopher() {
   
 return (
   <Container>
+    <PreviousDesktop position="-15.5vh" />
     <Text>
       <Title>
       {data.name}

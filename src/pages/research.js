@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const Research = () => {
   return (
     <Container>
+      <PreviousDesktop position="-18.8vh" />
       <Title>پژوهش</Title>
       <Gallery>
         <Item>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CoverBook from "../components/books/coverBook";
 import data from "../data/book.json";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const Books = () => {
   const library = data.book.map((item, i) => {
@@ -18,6 +19,8 @@ const Books = () => {
 
   return (
     <Container>
+      <PreviousDesktop position="-19.2vh" />
+
       <Title>کتاب‌ها</Title>
       <Gallery>{library}</Gallery>
     </Container>

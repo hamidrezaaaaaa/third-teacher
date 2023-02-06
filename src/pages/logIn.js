@@ -7,6 +7,7 @@ import { BaseBackURL } from "../constant/api";
 import axios from "axios";
 import { useUser } from "../context/useContext";
 import {  toast } from 'react-toastify';
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const LogIn = () => {
   const { state, dispatch } = useUser();
@@ -66,6 +67,7 @@ const LogIn = () => {
     });
   return (
     <Container>
+      <PreviousDesktop position="-22.5vh" />
       <Content>
         <Wraper>
         <form onSubmit={handleSubmit} autoComplete="off">
@@ -99,13 +101,9 @@ const LogIn = () => {
           </Link>
         </Wraper>
       </Content>
-      {/* <SideBar moblieborder="81.7vw" content={sideBarData} width="20%" /> */}
       <SideBar
-        moblieborder="95%"
-        tabletborder="95%"
-        desktopBorder="65%"
         content={sideBarData}
-        width="20%"
+        width="14.2%"
       />
     </Container>
   );
@@ -237,7 +235,7 @@ const Wraper = styled.div`
       input {
         margin-bottom: 1.042vw;
         border: none;
-        padding: 2.6vh 2.6vw;
+        padding: 2.2vh 2.6vw;
         background: ${(props) => props.theme.background[1]};
         font-size: 4.389vw;
         text-align: center;

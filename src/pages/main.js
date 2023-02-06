@@ -63,9 +63,8 @@ const Container = styled.div`
       font-size: 15.736vw !important;
     }
     @media (max-width: 600px){
-    justify-content:space-between;
-      width: 60.486vw;
-      height: 75.625vw;
+    justify-content:space-around;
+      width: 45.486vw;
       font-size: 15.736vw !important;
     }
   }
@@ -113,7 +112,7 @@ const Content = styled.div`
     
     .schools,
   .philosophy {
-    font-size: 10.736vw;
+    font-size: 8.736vw;
   }
   
   }

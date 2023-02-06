@@ -361,6 +361,7 @@ const ShortInfo = styled.span`
   max-height: 57%;
   overflow: auto;
   @media (max-width: 600px) {
+    overflow:scroll;
     font-size: 1.2rem;
   }
 `;
@@ -547,7 +548,7 @@ const Module = styled.div`
 
   @media (max-width: 600px) {
     width: 63.5vw;
-    height: auto;
+    // height: auto;
     min-height: 30vh;
   }
 `;
@@ -574,7 +575,6 @@ const Container = styled.div`
 
 
   .next3{
-    // border:4px solid red;
     transform: scale(1.6);
     transition: transform .5s;
     margin-top:-10px;

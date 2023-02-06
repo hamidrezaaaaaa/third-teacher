@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import SideBar from "../components/sidebar";
 import data from "../data/about.json";
+import PreviousDesktop from "../components/previousLink/previousDesktop";
 
 const About = () => {
   return (
     <Container>
       <Content>
+      <PreviousDesktop position="-25vh" />
         <h1>درباره معلم سوم</h1>
         <div className="content">
           <p className="text">{data.about[0].content}</p>
           <p className="poetry">{data.about[0].poetry}</p>
         </div>
       </Content>
-      {/* <SideBar moblieborder="64.2vw" content={data.about[0].sideBar} width="20%"/> */}
-      <SideBar moblieborder="87%" tabletborder="85%" content={data.about[0].sideBar} width="20%"/>
+      <SideBar content={data.about[0].sideBar} width="14.2%"/>
     </Container>
   );
 };
