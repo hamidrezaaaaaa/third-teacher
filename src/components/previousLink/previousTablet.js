@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import back from "../../assets/icon/211686_back_arrow_icon.png"
+import back from "../../assets/icon/back_arrow_icon.png"
 
 function PreviousTablet() {
     const navigate = useNavigate();
