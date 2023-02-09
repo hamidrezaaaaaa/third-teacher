@@ -161,7 +161,7 @@ const Wraper = styled.div`
       border: none;
       padding: 1.6vw;
       background: ${(props) => props.theme.background[1]};
-      font-size: 1.389vw;
+      font-size: 1vw;
       text-align: center;
       outline: none;
     }
@@ -171,7 +171,7 @@ const Wraper = styled.div`
       margin: auto;
       background: ${(props) => props.theme.background[1]};
       padding: 1vw 2vw;
-      font-size: 1.389vw;
+      font-size: 1vw;
       font-weight: 400;
       transform: translateY(50%);
     }
@@ -181,7 +181,7 @@ const Wraper = styled.div`
       position: absolute;
       background: #ffffff;
       padding: 1vw 2vw;
-      font-size: 1.389vw;
+      font-size: 1vw;
       font-weight: 400;
       left: 50%;
       transform: translateX(-50%);
@@ -199,7 +199,7 @@ const Wraper = styled.div`
         border: none;
         padding: 1.6vh 1.6vw;
         background: ${(props) => props.theme.background[1]};
-        font-size: 2.889vw;
+        font-size: 2vw;
         text-align: center;
         outline: none;
       }
@@ -209,7 +209,7 @@ const Wraper = styled.div`
         margin: auto;
         background: ${(props) => props.theme.background[1]};
         padding: 1.5vw 4vw;
-        font-size: 3.389vw;
+        font-size: 2.7vw;
         font-weight: 400;
         transform: translateY(55%);
       }
@@ -219,13 +219,14 @@ const Wraper = styled.div`
         position: absolute;
         background: #ffffff;
         padding: 1vw 2vw;
-        font-size: 3.389vw;
+        font-size: 2.7vw;
         font-weight: 400;
         left: 50%;
         transform: translateX(-50%);
         top: -13%;
       }
     }
+  }
 
   @media (max-width: 600px){
     width:100%;
@@ -237,7 +238,7 @@ const Wraper = styled.div`
         border: none;
         padding: 2.2vh 2.6vw;
         background: ${(props) => props.theme.background[1]};
-        font-size: 4.389vw;
+        font-size: 3.5vw;
         text-align: center;
         outline: none;
       }
@@ -247,7 +248,7 @@ const Wraper = styled.div`
         margin: auto;
         background: ${(props) => props.theme.background[1]};
         padding: 2vw 4vw;
-        font-size: 4.389vw;
+        font-size: 3.5vw;
         font-weight: 400;
         transform: translateY(55%);
       }
@@ -257,33 +258,33 @@ const Wraper = styled.div`
         position: absolute;
         background: #ffffff;
         padding: 1vw 2vw;
-        font-size: 4.389vw;
+        font-size: 3.5vw;
         font-weight: 400;
         left: 50%;
         transform: translateX(-50%);
         top: -10%;
       }
     }
-
+  }
 `;
 
 const ForgetPass = styled.p`
   margin: 0;
   padding: 0;
   text-align: center;
-  font-size: 1.389vw;
+  font-size: 1vw;
   font-weight: 400;
   color: ${(props) => props.theme.textColor[2]};
   margin-top: 4vw;
   cursor: pointer;
 
   @media (max-width: 800px) {
-    font-size: 2.389vw;
+    font-size: 2vw;
     margin-top: 8vw;
     font-weight: 400;
   }
   @media (max-width: 600px) {
-    font-size: 3.389vw;
+    font-size: 2.7vw;
     margin-top: 8vw;
     font-weight: 400;
   }

@@ -32,6 +32,7 @@ margin:0 auto;
     padding-left: 0;
     flex-direction:column;
     width: 90%;
+  }
 `;
 
 const Content = styled.div`
@@ -44,7 +45,7 @@ const Content = styled.div`
     margin: 0;
     padding: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.736vw;
+    font-size: 1vw;
     font-weight: 500;
     display: flex;
     flex-direction: column;
@@ -67,7 +68,7 @@ const Content = styled.div`
       
       margin: 0;
       padding: 0;
-      font-size: 1.736vw;
+      font-size: 1vw;
       font-weight: 400;
       color: ${(props) => props.theme.textColor[1]};
     }
@@ -87,7 +88,7 @@ const Content = styled.div`
       margin: 0;
       padding: 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 4.736vw;
+      font-size: 3.5vw;
       font-weight: 500;
       display: flex;
       flex-direction: column;
@@ -111,7 +112,7 @@ const Content = styled.div`
       .poetry {
         margin: 0;
         padding: 0;
-        font-size: 3.736vw;
+        font-size: 2.7vw;
         line-height:2.5rem;
         font-weight: 400;
         color: ${(props) => props.theme.textColor[1]};
@@ -132,7 +133,7 @@ const Content = styled.div`
       margin: 0;
       padding: 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 4.736vw;
+      font-size: 3.5vw;
       font-weight: 500;
       display: flex;
       flex-direction: column;
@@ -156,7 +157,7 @@ const Content = styled.div`
       .poetry {
         margin: 0;
         padding: 0;
-        font-size: 4.736vw;
+        font-size: 3.7vw;
         font-weight: 400;
         color: ${(props) => props.theme.textColor[1]};
         line-height:2.5rem;

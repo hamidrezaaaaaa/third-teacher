@@ -45,7 +45,7 @@ box-sizing:border-box;
     margin: 0;
     padding: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.736vw;
+    font-size: 1vw;
     font-weight: 500;
     display: flex;
     flex-direction: column;
@@ -63,7 +63,7 @@ box-sizing:border-box;
   @media (max-width: 800px){
     padding: 6.25vw 2.75vw 4.861vw 0;
     h1 {
-      font-size: 4.736vw;
+      font-size: 3.5vw;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -74,6 +74,7 @@ box-sizing:border-box;
         width: 28%;
     }
    }
+  }
 
 `;
 

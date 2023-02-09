@@ -54,7 +54,7 @@ const Content = styled.div`
     margin: 0;
     padding: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.736vw;
+    font-size: 1vw;
     font-weight: 500;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,7 @@ const Content = styled.div`
     padding: 6.25vw 0vw 4.861vw 0;
     width: 100%;
     h1 {
-      font-size: 4.736vw;
+      font-size: 3.5vw;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -85,6 +85,7 @@ const Content = styled.div`
         width: 25%;
     }
    }
+  }
 
 `;
 
@@ -116,13 +117,13 @@ const Member = styled.div`
   h3 {
     margin: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.389vw;
+    font-size: 1vw;
     font-weight: 500;
   }
   .post {
     margin: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1.389vw;
+    font-size: 1w;
     font-weight: 200;
   }
 
@@ -145,13 +146,13 @@ const Member = styled.div`
     h3 {
       margin: 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 3.389vw;
+      font-size: 2.5vw;
       font-weight: 500;
     }
     .post {
       margin: 10px 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 2.389vw;
+      font-size: 2vw;
       font-weight: 200;
     }
    }
@@ -174,13 +175,13 @@ const Member = styled.div`
     h3 {
       margin: 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 4.389vw;
+      font-size: 3.5vw;
       font-weight: 500;
     }
     .post {
       margin: 10px 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 2.389vw;
+      font-size: 2vw;
       font-weight: 200;
     }
    }

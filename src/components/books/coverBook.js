@@ -131,7 +131,7 @@ const Expand = styled.div`
   .text {
     margin: 0;
     padding: 0;
-    font-size: 1.389vw;
+    font-size: 1vw;
     font-weight: 400;
     color: ${(props) => props.theme.textColor[4]};
     text-align: center;
@@ -143,14 +143,14 @@ const Expand = styled.div`
     height:auto;
     width:100%;
     .text {
-      font-size: 2.736vw;
+      font-size: 2vw;
     }
   }
 
   @media (max-width: 600px){
     width:100%;
     .text {
-      font-size: 3.736vw;
+      font-size: 3vw;
     }
   }
 `;

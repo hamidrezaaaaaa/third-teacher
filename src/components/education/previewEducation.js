@@ -55,7 +55,7 @@ const Cover = styled.div`
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 2.778vw;
+    font-size: 2vw;
     font-weight: 400;
     color: ${(props) => props.theme.textColor[1]};
     margin: auto;
@@ -80,7 +80,7 @@ const Cover = styled.div`
     .title {
       order: 1;
       text-align: center;
-      font-size: 4.778vw;
+      font-size: 3.5vw;
     }
     &:before {
       top: -5.083vw;
@@ -95,7 +95,7 @@ const Cover = styled.div`
     .title {
       order: 1;
       text-align: center;
-      font-size: 5.778vw;
+      font-size: 4vw;
     }
     &:before {
       top: -6.083vw;

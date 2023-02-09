@@ -27,7 +27,7 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 1.736vw;
+    font-size: 1vw;
     font-weight: 400;
     color: ${(props) => props.theme.textColor[1]};
     margin: auto;
@@ -51,16 +51,18 @@ const Container = styled.div`
     height: 20.944vw;
 
     .title {
-      font-size: 2.736vw;
+      font-size: 2vw;
   }
+}
 
   @media (max-width: 600px){
     width: 30.944vw;
     height: 30.944vw;
 
     .title {
-      font-size: 3.736vw;
+      font-size: 3vw;
   }
+}
 `;
 
 export default EducationCard;

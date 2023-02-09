@@ -62,7 +62,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 2.083vw;
   h1 {
-    font-size: 2.292vw;
+    font-size: 1.7vw;
     font-weight: 500;
     color: ${(props) => props.theme.textColor[0]};
     margin: 0;
@@ -73,7 +73,7 @@ const Content = styled.div`
     padding: 0;
     color: ${(props) => props.theme.textColor[5]};
     font-weight: 400;
-    font-size: 1.736vw;
+    font-size: 1vw;
     text-align: justify;
     max-height:20vw;
     overflow:auto;
@@ -84,7 +84,7 @@ const Content = styled.div`
     order: 2;
     margin-top:5vh;
     h1 {
-      font-size: 3.792vw;
+      font-size: 2.7vw;
       font-weight: 500;
       color: ${(props) => props.theme.textColor[0]};
       margin: 0;
@@ -92,7 +92,7 @@ const Content = styled.div`
     }
     .text {
       max-height:40vw;
-      font-size: 3.136vw;
+      font-size: 2.6vw;
     }
   }
   
@@ -100,7 +100,7 @@ const Content = styled.div`
     max-width: 90%;
     order: 2;
     h1 {
-      font-size: 4.292vw;
+      font-size: 3.6vw;
       font-weight: 500;
       color: ${(props) => props.theme.textColor[0]};
       margin: 0;
@@ -108,7 +108,7 @@ const Content = styled.div`
     }
     .text {
       max-height:40vw;
-      font-size: 3.736vw;
+      font-size: 2.6vw;
     }
   }
 `;
@@ -119,13 +119,13 @@ const TurnOver = styled.p`
   text-align: end;
   color: ${(props) => props.theme.textColor[5]};
   font-weight: 400;
-  font-size: 1.736vw;
+  font-size: 1vw;
   cursor: pointer;
   &:hover{
     color: ${(props) => props.theme.textColor[2]};
   }
   @media (max-width: 800px){
-    font-size: 2.736vw;
+    font-size: 2vw;
   }
 `;
 

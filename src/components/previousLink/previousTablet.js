@@ -16,13 +16,13 @@ background-image: url(${back});
 background-size: cover;
 background-repeat: no-repeat;
 background-color:white;
-height: 14vw;
-width: 14vw;
+height: 8vw;
+width: 8vw;
 padding:0 0vw;
 margin-right:-30vw;
 @media (min-width: 600px){
-    height: 9vw;
-    width: 9vw;
+    height: 4vw;
+    width: 4vw;
     margin-right:-45vw;
   }
 `;

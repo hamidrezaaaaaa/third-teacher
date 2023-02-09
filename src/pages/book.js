@@ -42,7 +42,7 @@ const Title = styled.h1`
   margin: 0;
   padding: 0;
   color: ${(props) => props.theme.textColor[1]};
-  font-size: 1.736vw;
+  font-size: 1vw;
   font-weight: 500;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
   }
   @media (max-width: 800px){
-    font-size: 4.736vw;
+    font-size: 4vw;
     width: 14%;
  
   }
