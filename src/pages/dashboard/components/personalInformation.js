@@ -83,7 +83,7 @@ const Form = styled.div`
     padding: 0.5vw;
     border: none;
     background: ${(props) => props.theme.background[4]};
-    font-size: 1.736vw;
+    font-size: 1vw;
     font-weight: 400;
     color: ${(props) => props.theme.textColor[1]};
   }
@@ -99,7 +99,7 @@ const Form = styled.div`
       padding: 1.5vh 1.5vw;
       border: none;
       background: ${(props) => props.theme.background[4]};
-      font-size: 3.736vw;
+      font-size: 2.5vw;
       font-weight: 400;
       color: ${(props) => props.theme.textColor[1]};
     }

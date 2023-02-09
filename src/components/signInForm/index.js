@@ -207,7 +207,7 @@ const Title = styled.h1`
   margin: 0;
   padding: 0;
   color: ${(props) => props.theme.textColor[1]};
-  font-size: 1.736vw;
+  font-size: 1vw;
   font-weight: 500;
   display: flex;
   flex-direction: column;
@@ -223,7 +223,7 @@ const Title = styled.h1`
   }
   @media (max-width: 800px){
     
-    font-size: 4.236vw;
+    font-size: 3.5vw;
     margin: 0 5vw 2vw;
     width: 18%;
   }
@@ -234,10 +234,10 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
   }
   @media (max-width: 600px){
-    font-size: 3.736vw;
+    font-size: 3vw;
     margin: 0 0vw 5vw;
     width: 25%;
-    font-size: 5.389vw;
+    font-size: 4vw;
   }
   &:after {
     content: "";
@@ -263,7 +263,7 @@ const Title = styled.h1`
       padding: 0.5vw;
       border: none;
       background: ${(props) => props.theme.background[1]};
-      font-size: 1.736vw;
+      font-size: 1vw;
       font-weight: 400;
       color: ${(props) => props.theme.textColor[1]};
     }
@@ -273,7 +273,7 @@ const Title = styled.h1`
     border: none;
     background: ${(props) => props.theme.background[1]};
     padding: 0.694vw 1.389vw;
-    font-size: 1.389vw;
+    font-size: 1vw;
     padding:3vh;
     color: ${(props) => props.theme.textColor[0]};
     z-index:20;
@@ -293,7 +293,7 @@ const Title = styled.h1`
       border: none;
       background: ${(props) => props.theme.background[1]};
       padding: 1.694vw 3.389vw;
-      font-size: 3.389vw;
+      font-size: 2.7vw;
       color: ${(props) => props.theme.textColor[0]};
       z-index:20;
     }
@@ -308,7 +308,7 @@ const Title = styled.h1`
         border: none;
         padding: 1.6vh 0vw;
         background: ${(props) => props.theme.background[1]};
-        font-size: 2.889vw;
+        font-size: 2vw;
         text-align: center;
         outline: none;
       }
@@ -330,7 +330,7 @@ const Title = styled.h1`
       background: ${(props) => props.theme.background[1]};
       padding: 1.694vw 3.389vw;
       padding: 2vw 4vw;
-      font-size: 4.389vw;
+      font-size: 3.7vw;
       color: ${(props) => props.theme.textColor[0]};
       z-index:20;
     }
@@ -344,7 +344,7 @@ const Title = styled.h1`
         border: none;
         padding: 2.2vh 0vw;
         background: ${(props) => props.theme.background[1]};
-        font-size: 4.389vw;
+        font-size: 3.7vw;
         text-align: center;
         outline: none;
       }
@@ -363,12 +363,12 @@ const ErrorText = styled.p`
   margin-right: 2%;
   margin-top: -2%;
   @media (max-width: 800px){
-    font-size: 2.5vw;
+    font-size: 2vw;
     padding:0.7vh;
 
   }
   @media (max-width: 600px){
-    font-size: 3.5vw;
+    font-size: 2w;
   }
 `;
 

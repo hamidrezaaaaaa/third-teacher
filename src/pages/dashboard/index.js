@@ -98,7 +98,7 @@ const Item = styled.div`
   padding: 0.694vw;
   text-align: center;
   align-tems:center;
-  font-size: 1.389vw;
+  font-size: 1vw;
   font-weight: 400;
   color: ${(props) => props.theme.textColor[1]};
   border: 2px solid #fe9900;
@@ -110,7 +110,7 @@ const Item = styled.div`
 
   @media (max-width: 800px){
     padding: 0.694vw;
-    font-size: 3.389vw;
+    font-size: 2.6vw;
     font-weight: 400; 
     display: flex;
     justify-content: center;

@@ -45,7 +45,7 @@ background:#FFFFFF;
 padding:1.5vw;
 @media (max-width: 800px){
   width: 100%;
-  font-size: 3.736vw;
+  font-size: 2.5vw;
   padding: 2.5vh 1.5vw;
 }
 `
@@ -54,13 +54,13 @@ const TurnOver =styled.p`
 margin:0;
 padding:0;
 text-align:left;
-font-size:${props=>props.theme.textColor[0]};
-font-size:1.5vw;
+color:${props=>props.theme.textColor[0]};
+font-size:1vw;
 font-weight:400;
 margin-top:5vw;
 
 @media (max-width: 800px){
-  font-size: 3.736vw;
+  font-size: 2.5vw;
 }
 
 `
