@@ -12,13 +12,13 @@ function PreviousDesktop( props ) {
 }
 
 const Button = styled.h4`
--webkit-border-radius: 4;
--moz-border-radius: 4;
-border-radius: 4px;
+/* -webkit-border-radius: 4; */
+/* -moz-border-radius: 4; */
+/* border-radius: 4px; */
 /* text-shadow: 1px 1px 3px #666666; */
--webkit-box-shadow: -1px 1px 3px #666666;
--moz-box-shadow: -1px 1px 3px #666666;
-box-shadow: -1px 1px 3px #666666;
+/* -webkit-box-shadow: -1px 1px 3px #666666; */
+/* -moz-box-shadow: -1px 1px 3px #666666; */
+/* box-shadow: -1px 1px 3px #666666; */
 color: #564e43;
 font-size:0.8rem;
 background: #ffcf87;
