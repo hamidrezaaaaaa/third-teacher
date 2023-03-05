@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
       <Wraper key={i}>
         <Item
-          key={i}
+          
           onClick={(e) => {
             setSelect(i);
             navigate(x.path);
@@ -58,9 +58,8 @@ const Navbar = () => {
   });
   const menuItemMobile = data.navbar.map((x, i) => {
     return (
-      <Wraper>
+      <Wraper   key={x.section}>
         <Item
-          key={i}
           onClick={(e) => {
             if (i == 0) {
               setSelect(i);
@@ -77,7 +76,7 @@ const Navbar = () => {
             {x.dropDown.map((z, g) => {
               return (
                 <li
-                  key={g}
+                  key={z.title}
                   onClick={() => {
                     navigate(z.path);
                     handleMobileNavbar();
@@ -238,8 +237,8 @@ const CloseNavbar = styled.div`
 `;
 
 const Hubmerger = styled.div`
-  width: 8vw;
-  height: 6vw;
+  width: 25px;
+  height: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -248,7 +247,7 @@ const Hubmerger = styled.div`
     border-radius: 7.5px;
     background-color: black;
     width: 100%;
-    height: 20%;
+    height: 3px;
   }
   @media (min-width: 600px) and (max-width: 800px) {
     width: 4vw;
