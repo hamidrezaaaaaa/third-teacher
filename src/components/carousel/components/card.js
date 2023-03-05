@@ -3,11 +3,11 @@ import styled from "styled-components";
 import back from "../../../assets/pic/cover.png";
 import { BaseBackURL } from "../../../constant/api";
 
-const Card =({img,title,index})=>{
+const Card =({img,title,index,click})=>{
 
   // console.log(title)
     return(
-        <Container>
+        <Container onClick={click}>
           <Image className="imageincarousel">
             <img src={`${BaseBackURL}uploads/${img}`} alt="philosophy"/>
             <div className="curtain"></div>

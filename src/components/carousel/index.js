@@ -21,7 +21,17 @@ const Carousel = () => {
   let [carouselData, setCarouselData] = useState([]);
   let [desktopCarousleNumber, setDesktopCarousleNumber] = useState(7);
   let [tabletCarousleNumber, setTabletCarousleNumber] = useState(5);
-  let [lengthOfCarousel,setLengthOfCarousel] = useState()
+  let [lengthOfCarousel,setLengthOfCarousel] = useState();
+  const [swiper, setSwiper] = useState(null);
+
+ 
+  
+  const slideTo = (index) => {
+    console.log('inside',index)
+    if(swiper) 
+    swiper.slideTo(index)};
+
+  
   
 const getCarouselData = () => {
     let config = {
@@ -180,6 +190,7 @@ const getCarouselData = () => {
             slidesPerGroup={1}
             loop={true}
             noSwiping={false}
+            onSwiper={setSwiper}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
@@ -201,6 +212,7 @@ const getCarouselData = () => {
                   key={index}
                   onClick={() => {
                     setShowModule(true);
+                    slideTo(index)
                     setMain(index);
                   }}
                   className={
@@ -244,7 +256,7 @@ const getCarouselData = () => {
           spaceBetween={3}
           slidesPerGroup={1}
           loop={true}
-          noSwiping={true}
+          onSwiper={setSwiper}
           noSwipingSelector="div"
           autoplay={{
               delay: 4000,
@@ -268,6 +280,7 @@ const getCarouselData = () => {
                 key={index}
                 onClick={() => {
                   setShowModule(true);
+                  slideTo(main)
                   setMain(index);
                 }}
                 className={
