@@ -54,3 +54,23 @@ export const logInSchema = yup.object().shape({
   
   
   });
+
+  export const addSchoolSchema = yup.object().shape({
+    name: yup.string().required("لطفا نام مدرسه را وارد کنید"),
+    summary: yup.string().required("لطفا شرح خلاصه مدرسه را تکمیل کنید"),
+    description: yup.string().required("لطفا معرفی مدرسه را تکمیل کنید"),
+    imageurl:yup
+      .mixed()
+      .required("لطفا تصویر مدرسه را بارگزاری کنید")
+      .test("fileSize", "حجم فایل زیاد است ", (value) => {
+          return value && value.size  <= 2000000;
+      })
+      .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .jpeg, .jpg and .png", (value) => {
+          return value && (
+              value.type === "image/jpeg" ||
+              value.type === "image/png" 
+          );
+      }),
+  
+  
+  });
