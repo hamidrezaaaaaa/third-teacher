@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Card from "./components/card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { BaseBackURL } from "../../constant/api";
@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const Carousel = () => {
+  const { title } = useParams();
   const navigate = useNavigate();
   let [sequence, setSequence] = useState([]);
   let [sequenceTablet, setSequenceTablet] = useState([]);
@@ -21,91 +22,120 @@ const Carousel = () => {
   let [carouselData, setCarouselData] = useState([]);
   let [desktopCarousleNumber, setDesktopCarousleNumber] = useState(7);
   let [tabletCarousleNumber, setTabletCarousleNumber] = useState(5);
-  let [lengthOfCarousel,setLengthOfCarousel] = useState();
+  let [lengthOfCarousel, setLengthOfCarousel] = useState();
   const [swiper, setSwiper] = useState(null);
 
- 
-  
   const slideTo = (index) => {
-    console.log('inside',index)
-    if(swiper) 
-    swiper.slideTo(index)};
+    console.log("inside", index);
+    if (swiper) swiper.slideTo(index);
+  };
 
-  
-  
-const getCarouselData = () => {
+  const getCarouselData = () => {
     let config = {
       method: "get",
       url: `${BaseBackURL}philosophes`,
     };
     axios(config)
-    .then((res) => {
-      let array = []
-      if(res.data.length == 2){
-        array = res.data;
-        array[2] = array[0]
-        array[3] = array[1]
-      }
-      else{
-        array = res.data
-      }
+      .then((res) => {
+        let array = [];
+        if (res.data.length == 2) {
+          array = res.data;
+          array[2] = array[0];
+          array[3] = array[1];
+        } else {
+          array = res.data;
+        }
 
-      setCarouselData(array);
-      setLengthOfCarousel(array.length)
-    })
-    .catch((err) => {""
+        setCarouselData(array);
+        setLengthOfCarousel(array.length);
+      })
+      .catch((err) => {
+        "";
         console.log(err);
-    });
+      });
+  };
+
+  const getSecondCarouselData = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}schools`,
     };
-
-      useEffect(() => {
-        getCarouselData();
-      }, []);
-
-        let newArray = []
-        for (let i in carouselData){
-          newArray[i]= +i;
-        }
-        
-        if(newArray.length == 2){
-          newArray[2] = newArray[0]
-          newArray[3] = newArray[1]
+    axios(config)
+      .then((res) => {
+        let array = [];
+        if (res.data.length == 2) {
+          array = res.data;
+          array[2] = array[0];
+          array[3] = array[1];
+        } else {
+          array = res.data;
         }
 
-        
+        setCarouselData(array);
+        setLengthOfCarousel(array.length);
+      })
+      .catch((err) => {
+        "";
+        console.log(err);
+      });
+  };
 
-        useEffect(() => {
-          if(screenWidthSize > 768){
-            let array = []
-            let b = 0
-      for(let i = carouselData.length - desktopCarousleNumber ; i < carouselData.length ; i++){
-        array[b] = i ;
+  useEffect(() => {
+    if (title == "philosophy") {
+      getCarouselData();
+    } else {
+      getSecondCarouselData();
+    }
+  }, [title]);
+
+  let newArray = [];
+  for (let i in carouselData) {
+    newArray[i] = +i;
+  }
+
+  if (newArray.length == 2) {
+    newArray[2] = newArray[0];
+    newArray[3] = newArray[1];
+  }
+
+  useEffect(() => {
+    if (screenWidthSize > 768) {
+      let array = [];
+      let b = 0;
+      for (
+        let i = carouselData.length - desktopCarousleNumber;
+        i < carouselData.length;
+        i++
+      ) {
+        array[b] = i;
         b = b + 1;
       }
-      setSequence(array)
-      if(5 > lengthOfCarousel){
-        setDesktopCarousleNumber(3)
-      }
-      else if(7 > lengthOfCarousel){
-        setDesktopCarousleNumber(5)
+      setSequence(array);
+      if (5 > lengthOfCarousel) {
+        setDesktopCarousleNumber(3);
+      } else if (7 > lengthOfCarousel) {
+        setDesktopCarousleNumber(5);
       }
     }
 
-    if(screenWidthSize > 481){
-      let array = []
-      let b = 0
-      for(let i = carouselData.length - tabletCarousleNumber ; i < carouselData.length ; i++){
-        array[b] = i ;
+    if (screenWidthSize > 481) {
+      let array = [];
+      let b = 0;
+      for (
+        let i = carouselData.length - tabletCarousleNumber;
+        i < carouselData.length;
+        i++
+      ) {
+        array[b] = i;
         b = b + 1;
       }
-      setSequenceTablet(array)
-      if(5 > lengthOfCarousel){
-        setTabletCarousleNumber(3)
+      setSequenceTablet(array);
+      if (5 > lengthOfCarousel) {
+        setTabletCarousleNumber(3);
       }
     }
-  }, [carouselData, desktopCarousleNumber, tabletCarousleNumber])
+  }, [carouselData, desktopCarousleNumber, tabletCarousleNumber]);
 
-  
   const modal = useRef(null);
 
   const [screenWidthSize, setScreenWidthSize] = useState(window.innerWidth);
@@ -169,7 +199,14 @@ const getCarouselData = () => {
                     setMain(index);
                   }}
                 >
-                  <Card img={carouselData[index].imageurl} title={carouselData[index].personal} />
+                  <Card
+                    img={carouselData[index].imageurl}
+                    title={
+                      title == "philosophy"
+                        ? carouselData[index].personal
+                        : carouselData[index].name
+                    }
+                  />
                 </SwiperSlide>
               );
             })}
@@ -198,13 +235,13 @@ const getCarouselData = () => {
             modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
             className="mySwiper"
             onActiveIndexChange={(e) => {
-              newArray[0]= e.activeIndex % newArray.length;
-              for(let i = 1; i < newArray.length ; i++){
-                newArray[i] = newArray[i - 1] + 1 ;
+              newArray[0] = e.activeIndex % newArray.length;
+              for (let i = 1; i < newArray.length; i++) {
+                newArray[i] = newArray[i - 1] + 1;
                 newArray[i] = newArray[i] % newArray.length;
               }
-                setSequenceTablet(newArray.slice(-tabletCarousleNumber));
-              }}
+              setSequenceTablet(newArray.slice(-tabletCarousleNumber));
+            }}
           >
             {carouselData.map((i, index) => {
               return (
@@ -212,32 +249,40 @@ const getCarouselData = () => {
                   key={index}
                   onClick={() => {
                     setShowModule(true);
-                    slideTo(index)
+                    slideTo(index);
                     setMain(index);
                   }}
                   className={
-                    tabletCarousleNumber == 5 ?
-                      sequenceTablet[0] == index
-                    ? "tabletnow"
-                    : sequenceTablet[1] == index
-                    ? "tabletnext1"
-                    : sequenceTablet[2] == index
-                    ? "tabletnext2"
-                    : sequenceTablet[3] == index
-                    ? "tabletnext3"
-                    : sequenceTablet[4] == index
-                    ? "tabletnext4" : "tabletnone"
-                    
-                    :
-                    sequenceTablet[0] == index
-                    ? "tabletnext1"
-                    : sequenceTablet[1] == index
-                    ? "tabletnext2"
-                    : sequenceTablet[2] == index
-                    ? "tabletnext3" : "tabletnone"
+                    tabletCarousleNumber == 5
+                      ? sequenceTablet[0] == index
+                        ? "tabletnow"
+                        : sequenceTablet[1] == index
+                        ? "tabletnext1"
+                        : sequenceTablet[2] == index
+                        ? "tabletnext2"
+                        : sequenceTablet[3] == index
+                        ? "tabletnext3"
+                        : sequenceTablet[4] == index
+                        ? "tabletnext4"
+                        : "tabletnone"
+                      : sequenceTablet[0] == index
+                      ? "tabletnext1"
+                      : sequenceTablet[1] == index
+                      ? "tabletnext2"
+                      : sequenceTablet[2] == index
+                      ? "tabletnext3"
+                      : "tabletnone"
                   }
-                    >
-                  <Card index={index} img={carouselData[index].imageurl} title={carouselData[index].personal} />
+                >
+                  <Card
+                    index={index}
+                    img={carouselData[index].imageurl}
+                    title={
+                      title == "philosophy"
+                        ? carouselData[index].personal
+                        : carouselData[index].name
+                    }
+                  />
                 </SwiperSlide>
               );
             })}
@@ -259,20 +304,20 @@ const getCarouselData = () => {
           onSwiper={setSwiper}
           noSwipingSelector="div"
           autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
+            delay: 4000,
+            disableOnInteraction: false,
           }}
           modules={[Autoplay, Pagination, EffectCoverflow, Navigation]}
           className="mySwiper"
           onActiveIndexChange={(e) => {
-            newArray[0]= e.activeIndex % newArray.length;
-            
-            for(let i = 1; i < newArray.length ; i++){
-              newArray[i] = newArray[i - 1] + 1 ;
+            newArray[0] = e.activeIndex % newArray.length;
+
+            for (let i = 1; i < newArray.length; i++) {
+              newArray[i] = newArray[i - 1] + 1;
               newArray[i] = newArray[i] % newArray.length;
             }
-              setSequence(newArray.slice(-desktopCarousleNumber));
-            }}
+            setSequence(newArray.slice(-desktopCarousleNumber));
+          }}
         >
           {carouselData.map((i, index) => {
             return (
@@ -280,63 +325,71 @@ const getCarouselData = () => {
                 key={index}
                 onClick={() => {
                   setShowModule(true);
-                  slideTo(main)
+                  slideTo(main);
                   setMain(index);
                 }}
                 className={
-                  desktopCarousleNumber == 7 ?
-                    sequence[0] == index
-                    ? "now"
-                    : sequence[1] == index
-                    ? "next1"
-                    : sequence[2] == index
-                    ? "next2"
-                    : sequence[3] == index
-                    ? "next3"
-                    : sequence[4] == index
-                    ? "next4"
-                    : sequence[5] == index
-                    ? "next5"
-                    : sequence[6] == index
-                    ? "next6"
-                    : "none"
-                    
-                    :
-                    // (
-                      desktopCarousleNumber == 5 ?
-                      sequence[0] == index
-                    ? "next1"
-                    : sequence[1] == index
-                    ? "next2"
-                    : sequence[2] == index
-                    ? "next3"
-                    : sequence[3] == index
-                    ? "next4"
-                    : sequence[4] == index
-                    ? "next5" : "none"
-
-                    :
-
-                    sequence[0] == index
+                  desktopCarousleNumber == 7
+                    ? sequence[0] == index
+                      ? "now"
+                      : sequence[1] == index
+                      ? "next1"
+                      : sequence[2] == index
+                      ? "next2"
+                      : sequence[3] == index
+                      ? "next3"
+                      : sequence[4] == index
+                      ? "next4"
+                      : sequence[5] == index
+                      ? "next5"
+                      : sequence[6] == index
+                      ? "next6"
+                      : "none"
+                    : // (
+                    desktopCarousleNumber == 5
+                    ? sequence[0] == index
+                      ? "next1"
+                      : sequence[1] == index
+                      ? "next2"
+                      : sequence[2] == index
+                      ? "next3"
+                      : sequence[3] == index
+                      ? "next4"
+                      : sequence[4] == index
+                      ? "next5"
+                      : "none"
+                    : sequence[0] == index
                     ? "noww"
                     : sequence[1] == index
                     ? "next11"
                     : sequence[2] == index
-                    ? "next22" : "none"
-                  }
+                    ? "next22"
+                    : "none"
+                }
               >
-                <Card img={carouselData[index].imageurl} title={carouselData[index].personal} index={index} />
+                <Card
+                  img={carouselData[index].imageurl}
+                  title={
+                    title == "philosophy"
+                      ? carouselData[index].personal
+                      : carouselData[index].name
+                  }
+                  index={index}
+                />
               </SwiperSlide>
             );
           })}
         </Swiper>
-      )
-      }
+      )}
 
       {showModule && (
         <Module className="tooltip" ref={modal}>
           <BorderTop />
-          <Philosopher>{carouselData[main].personal}</Philosopher>
+          <Philosopher>
+            {title == "philosophy"
+              ? carouselData[main].personal
+              : carouselData[main].name}
+          </Philosopher>
           <ShortInfo>{carouselData[main].summary}</ShortInfo>
 
           <BottomLinks>
@@ -349,7 +402,7 @@ const getCarouselData = () => {
             </CloseButton>
             <More
               onClick={() => {
-                navigate(`${carouselData[main].id }`);
+                navigate(`${carouselData[main].id}`);
               }}
             >
               ادامه
@@ -374,7 +427,7 @@ const ShortInfo = styled.span`
   max-height: 57%;
   overflow: auto;
   @media (max-width: 600px) {
-    overflow:scroll;
+    overflow: scroll;
     font-size: 1.2rem;
   }
 `;
@@ -414,13 +467,13 @@ const BottomLinks = styled.div`
 `;
 
 const CloseButton = styled.div`
-cursor:pointer;
+  cursor: pointer;
   @media (max-width: 600px) {
     font-size: 1.25rem;
   }
 `;
 const More = styled.div`
-cursor:pointer;
+  cursor: pointer;
   @media (max-width: 600px) {
     font-size: 1.25rem;
   }
@@ -439,7 +492,7 @@ const TabletCarousle = styled.div`
   height: auto;
 
   .tabletnow {
-    transform:  scaleX(0.7);
+    transform: scaleX(0.7);
     transition: transform 0.5s;
     :hover {
       cursor: pointer;
@@ -452,24 +505,24 @@ const TabletCarousle = styled.div`
       transition: transform 0.5s;
     }
   }
-  
-    .tabletnext1 {
-      position: relative;
-      transform: translateX(13%) scaleX(0.8);
-      transition: transform 0.5s;
-  
-      :hover {
-        cursor: pointer;
-      }
-      .title {
-        display: none;
-        font-size: 1.5rem;
-      }
-      .imageincarousel {
-        transform: scaleY(0.8);
-        transition: transform 0.5s;
-      }
+
+  .tabletnext1 {
+    position: relative;
+    transform: translateX(13%) scaleX(0.8);
+    transition: transform 0.5s;
+
+    :hover {
+      cursor: pointer;
     }
+    .title {
+      display: none;
+      font-size: 1.5rem;
+    }
+    .imageincarousel {
+      transform: scaleY(0.8);
+      transition: transform 0.5s;
+    }
+  }
 
   .tabletnext2 {
     transform: scaleX(1.2);
@@ -482,11 +535,11 @@ const TabletCarousle = styled.div`
     }
     .title {
       // font-size:1.2rem;
-      overflow:hidden;
+      overflow: hidden;
       transform: scaleY(1.2);
     }
   }
-  
+
   .tabletnext3 {
     transform: translateX(-13%) scaleX(0.8);
     transition: transform 0.5s;
@@ -518,9 +571,7 @@ const TabletCarousle = styled.div`
     }
   }
 
-
   .tabletnone {
-    
     transform: translateX(0px) scaleX(0.8);
     transition: transform 0.5s;
     margin-left: -10px;

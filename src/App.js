@@ -23,6 +23,7 @@ import { UserState } from "./context/useContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminDashboard from "./admin"
+import School from "./components/school";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Main />} />
                 <Route path="/home/:title" element={<Home />} />
-                <Route path="/home/schools/:id" element={<Philosopher />} />
+                <Route path="/home/schools/:id" element={<School/>} />
                 <Route path="/home/philosophy/:id" element={<Philosopher />} />
                 <Route path="/Book" element={<Books />} />
                 <Route path="/Book/:id" element={<PreviewBook />} />
