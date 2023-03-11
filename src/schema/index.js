@@ -74,3 +74,22 @@ export const logInSchema = yup.object().shape({
   
   
   });
+
+  export const addPostSchema = yup.object().shape({
+    category: yup.string().required("لطفا دسته بندی پست را انتخاب کنید"),
+    description: yup.string().required("لطفا توضیحات پست را تکمیل کنید"),
+    imageurl:yup
+      .mixed()
+      .required("لطفا تصویر مدرسه را بارگزاری کنید")
+      .test("fileSize", "حجم فایل زیاد است ", (value) => {
+          return value && value.size  <= 2000000;
+      })
+      .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .jpeg, .jpg and .png", (value) => {
+          return value && (
+              value.type === "image/jpeg" ||
+              value.type === "image/png" 
+          );
+      }),
+  
+  
+  });
