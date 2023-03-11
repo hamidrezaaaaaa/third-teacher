@@ -126,3 +126,9 @@ export const addMemberSchema = yup.object().shape({
       }
     ),
 });
+
+export const addSayingSchema = yup.object().shape({
+  speech: yup.string().required("لطفا سخن را وارد کنید"),
+  announcer: yup.string().required("لطفا نام گوینده را وارد کنید"),
+  position: yup.string().required("لطفا محل نصب سخن را انتخاب کنید")
+});

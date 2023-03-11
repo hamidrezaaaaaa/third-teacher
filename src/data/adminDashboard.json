@@ -31,6 +31,10 @@
       {
         "name":"اعضا معلم سوم",
         "path":"members"
+      },
+      {
+        "name":"سخن بزرگان",
+        "path":"sayings"
       }
     ]
   }
