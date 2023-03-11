@@ -86,7 +86,6 @@ const AddPost = ({onClose,visible}) => {
     onSubmit,
   });
 
-  console.log(values.category)
 
 
   return (
@@ -106,7 +105,7 @@ const AddPost = ({onClose,visible}) => {
          onChange={handleChange}
         >
             <option value='نور از منظر اندیشه'>نور از منظر اندیشه</option>
-            <option value='نور از منظر'>نور از منظر علم</option>
+            <option value='نور از منظر علم'>نور از منظر علم</option>
             <option value='مدرسه از نور'>مدرسه از نور</option>
             <option value='طراحی نور'>طراحی نور</option>
             <option value='آسایش بصری'>آسایش بصری</option>

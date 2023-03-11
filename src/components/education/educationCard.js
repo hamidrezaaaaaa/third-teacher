@@ -23,6 +23,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.background[2]};
   position: relative;
   display: flex;
+  cursor: pointer;
   .title {
     margin: 0;
     padding: 0;

@@ -1,19 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import data from "../../data/education.json";
 import back from "../../assets/pic/cover2.png";
 import PreviousDesktop from "../previousLink/previousDesktop";
+import axios from "axios";
+import { BaseBackURL } from "../../constant/api";
+import Post from "./post";
 
 const PreviewEducation = () => {
   const { id } = useParams();
-
+  const [posts,setPosts]=useState([]);
+  const [sortPosts,setSortPosts]=useState([]);
   const source = data.education.find((item) => parseInt(item.id) == id);
+
+  const getPosts =()=>{
+    let config = {
+      method: 'get',
+      url: `${BaseBackURL}educations`,
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      setPosts(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  useEffect(()=>{
+    getPosts();
+  },[])
+
+  useEffect(()=>{
+    if(posts.filter(x=>x.category == source.name)){
+      setSortPosts(posts.filter(x=>x.category == source.name))
+    }
+  },[posts.length>0])
+
+  const postCards =sortPosts.map((item,i)=>{
+    return(
+      <Post key={i} post={item}/>
+    )
+  })
+
 
   return (
     <Container>
       <PreviousDesktop position="-101.35vh" />
-      <Content></Content>
+      <Content>
+        {postCards}
+      </Content>
       <Cover>
         <h2 className="title">{source.name}</h2>
       </Cover>
@@ -33,14 +72,29 @@ const Container = styled.div`
   }
   
   @media (max-width: 600px){
-    height: 50vh;
+    /* height: 50vh; */
   }
 `;
 
 const Content = styled.div`
-@media (max-width: 800px){
-  order: 2;
+display: flex;
+flex-wrap: wrap;
+gap: 24px;
+align-items: center;
+width: 100%;
+margin-top: 20px;
+order: 2;
+@media (min-width:481px){
+  align-items: flex-start;
+  /* width: 90%; */
 }
+@media (min-width: 800px){
+  order: 0;
+  width: 60%;
+}
+
+
+
 `;
 
 const Cover = styled.div`
