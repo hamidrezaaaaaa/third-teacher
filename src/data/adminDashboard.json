@@ -27,6 +27,10 @@
       {
         "name": "آموزشات",
         "path": "educations"
+      },
+      {
+        "name":"اعضا معلم سوم",
+        "path":"members"
       }
     ]
   }
