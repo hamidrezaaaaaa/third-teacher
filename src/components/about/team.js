@@ -2,18 +2,47 @@ import styled from "styled-components";
 import SideBar from "../sidebar";
 import data from "../../data/about.json";
 import PreviousDesktop from "../previousLink/previousDesktop";
+import { useState } from "react";
+import axios from "axios";
+import {BaseBackURL} from "../../constant/api";
+import { useEffect } from "react";
 
 
 const Team = () => {
+  const [members,setMembers]=useState([]);
   const sideBarData = data.about[0].sideBar;
-  const members = data.team.map((item, i) => {
+
+  const getMembers=()=>{
+    let config = {
+      method: 'get',
+      url: `${BaseBackURL}members`,
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      setMembers(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+
+  useEffect(()=>{
+    getMembers();
+  },[])
+
+
+  const membersCard = members.map((item, i) => {
     return (
       <Member key={i}>
         <div className="image">
-          <img src={item.img} alt={item.name} />
+          <img src={`${BaseBackURL}uploads/${item.image}`} alt={item.name} />
         </div>
-        <h3>{item.name}</h3>
-        <p className="post">{item.post}</p>
+        <h3>{item.firstName+" "+item.lastName}</h3>
+        <p className="post">{item.position}</p>
+        <p className="education">{item.education}</p>
       </Member>
     );
   });
@@ -23,7 +52,7 @@ const Team = () => {
       <PreviousDesktop position="-22.5vh" />
       <Content>
         <h1>معرفی اعضا</h1>
-        <Gallery>{members}</Gallery>
+        <Gallery>{membersCard}</Gallery>
       </Content>
       <SideBar width="17%" content={sideBarData} />
     </Container>
@@ -120,12 +149,13 @@ const Member = styled.div`
     font-size: 1vw;
     font-weight: 500;
   }
-  .post {
+  .post,.education {
     margin: 0;
     color: ${(props) => props.theme.textColor[1]};
-    font-size: 1w;
+    font-size: 1vw;
     font-weight: 200;
   }
+ 
 
   @media (max-width: 800px){
     align-items:center;
@@ -155,6 +185,9 @@ const Member = styled.div`
       font-size: 2vw;
       font-weight: 200;
     }
+    .education{
+      font-size: 1.2vw;
+    }
    }
 
   @media (max-width: 600px){
@@ -183,6 +216,9 @@ const Member = styled.div`
       color: ${(props) => props.theme.textColor[1]};
       font-size: 2vw;
       font-weight: 200;
+    }
+    .education{
+      font-size: 1.2vw;
     }
    }
 `;
