@@ -1,3 +1,4 @@
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { logInSchema } from "../schema";
@@ -12,8 +13,34 @@ import PreviousDesktop from "../components/previousLink/previousDesktop";
 const LogIn = () => {
   const { state, dispatch } = useUser();
   const navigate = useNavigate();
-  const sideBarData =
-    "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying,setFilterSaying]=useState({});
+
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSayings();
+  });
+
+
+  useEffect(()=>{
+    if(sayings.find(x=>x.position == "ورود")){
+      setFilterSaying({...sayings.find(x=>x.position == "ورود")})
+    }
+  },[sayings.length>0])
 
 
     const onSubmit = async (values) => {
@@ -102,7 +129,7 @@ const LogIn = () => {
         </Wraper>
       </Content>
       <SideBar
-        content={sideBarData}
+        saying={filterSaying}
         width="14.2%"
       />
     </Container>

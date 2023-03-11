@@ -10,7 +10,8 @@ import { useEffect } from "react";
 
 const Team = () => {
   const [members,setMembers]=useState([]);
-  const sideBarData = data.about[0].sideBar;
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying,setFilterSaying]=useState({});
 
   const getMembers=()=>{
     let config = {
@@ -29,9 +30,31 @@ const Team = () => {
 
   }
 
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(()=>{
     getMembers();
+    getSayings();
   },[])
+
+  useEffect(()=>{
+    if(sayings.find(x=>x.position == "درباره ما")){
+      setFilterSaying({...sayings.find(x=>x.position == "درباره ما")})
+    }
+  },[sayings.length>0])
 
 
   const membersCard = members.map((item, i) => {
@@ -54,7 +77,7 @@ const Team = () => {
         <h1>معرفی اعضا</h1>
         <Gallery>{membersCard}</Gallery>
       </Content>
-      <SideBar width="17%" content={sideBarData} />
+      <SideBar width="17%" saying={filterSaying} />
     </Container>
   );
 };

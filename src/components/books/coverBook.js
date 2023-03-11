@@ -24,6 +24,7 @@ const Container = styled.div`
   gap: 2.083vw;
   align-items: center;
   cursor:pointer;
+  width:22%;
   @media (max-width: 800px){
     margin:0 0 12vh 0;
     width:27%;
@@ -34,7 +35,7 @@ const Container = styled.div`
 
   @media (max-width: 600px){
     margin:0 0 10vh 0;
-    width:45%;
+    width:100%;
     justify-content:space-between;
     height:auto;
   }

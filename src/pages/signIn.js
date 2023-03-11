@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SideBar from "../components/sidebar";
 import { signInSchema } from "../schema";
 import { useFormik } from "formik";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import SignInForm from "../components/signInForm";
 import { useUser } from "../context/useContext";
 import axios from "axios";
@@ -14,8 +14,23 @@ const SignIn = () => {
   const { state, dispatch } = useUser();
   const [step, setStep] = useState(0);
   const [users, setUsers] = useState([]);
-  const sideBarData =
-    "- پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا - پس تو را به چه کار آفریده‌اند؟ - به درد کشیدن به خاطر حق و تا";
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying, setFilterSaying] = useState({});
+
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getUsers = () => {
     let config = {
@@ -35,7 +50,14 @@ const SignIn = () => {
 
   useEffect(() => {
     getUsers();
+    getSayings();
   }, []);
+
+  useEffect(() => {
+    if (sayings.find((x) => x.position == "ثبت نام")) {
+      setFilterSaying({ ...sayings.find((x) => x.position == "ثبت نام") });
+    }
+  }, [sayings.length > 0]);
 
   const onSubmit = async (values) => {
     if (users.find((x) => x.email === values.userName)) {
@@ -110,13 +132,12 @@ const SignIn = () => {
       </Content>
 
       <SideBar
-        moblieborder="94%"
-        tabletborder="95%"
-        desktopBorder="65%"
-        content={sideBarData}
+        // moblieborder="94%"
+        // tabletborder="95%"
+        // desktopBorder="65%"
+        saying={filterSaying}
         width="14.2%"
       />
-      
     </Container>
   );
 };
@@ -168,8 +189,8 @@ const Content = styled.div`
 
 const Wraper = styled.div`
   width: 40%;
-  margin:  auto;
-  box-sizing:border-box;
+  margin: auto;
+  box-sizing: border-box;
   form {
     display: flex;
     flex-direction: column;
@@ -209,8 +230,8 @@ const Wraper = styled.div`
       top: -8%;
     }
   }
-  
-  @media (max-width: 800px){
+
+  @media (max-width: 800px) {
     width: 80%;
     form {
       border: 5px solid #ffe6bf;
@@ -241,7 +262,7 @@ const Wraper = styled.div`
         background: #ffffff;
         padding: 1vw 2vw;
         font-size: 2.7vw;
-        font-weight: 400;;
+        font-weight: 400;
         left: 50%;
         transform: translateX(-50%);
         top: -10%;
@@ -249,11 +270,10 @@ const Wraper = styled.div`
     }
   }
 
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     width: 100%;
-    margin:0 auto;
+    margin: 0 auto;
     form {
-      
       border: 5px solid #ffe6bf;
       padding: 4.6vh 2.6vw 0vh;
       input {

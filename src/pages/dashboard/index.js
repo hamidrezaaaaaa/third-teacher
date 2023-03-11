@@ -1,19 +1,49 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SideBar from "../../components/sidebar";
-import data from "../../data/about.json";
 import menuData from "../../data/dashboard.json";
 import Library from "./components/library";
 import Orders from "./components/orders";
 import PersonalInformation from "./components/personalInformation";
 import Search from "./components/search";
 import Upload from "./components/upload";
+import axios from "axios";
+import { BaseBackURL } from "../../constant/api";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [select, setSelect] = useState(0);
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying,setFilterSaying]=useState({});
+
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSayings();
+  });
+
+
+  useEffect(()=>{
+    if(sayings.find(x=>x.position == "کتاب ها")){
+      setFilterSaying({...sayings.find(x=>x.position == "کتاب ها")})
+    }
+  },[sayings.length>0])
+
   const menuList = menuData.dashboard.map((item, i) => {
     return (
       <Item
@@ -43,7 +73,7 @@ const Dashboard = () => {
           </Routes>
         </Wraper>
       </Content>
-      <SideBar moblieborder="83vw" width="20%" content={data.about[0].test} />
+      <SideBar moblieborder="83vw" width="20%" saying={filterSaying} />
     </Container>
   );
 };

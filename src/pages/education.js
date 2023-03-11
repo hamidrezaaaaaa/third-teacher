@@ -1,32 +1,82 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styled from "styled-components";
 import EducationCard from "../components/education/educationCard";
 import data from "../data/education.json";
 import PreviousDesktop from "../components/previousLink/previousDesktop";
+import SideBar from "../components/sidebar";
+import axios from "axios";
+import { BaseBackURL } from "../constant/api";
 
 const Education = () => {
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying,setFilterSaying]=useState({});
+
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSayings();
+  });
+
+
+  useEffect(()=>{
+    if(sayings.find(x=>x.position == "آموزش ها")){
+      setFilterSaying({...sayings.find(x=>x.position == "آموزش ها")})
+    }
+  },[sayings.length>0])
+
   const source = data.education.map((item, i) => {
     return <EducationCard key={i} id={item.id} name={item.name} />;
   });
   return (
     <Container>
-      <PreviousDesktop position="-19.2vh" />
-      <Title>آموزش</Title>
-      <Gallery>{source}</Gallery>
+      <Content>
+        <PreviousDesktop position="-19.2vh" />
+        <Title>آموزش</Title>
+        <Gallery>{source}</Gallery>
+      </Content>
+      <SideBar width='14.2%' saying={filterSaying} />
     </Container>
   );
 };
 
 const Container = styled.section`
   height: 70vh;
-  height:auto;
+  height: auto;
+  display: flex;
+  padding-left: 1.736vw;
+  
+  @media (max-width: 600px){
+    flex-direction: column;
+  }
+  @media (max-width: 800px){
+    flex-direction: column;
+    padding:0  4vw;
+  }
+ 
+`;
+
+const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.861vw 6.25vw 4vh;
   gap: 3.083vw;
-  @media (max-width: 800px){
+  padding: 1.861vw 6.25vw 4vh;
+ 
+  @media (max-width: 800px) {
     gap: 8.083vw;
-  };
+  } ;
 `;
 
 const Title = styled.h1`
@@ -47,7 +97,7 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
   }
 
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     font-size: 3.5vw;
     width: 14%;
     &:after {
@@ -59,7 +109,7 @@ const Title = styled.h1`
     }
   }
 
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 3.7vw;
     width: 14%;
     &:after {
@@ -79,14 +129,14 @@ const Gallery = styled.div`
   width: 80%;
   gap: 7.736vw;
   margin: 0 auto;
-  @media (min-width: 600px) and (max-width: 800px){
+  @media (min-width: 600px) and (max-width: 800px) {
     width: 80%;
     justify-content: space-evenly;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     margin: 5vh auto;
     width: 85%;
-  justify-content: space-between;
+    justify-content: space-between;
   }
 `;
 

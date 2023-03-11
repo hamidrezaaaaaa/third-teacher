@@ -1,10 +1,39 @@
+import { useState,useEffect } from "react";
 import styled from "styled-components";
 import SideBar from "../sidebar";
-import data from "../../data/about.json";
 import PreviousDesktop from "../previousLink/previousDesktop";
+import axios from "axios";
+import { BaseBackURL } from "../../constant/api";
 
 const GreenSquad = () => {
-    const sideBarData = data.about[0].sideBar;
+  const [sayings, setSayings] = useState([]);
+  const [filterSaying,setFilterSaying]=useState({});
+
+  const getSayings = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}sayings`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setSayings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSayings();
+  });
+
+
+  useEffect(()=>{
+    if(sayings.find(x=>x.position == "درباره ما")){
+      setFilterSaying({...sayings.find(x=>x.position == "درباره ما")})
+    }
+  },[sayings.length>0])
   return (
     <Container>
       <PreviousDesktop position="-22.5vh" />
@@ -12,7 +41,7 @@ const GreenSquad = () => {
         <h1>مکعب سبز خلاق</h1>
         <Gallery></Gallery>
       </Content>
-      <SideBar width="17.65%" content={sideBarData} />
+      <SideBar width="17.65%" saying={filterSaying} />
     </Container>
   );
 };
