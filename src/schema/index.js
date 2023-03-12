@@ -130,5 +130,43 @@ export const addMemberSchema = yup.object().shape({
 export const addSayingSchema = yup.object().shape({
   speech: yup.string().required("لطفا سخن را وارد کنید"),
   announcer: yup.string().required("لطفا نام گوینده را وارد کنید"),
-  position: yup.string().required("لطفا محل نصب سخن را انتخاب کنید")
+  position: yup.string().required("لطفا محل نصب سخن را انتخاب کنید"),
+});
+
+export const addbookSchema = yup.object().shape({
+  title: yup.string().required("لطفا عنوان کتاب را وارد کنید"),
+  writer: yup.string().required("لطفا نام نویسنده را وارد کنید"),
+  summary: yup.string().required("لطفا خلاصه کتاب را وارد کنید"),
+  publication: yup.string().required("لطفا نام انتشارات را وارد کنید"),
+  publicationYear: yup.string().required("لطفا سال انتشار را وارد کنید"),
+  image: yup
+    .mixed()
+    .required("لطفا تصویر جلد کتاب را بارگزاری کنید")
+    .test("fileSize", "حجم فایل زیاد است ", (value) => {
+      return value && value.size <= 2000000;
+    })
+    .test(
+      "type",
+      "لطفا تنها از این فرمت ها استفاده کنید: .jpeg, .jpg and .png",
+      (value) => {
+        return (
+          value && (value.type === "image/jpeg" || value.type === "image/png")
+        );
+      }
+    ),
+  pdf: yup
+    .mixed()
+    .required("لطفا فایل کتاب را بارگزاری کنید")
+    .test("fileSize", "حجم فایل زیاد است ", (value) => {
+      return value && value.size <= 2000000;
+    })
+    .test(
+      "type",
+      "لطفا تنها از این فرمت ها استفاده کنید: .pdf",
+      (value) => {
+        return (
+          value && (value.type === "application/pdf" || value.type === "x-png")
+        );
+      }
+    ),
 });
