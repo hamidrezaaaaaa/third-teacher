@@ -2,17 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import back from "../../assets/pic/cover.png";
+import { BaseBackURL } from "../../constant/api";
 
-const CoverBook = ({ bookCover, bookName, writer ,id}) => {
+const CoverBook = ({ book}) => {
     const navigate =useNavigate();
   return (
-    <Container onClick={()=>{navigate(`${id}`)}}>
+    <Container onClick={()=>{navigate(`${book.id}`)}}>
       <Cover>
-        <img src={bookCover} alt={bookName} />
+        <img src={`${BaseBackURL}uploads/${book.image}`} alt={book.title} />
       </Cover>
       <Expand>
-        <p className="text">{bookName}</p>
-        <p className="text">{writer}</p>
+        <p className="text">{book.title}</p>
+        <p className="text">{book.writer}</p>
       </Expand>
     </Container>
   );
@@ -47,11 +48,13 @@ const Cover = styled.div`
   border-radius: 100%;
   background: ${(props) => props.theme.background[2]};
   position: relative;
+  /* overflow: hidden; */
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    border-radius: 100%;
+    object-fit: cover;
     transform: translate(18px, 17px);
   }
   &:before {

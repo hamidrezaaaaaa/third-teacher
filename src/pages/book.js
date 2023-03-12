@@ -8,8 +8,24 @@ import { BaseBackURL } from "../constant/api";
 import SideBar from "../components/sidebar";
 
 const Books = () => {
+  const [books, setBooks] = useState([]);
   const [sayings, setSayings] = useState([]);
   const [filterSaying, setFilterSaying] = useState({});
+
+  const getBooks = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}books`,
+    };
+
+    axios(config)
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getSayings = () => {
     let confing = {
@@ -28,6 +44,7 @@ const Books = () => {
 
   useEffect(() => {
     getSayings();
+    getBooks();
   });
 
   useEffect(() => {
@@ -36,14 +53,11 @@ const Books = () => {
     }
   }, [sayings.length > 0]);
 
-  const library = data.book.map((item, i) => {
+  const library = books.map((item, i) => {
     return (
       <CoverBook
         key={i}
-        bookCover={item.img}
-        bookName={item.name}
-        writer={item.writer}
-        id={item.id}
+        book={item}
       />
     );
   });
