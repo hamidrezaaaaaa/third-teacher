@@ -6,27 +6,14 @@ import back from "../../assets/pic/cover2.png";
 import PreviousDesktop from "../previousLink/previousDesktop";
 import axios from "axios";
 import { BaseBackURL } from "../../constant/api";
+import { useUser } from "../../context/useContext";
+import LoginModal from "./loginModal";
 
 const PreviewBook = () => {
+  const { state, dispatch } = useUser();
   const { id } = useParams();
-  const [index, setIndex] = useState(1);
   const [book, setBook] = useState({});
-  const [url, setUrl] = useState();
-
-  // const source = data.book.find((item) => parseInt(item.id) == id);
-
-  // const page = source.pages.find((x) => x.id == index);
-
-  // const turnOver = () => {
-  //   if (index < source.pages.length) {
-  //     setIndex(index + 1);
-  //   } else {
-  //     setIndex(index - 1);
-  //   }
-  //   return index;
-  // };
-
-  console.log(book);
+  const [loginModal,setLoginModal]=useState(false);
 
   const getBook = () => {
     let config = {
@@ -36,7 +23,7 @@ const PreviewBook = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         setBook(response.data);
       })
       .catch(function (error) {
@@ -48,20 +35,38 @@ const PreviewBook = () => {
     getBook();
   }, []);
 
-
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch(`${BaseBackURL}documents/${book.pdf}`).then((response) => {
+      response.blob().then((blob) => {
+        if (state.loggedIn) {
+          // Creating new object of PDF file
+          const fileURL = window.URL.createObjectURL(blob);
+          // Setting various property values
+          let alink = document.createElement("a");
+          alink.href = fileURL;
+          alink.download = `${BaseBackURL}documents/${book.pdf}`;
+          alink.click();
+        }else{
+          setLoginModal(true);
+        }
+      });
+    });
+  };
 
   return (
     <Container>
       <PreviousDesktop position="-93.3vh" />
       <Content>
-        {/* <h1>{source.name}</h1> */}
-        {/* <p className="text">{page.page}</p> */}
         <h1>{book && book.title}</h1>
         <p className="text">{book && book.summary}</p>
+      
+        <Download onClick={onButtonClick}>دریافت کتاب</Download>
       </Content>
       <Cover>
         <img src={`${BaseBackURL}uploads/${book.image}`} alt={book.title} />
       </Cover>
+      <LoginModal visible={loginModal} onClose={setLoginModal} />
     </Container>
   );
 };
@@ -236,9 +241,12 @@ const Cover = styled.div`
 
 const Download = styled.button`
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   cursor: pointer;
   outline: none;
+  width: fit-content;
+  background: #8cd7d3;
+  border-radius: 2px;
 `;
 
 export default PreviewBook;
