@@ -8,12 +8,19 @@ import axios from "axios";
 import { BaseBackURL } from "../../constant/api";
 import { useUser } from "../../context/useContext";
 import LoginModal from "./loginModal";
+import jwt_decoded from "jwt-decode";
 
 const PreviewBook = () => {
   const { state, dispatch } = useUser();
   const { id } = useParams();
   const [book, setBook] = useState({});
-  const [loginModal,setLoginModal]=useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  
+  const token = state.token;
+  let decoded;
+  if (token !== null) {
+    decoded = jwt_decoded(token);
+  }
 
   const getBook = () => {
     let config = {
@@ -31,23 +38,53 @@ const PreviewBook = () => {
       });
   };
 
+  
+
   useEffect(() => {
     getBook();
   }, []);
+
+  
 
   const onButtonClick = () => {
     // using Java Script method to get PDF file
     fetch(`${BaseBackURL}documents/${book.pdf}`).then((response) => {
       response.blob().then((blob) => {
         if (state.loggedIn) {
-          // Creating new object of PDF file
-          const fileURL = window.URL.createObjectURL(blob);
-          // Setting various property values
-          let alink = document.createElement("a");
-          alink.href = fileURL;
-          alink.download = `${BaseBackURL}documents/${book.pdf}`;
-          alink.click();
-        }else{
+          var data = JSON.stringify({
+            userId: `${decoded.userId}`,
+            productId: `${book.bookId}`,
+            orderDate: `${new Date().toLocaleString("fa")}`,
+            productName: `${book.title}`,
+            tag: `book`,
+          });
+
+          let config = {
+            method: "post",
+            url: `${BaseBackURL}orders`,
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+
+            data: data,
+          };
+
+          axios(config)
+            .then(function (response) {
+              console.log(JSON.stringify(response.data));
+              // Creating new object of PDF file
+              const fileURL = window.URL.createObjectURL(blob);
+              // Setting various property values
+              let alink = document.createElement("a");
+              alink.href = fileURL;
+              alink.download = `${BaseBackURL}documents/${book.pdf}`;
+              alink.click();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else {
           setLoginModal(true);
         }
       });
@@ -60,7 +97,7 @@ const PreviewBook = () => {
       <Content>
         <h1>{book && book.title}</h1>
         <p className="text">{book && book.summary}</p>
-      
+
         <Download onClick={onButtonClick}>دریافت کتاب</Download>
       </Content>
       <Cover>

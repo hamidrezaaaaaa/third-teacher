@@ -1,16 +1,55 @@
 import styled from "styled-components";
+import axios from "axios";
+import { BaseBackURL } from "../../../constant/api";
+import { useUser } from "../../../context/useContext";
+import { useEffect, useState } from "react";
+import jwt_decoded from "jwt-decode";
 
 const Library = () => {
+  const {state,dispatch}=useUser();
+  const [orders,setOrders]=useState([]);
+  const token = state.token;
+  let decoded;
+  if (token !== null) {
+    decoded = jwt_decoded(token);
+  }
+
+
+  const getOrders=()=>{
+    var config = {
+      method: 'get',
+      url: `${BaseBackURL}orders/${decoded.userId}`,
+      headers: { 
+        Authorization: `Bearer ${token}`,      }
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      setOrders(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  useEffect(()=>{
+    getOrders();
+  },[])
+
+  const bookOrderItems =orders.map((item,i)=>{
+    return(
+      <Item key={i}>{item.productName}</Item>
+    )
+  })
+
+  console.log(orders)
+
+
   return (
     <Container>
       <Gallery>
-        <Item></Item>
-        <Item></Item>
-        <Item></Item>
-        <Item></Item>
-        <Item></Item>
-        <Item></Item>
-        <Item></Item>
+        {bookOrderItems}
       </Gallery>
       <TurnOver>صفحه بعد</TurnOver>
     </Container>

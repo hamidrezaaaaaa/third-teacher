@@ -22,6 +22,8 @@ const reducer = (state, action) => {
       return { ...state, adminAccess: action.payload };
     case "SET_UPDATE":
       return { ...state, update: action.payload };
+    case "SET_LOGIN":
+      return { ...state, loggedIn: action.payload };
     case "SET_TOKEN":
       return { ...state, token: action.payload };
     case "CLEAR_DATA":
