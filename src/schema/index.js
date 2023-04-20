@@ -133,6 +133,10 @@ export const addSayingSchema = yup.object().shape({
   position: yup.string().required("لطفا محل نصب سخن را انتخاب کنید"),
 });
 
+export const addCategorySchema = yup.object().shape({
+  category: yup.string().required("لطفا دسته بنددی را وارد کنید"),
+});
+
 export const addbookSchema = yup.object().shape({
   title: yup.string().required("لطفا عنوان کتاب را وارد کنید"),
   writer: yup.string().required("لطفا نام نویسنده را وارد کنید"),

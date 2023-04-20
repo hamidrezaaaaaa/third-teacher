@@ -27,10 +27,10 @@ const customStyles = {
   },
 };
 
-const AddPost = ({onClose,visible}) => {
+const AddPost = ({ onClose, visible,category}) => {
   const { state, dispatch } = useUser();
 
-  const onSubmit = async (values,resetForm) => {
+  const onSubmit = async (values, resetForm) => {
     const data = new FormData();
     data.append("category", values.category);
     data.append("description", values.description);
@@ -54,16 +54,15 @@ const AddPost = ({onClose,visible}) => {
       })
       .catch((error) => {
         console.log(error);
-        if(error.response.data.error.original.code="ER_DATA_TOO_LONG" ){
+        if ((error.response.data.error.original.code = "ER_DATA_TOO_LONG")) {
           toast.error("لطفا از کاراکتر های کمتری برای توضیحات استفاده کنید", {
             position: toast.POSITION.TOP_RIGHT,
           });
-        }else{
+        } else {
           toast.error("مشکل در برقراری ارتباط با سرور", {
             position: toast.POSITION.TOP_RIGHT,
           });
         }
-        
       });
   };
 
@@ -86,8 +85,6 @@ const AddPost = ({onClose,visible}) => {
     onSubmit,
   });
 
-
-
   return (
     <Modal
       isOpen={visible}
@@ -97,24 +94,23 @@ const AddPost = ({onClose,visible}) => {
     >
       <Form onSubmit={handleSubmit} autoComplete="off">
         <label for="category">دسته بندی</label>
-        <select 
-        className="select-input"
-         placeholder="دسته بندی"
-         id="category"
-         value={values.category}
-         onChange={handleChange}
+        <select
+          className="select-input"
+          placeholder="دسته بندی"
+          id="category"
+          value={values.category}
+          onChange={handleChange}
         >
-            <option value='نور از منظر اندیشه'>نور از منظر اندیشه</option>
-            <option value='نور از منظر علم'>نور از منظر علم</option>
-            <option value='مدرسه از نور'>مدرسه از نور</option>
-            <option value='طراحی نور'>طراحی نور</option>
-            <option value='آسایش بصری'>آسایش بصری</option>
+          {category&& category.map((item,i)=>{
+            return(
+              <option value={item}>{item}</option>
+            )
+          })}
         </select>
         {errors.category && touched.category && (
           <ErrorText>{errors.category}</ErrorText>
         )}
 
-      
         <label for="description">توضیحات پست</label>
         <textarea
           rows="7"
@@ -126,19 +122,19 @@ const AddPost = ({onClose,visible}) => {
         {errors.description && touched.description && (
           <ErrorText>{errors.description}</ErrorText>
         )}
-        <label for="imageurl" >تصویر</label>
-          <input
-            id="imageurl"
-            name="imageurl"
-            type="file"
-            // value={values.imageurl}
-            onChange={(event) => {
-              setFieldValue("imageurl", event.target.files[0]);
-            }}
-          />
-          {errors.imageurl && touched.imageurl && (
-            <ErrorText>{errors.imageurl}</ErrorText>
-          )}
+        <label for="imageurl">تصویر</label>
+        <input
+          id="imageurl"
+          name="imageurl"
+          type="file"
+          // value={values.imageurl}
+          onChange={(event) => {
+            setFieldValue("imageurl", event.target.files[0]);
+          }}
+        />
+        {errors.imageurl && touched.imageurl && (
+          <ErrorText>{errors.imageurl}</ErrorText>
+        )}
         <Box>
           <button type="submit">افزودن</button>
           <div className="close" onClick={() => onClose(false)}>
@@ -146,7 +142,6 @@ const AddPost = ({onClose,visible}) => {
           </div>
         </Box>
       </Form>
-      
     </Modal>
   );
 };
@@ -173,25 +168,24 @@ const Form = styled.form`
     font-weight: 500;
   }
   input[type="file"] {
-    width:95%;
-    background:white;
-    padding:0;
+    width: 95%;
+    background: white;
+    padding: 0;
     ::-webkit-file-upload-button {
-        background: #CB9CF2;
-        color: #616283;
-        border:none;
-        padding:1vw;
-        border-radius:4px;
-      }
+      background: #cb9cf2;
+      color: #616283;
+      border: none;
+      padding: 1vw;
+      border-radius: 4px;
+    }
   }
-  .select-input{
+  .select-input {
     width: 95%;
     outline: none;
     padding: 6px;
     border: none;
     border-radius: 4px;
   }
- 
 `;
 
 const ErrorText = styled.p`

@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "../../../../../context/useContext";
 import AddPost from "./addPost";
 import EditPost from "./editPost";
+import AddCategory from "./AddCategory";
 // import AddSchool from "./addSchool";
 // import EditSchool from "./editSchools";
 
@@ -35,13 +36,15 @@ const customStyles = {
 const Educations = () => {
   const { state, dispatch } = useUser();
   const [educations, setEducations] = useState([]);
-  const [selectEducation,setSelectEducation]=useState({});
+  const [selectEducation, setSelectEducation] = useState({});
+  const [category, setCategory] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
-  const [editModal,setEditModal]=useState(false)
+  const [editModal, setEditModal] = useState(false);
+  const [categoryModal, setCategoryModal] = useState(false);
   const [reload, setReload] = useState(false);
 
-  //function for get all philosophes
+  //function for get all educations
   const getEducationns = () => {
     let config = {
       method: "get",
@@ -52,12 +55,12 @@ const Educations = () => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         setEducations(response.data);
+        setCategory(response.data.map((x) => x.category));
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
 
   //get all philosophes
   useEffect(() => {
@@ -70,12 +73,11 @@ const Educations = () => {
       <tr key={i}>
         <td>{item.id}</td>
         <td>{item.category}</td>
-        <td><p className="text">{item.description}</p> </td>
         <td>
-          <img
-            src={`${BaseBackURL}uploads/${item.imageurl}`}
-            alt={item.name}
-          />{" "}
+          <p className="text">{item.description}</p>{" "}
+        </td>
+        <td>
+          <img src={`${BaseBackURL}uploads/${item.imageurl}`} alt={item.name} />{" "}
         </td>
         <td
           onClick={() => {
@@ -96,7 +98,6 @@ const Educations = () => {
       </tr>
     );
   });
-
 
   const deleteSchool = (id) => {
     var config = {
@@ -120,15 +121,27 @@ const Educations = () => {
       });
   };
 
+  console.log("cate", category);
+
   return (
     <Container>
-      <AddPostButton
-        onClick={() => {
-          setAddModal(true);
-        }}
-      >
-        پست جدید 
-      </AddPostButton>
+      <Header>
+        <AddPostButton
+          onClick={() => {
+            setAddModal(true);
+          }}
+        >
+          پست جدید
+        </AddPostButton>
+        <AddCategoryButton
+          onClick={() => {
+            setCategoryModal(true);
+          }}
+        >
+          اضافه کردن دسته بندی
+        </AddCategoryButton>
+      </Header>
+
       <table>
         <thead>
           <tr>
@@ -150,10 +163,22 @@ const Educations = () => {
       </table>
 
       {/* addPhilosopher modal */}
-       <AddPost visible={addModal} onClose={setAddModal} />
-      
-       {/* editPhilosophe modal */}
-       <EditPost visible={editModal} onClose={setEditModal} post={selectEducation} />
+      <AddPost visible={addModal} onClose={setAddModal} category={category} />
+
+      {/* add category modal */}
+      <AddCategory
+        visible={categoryModal}
+        onClose={setCategoryModal}
+        category={category}
+        newCategory={setCategory}
+      />
+
+      {/* editPhilosophe modal */}
+      <EditPost
+        visible={editModal}
+        onClose={setEditModal}
+        post={selectEducation}
+      />
 
       {/* deleteUser modal */}
       <Modal
@@ -216,7 +241,7 @@ const Container = styled.div`
         text-align: center;
         padding: 0.5vw;
         font-size: 1.2vw;
-        .text{
+        .text {
           overflow: hidden;
           display: -webkit-box;
           -webkit-line-clamp: 4;
@@ -241,6 +266,12 @@ const Container = styled.div`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const AddPostButton = styled.div`
   background-color: #cb9cf2;
   padding: 1vw;
@@ -250,6 +281,8 @@ const AddPostButton = styled.div`
   color: #616283;
   font-weight: 500;
 `;
+
+const AddCategoryButton = styled(AddPostButton)``;
 
 const DeleteContainer = styled.div`
   display: flex;
