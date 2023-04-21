@@ -15,10 +15,7 @@
     {
       "name": "سفارش‌ها",
       "path": "orders"
-    },
-    {
-      "name": "جست‌وجو",
-      "path": "search"
     }
+
   ]
 }

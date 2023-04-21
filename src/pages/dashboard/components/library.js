@@ -25,8 +25,8 @@ const Library = () => {
     
     axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      setOrders(response.data)
+      console.log(response.data);
+      setOrders(response.data.filter(x=>x.tag=='book'))
     })
     .catch(function (error) {
       console.log(error);
@@ -37,13 +37,13 @@ const Library = () => {
     getOrders();
   },[])
 
+
   const bookOrderItems =orders.map((item,i)=>{
     return(
-      <Item key={i}>{item.productName}</Item>
+      <Item key={i}>{item.productName} <span>{item.orderDate}</span></Item>
     )
   })
 
-  console.log(orders)
 
 
   return (
@@ -82,6 +82,8 @@ box-sizing:border-box;
 width:100%;
 background:#FFFFFF;
 padding:1.5vw;
+display: flex;
+justify-content: space-between;
 @media (max-width: 800px){
   width: 100%;
   font-size: 2.5vw;

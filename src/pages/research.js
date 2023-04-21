@@ -4,10 +4,13 @@ import PreviousDesktop from "../components/previousLink/previousDesktop";
 import axios from "axios";
 import { BaseBackURL } from "../constant/api";
 import SideBar from "../components/sidebar";
+import { useNavigate } from "react-router-dom";
 
 const Research = () => {
   const [sayings, setSayings] = useState([]);
   const [filterSaying, setFilterSaying] = useState({});
+  const [research, setResearch] = useState([]);
+  const navigate = useNavigate();
 
   const getSayings = () => {
     let confing = {
@@ -24,9 +27,27 @@ const Research = () => {
       });
   };
 
+  const getResearches = () => {
+    let confing = {
+      method: "get",
+      url: `${BaseBackURL}research`,
+    };
+
+    axios(confing)
+      .then((res) => {
+        setResearch(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getSayings();
-  });
+    getResearches();
+  },[]);
+
+  console.log(research)
 
   useEffect(() => {
     if (sayings.find((x) => x.position == "پژوهش ها")) {
@@ -34,30 +55,25 @@ const Research = () => {
     }
   }, [sayings.length > 0]);
 
+  const researchItems = research.map((item, i) => {
+    return (
+      <Item key={i} onClick={()=>{navigate(`/Research/${item.id}`)}}>
+        <p className="text">{item.title}</p>
+      </Item>
+    );
+  });
+
+
   return (
     <Container>
       <Content>
         <PreviousDesktop position="-18.8vh" />
         <Title>پژوهش</Title>
         <Gallery>
-          <Item>
-            <p className="text"></p>
-          </Item>
-          <Item>
-            <p className="text"></p>
-          </Item>
-          <Item>
-            <p className="text"></p>
-          </Item>
-          <Item>
-            <p className="text"></p>
-          </Item>
-          <Item>
-            <p className="text"></p>
-          </Item>
+         {researchItems}
         </Gallery>
       </Content>
-      <SideBar saying={filterSaying} width="14.2%"  />
+      <SideBar saying={filterSaying} width="14.2%" />
     </Container>
   );
 };
@@ -70,12 +86,10 @@ const Container = styled.section`
 
   @media (max-width: 600px) {
     flex-direction: column;
-
   }
   @media (max-width: 800px) {
     flex-direction: column;
     padding: 0 8vw;
-
   }
 `;
 

@@ -69,7 +69,7 @@ const Dashboard = () => {
             <Route path="/library" element={<Library />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/search" element={<Search />} />
+            {/* <Route path="/search" element={<Search />} /> */}
           </Routes>
         </Wraper>
       </Content>

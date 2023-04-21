@@ -24,6 +24,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminDashboard from "./admin"
 import School from "./components/school";
+import PreviewResearch from "./components/researches/previewResearch";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/Book" element={<Books />} />
                 <Route path="/Book/:id" element={<PreviewBook />} />
                 <Route path="/Research" element={<Research />} />
+                <Route path="/Research/:id" element={<PreviewResearch/>} />
                 <Route path="/Competition" element={<Competition />} />
                 <Route path="/Education" element={<Education />} />
                 <Route path="/Education/:title" element={<PreviewEducation />} />
