@@ -92,7 +92,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 3.083vw;
   padding: 1.861vw 6.25vw 4vh;
-
+  flex-grow: 1;
   @media (max-width: 800px) {
     gap: 8.083vw;
   } ;

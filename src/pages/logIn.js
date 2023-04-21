@@ -60,7 +60,7 @@ const LogIn = () => {
   
       axios(config)
         .then((response) => {
-          console.log(JSON.stringify(response.data));
+          console.log('login',JSON.stringify(response.data));
           dispatch({ type: "SET_TOKEN", payload: response.data.token });
           dispatch({ type: "SET_LOGIN", payload: true});
           navigate("/dashboard");

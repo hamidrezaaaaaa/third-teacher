@@ -18,7 +18,7 @@ const PersonalInformation = () => {
       method: "get",
       url: `${BaseBackURL}user/${decoded.userId}`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${state.token}`,
       },
     };
 
@@ -26,14 +26,15 @@ const PersonalInformation = () => {
       .then((response) => {
         console.log(JSON.stringify(response.data));
         setInfo(response.data.user);
-        console.log('responce',response.data.user)
+        console.log('responce',response.data.user);
+        dispatch({ type: "SET_USER_INFO", payload: response.data.user });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
- console.log('data',info)
+//  console.log('data',info)
 
 
   useEffect(() => {

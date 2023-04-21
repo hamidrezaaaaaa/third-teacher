@@ -4,6 +4,7 @@ import React, { useReducer, useContext, useEffect } from "react";
 const initialState = {
   email: "",
   password: "",
+  userInfo: {},
   adminAccess: false,
   update: false,
   loggedIn: false,
@@ -20,6 +21,8 @@ const reducer = (state, action) => {
       return { ...state, password: action.payload };
     case "SET_ADMIN_ACCESS":
       return { ...state, adminAccess: action.payload };
+    case "SET_USER_INFO":
+      return { ...state, userInfo: action.payload };
     case "SET_UPDATE":
       return { ...state, update: action.payload };
     case "SET_LOGIN":
