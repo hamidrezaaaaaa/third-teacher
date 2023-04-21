@@ -10,6 +10,23 @@ import { BaseBackURL } from "../constant/api";
 const Education = () => {
   const [sayings, setSayings] = useState([]);
   const [filterSaying,setFilterSaying]=useState({});
+  const [category,setCategory]=useState([]);
+
+  const getEducationns = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}educations`,
+    };
+
+    axios(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        setCategory(response.data.map((x) => x.category));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const getSayings = () => {
     let confing = {
@@ -26,8 +43,11 @@ const Education = () => {
       });
   };
 
+
+
   useEffect(() => {
     getSayings();
+    getEducationns();
   });
 
 
@@ -37,8 +57,8 @@ const Education = () => {
     }
   },[sayings.length>0])
 
-  const source = data.education.map((item, i) => {
-    return <EducationCard key={i} id={item.id} name={item.name} />;
+  const source = category.map((item, i) => {
+    return <EducationCard key={i} title={item} name={item} />;
   });
   return (
     <Container>
@@ -56,6 +76,7 @@ const Container = styled.section`
   height: 70vh;
   height: auto;
   display: flex;
+  justify-content: space-between;
   padding-left: 1.736vw;
   
   @media (max-width: 600px){
@@ -73,7 +94,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 3.083vw;
   padding: 1.861vw 6.25vw 4vh;
- 
+  flex-grow: 1;
   @media (max-width: 800px) {
     gap: 8.083vw;
   } ;

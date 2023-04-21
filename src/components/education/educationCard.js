@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import back from "../../assets/pic/cover.png";
 
-const EducationCard = ({ name, id }) => {
+const EducationCard = ({ name ,title }) => {
   const navigate = useNavigate();
   return (
     <Container
       onClick={() => {
-        navigate(`${id}`);
+        navigate(`${title}`);
       }}
     >
       <h2 className="title">{name}</h2>

@@ -9,10 +9,9 @@ import { BaseBackURL } from "../../constant/api";
 import Post from "./post";
 
 const PreviewEducation = () => {
-  const { id } = useParams();
+  const { title } = useParams();
   const [posts,setPosts]=useState([]);
   const [sortPosts,setSortPosts]=useState([]);
-  const source = data.education.find((item) => parseInt(item.id) == id);
 
   const getPosts =()=>{
     let config = {
@@ -23,7 +22,7 @@ const PreviewEducation = () => {
     axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
-      setPosts(response.data);
+      setPosts(response.data.filter(x=>x.category==title));
     })
     .catch(function (error) {
       console.log(error);
@@ -34,13 +33,9 @@ const PreviewEducation = () => {
     getPosts();
   },[])
 
-  useEffect(()=>{
-    if(posts.filter(x=>x.category == source.name)){
-      setSortPosts(posts.filter(x=>x.category == source.name))
-    }
-  },[posts.length>0])
 
-  const postCards =sortPosts.map((item,i)=>{
+
+  const postCards =posts.map((item,i)=>{
     return(
       <Post key={i} post={item}/>
     )
@@ -54,7 +49,7 @@ const PreviewEducation = () => {
         {postCards}
       </Content>
       <Cover>
-        <h2 className="title">{source.name}</h2>
+        <h2 className="title">{title}</h2>
       </Cover>
     </Container>
   );
