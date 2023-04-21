@@ -4,10 +4,31 @@ import PreviousDesktop from "../components/previousLink/previousDesktop";
 import axios from "axios";
 import { BaseBackURL } from "../constant/api";
 import SideBar from "../components/sidebar";
+import { useNavigate } from "react-router-dom";
 
 const Competition = () => {
+  const navigate = useNavigate();
   const [sayings, setSayings] = useState([]);
   const [filterSaying, setFilterSaying] = useState({});
+  const [competitions, setCompetitions] = useState([]);
+
+  const getCompetitions = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}competition`,
+      headers: {},
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        setCompetitions(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const getSayings = () => {
     let confing = {
@@ -26,7 +47,8 @@ const Competition = () => {
 
   useEffect(() => {
     getSayings();
-  });
+    getCompetitions();
+  }, []);
 
   useEffect(() => {
     if (sayings.find((x) => x.position == "مسابقات")) {
@@ -34,27 +56,21 @@ const Competition = () => {
     }
   }, [sayings.length > 0]);
 
+  const competitionItems = competitions.map((item, i) => {
+    return (
+      <Item key={i}>
+        <p className="text" onClick={()=>{navigate(`${item.id}`)}} >{item.title}</p>
+      </Item>
+    );
+  });
+
   return (
     <Container>
       <Content>
         <PreviousDesktop position="-19.2vh" />
         <Title>مسابقات</Title>
         <Gallery>
-          <Item>
-            <p className="text">مسابقه مدرسه نور</p>
-          </Item>
-          <Item>
-            <p className="text">مسابقه مدرسه نور</p>
-          </Item>
-          <Item>
-            <p className="text">مسابقه مدرسه نور</p>
-          </Item>
-          <Item>
-            <p className="text">مسابقه مدرسه نور</p>
-          </Item>
-          <Item>
-            <p className="text">مسابقه مدرسه نور</p>
-          </Item>
+         {competitionItems}
         </Gallery>
       </Content>
       <SideBar saying={filterSaying} width="14.2%" />
@@ -70,12 +86,10 @@ const Container = styled.section`
 
   @media (max-width: 600px) {
     flex-direction: column;
-
   }
   @media (max-width: 800px) {
     flex-direction: column;
     padding: 0 8vw;
-
   }
 `;
 
