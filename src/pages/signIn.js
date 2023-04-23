@@ -163,9 +163,7 @@ const Content = styled.div`
   height: auto;
   flex-direction: column;
   gap: 1.736vw;
-  // padding:${(props) =>
-    props.step == 0 ? "2.25vw 6.25vw 4.861vw 0" : "3vw 6.25vw 4.861vw 0"}  ;
-  padding: ${"2.25vw 6.25vw 4.861vw 0"};
+  padding: 2.25vw 6.25vw 4.861vw 0;
 
   @media (max-width: 800px) {
     width: 90%;

@@ -743,7 +743,7 @@ const Container = styled.div`
         transform: scaleY(0.3);
     }
 }
-}
+
 
 .now{
   // border:13px solid yellow;
