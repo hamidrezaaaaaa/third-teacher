@@ -38,7 +38,7 @@ const AddPost = ({ onClose, visible,category}) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}educations`,
+      url: `${BaseBackURL}educations/`,
       data: data,
     };
 

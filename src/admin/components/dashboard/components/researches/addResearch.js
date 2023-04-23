@@ -41,7 +41,7 @@ const AddResearch = ({ onClose, visible }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}research`,
+      url: `${BaseBackURL}research/`,
       data: data,
     };
 

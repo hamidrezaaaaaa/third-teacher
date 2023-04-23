@@ -45,7 +45,7 @@ const EditPhilosophe = ({ philosophe, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}philosophes/${items.id}`,
+      url: `${BaseBackURL}philosophes/${items.id}/`,
       data: data,
     };
 

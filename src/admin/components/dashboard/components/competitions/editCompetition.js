@@ -54,7 +54,7 @@ const EditCompetition = ({ onClose, visible,competition }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}competition/${items.id}`,
+      url: `${BaseBackURL}competition/${items.id}/`,
       data: data,
     };
 

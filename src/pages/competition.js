@@ -15,7 +15,7 @@ const Competition = () => {
   const getCompetitions = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}competition`,
+      url: `${BaseBackURL}competition/`,
       headers: {},
     };
 
@@ -33,7 +33,7 @@ const Competition = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)

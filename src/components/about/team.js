@@ -16,7 +16,7 @@ const Team = () => {
   const getMembers=()=>{
     let config = {
       method: 'get',
-      url: `${BaseBackURL}members`,
+      url: `${BaseBackURL}members/`,
     };
     
     axios(config)
@@ -33,7 +33,7 @@ const Team = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)

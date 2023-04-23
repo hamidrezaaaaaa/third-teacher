@@ -43,7 +43,7 @@ const Researches = () => {
   const getResearches = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}research`,
+      url: `${BaseBackURL}research/`,
     };
 
     axios(config)
@@ -98,7 +98,7 @@ const Researches = () => {
   const deleteResearch = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}research/${id}`,
+      url: `${BaseBackURL}research/${id}/`,
     };
     axios(config)
       .then((response) => {

@@ -42,7 +42,7 @@ const AddBook = ({ onClose, visible }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}books`,
+      url: `${BaseBackURL}books/`,
       data: data,
     };
 

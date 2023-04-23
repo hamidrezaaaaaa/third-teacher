@@ -18,7 +18,7 @@ const Library = () => {
   const getOrders=()=>{
     var config = {
       method: 'get',
-      url: `${BaseBackURL}orders/${decoded.userId}`,
+      url: `${BaseBackURL}orders/${decoded.userId}/`,
       headers: { 
         Authorization: `Bearer ${token}`,      }
     };

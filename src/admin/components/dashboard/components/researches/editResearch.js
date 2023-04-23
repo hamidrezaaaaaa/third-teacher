@@ -47,7 +47,7 @@ const EditResearch = ({ research, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}research/${items.id}`,
+      url: `${BaseBackURL}research/${items.id}/`,
       data: data,
     };
 

@@ -67,7 +67,7 @@ function Account() {
     
     let config = {
       method: 'post',
-      url: `${BaseBackURL}user/logout/${decoded.userId}`,
+      url: `${BaseBackURL}user/logout/${decoded.userId}/`,
       headers: { 
         'Content-Type': 'application/json'
       },

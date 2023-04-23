@@ -41,7 +41,7 @@ const AddSaying = ({ onClose, visible }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
       headers: { 
         'Content-Type': 'application/json'
       },

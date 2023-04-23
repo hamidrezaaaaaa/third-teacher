@@ -16,7 +16,7 @@ const PersonalInformation = () => {
   const getInformation = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}user/${decoded.userId}`,
+      url: `${BaseBackURL}user/${decoded.userId}/`,
       headers: {
         Authorization: `Bearer ${state.token}`,
       },

@@ -48,7 +48,7 @@ const Educations = () => {
   const getEducationns = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}educations`,
+      url: `${BaseBackURL}educations/`,
     };
 
     axios(config)
@@ -102,7 +102,7 @@ const Educations = () => {
   const deleteSchool = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}educations/${id}`,
+      url: `${BaseBackURL}educations/${id}/`,
     };
     axios(config)
       .then((response) => {

@@ -15,7 +15,7 @@ const Books = () => {
   const getBooks = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}books`,
+      url: `${BaseBackURL}books/`,
     };
 
     axios(config)
@@ -30,7 +30,7 @@ const Books = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)

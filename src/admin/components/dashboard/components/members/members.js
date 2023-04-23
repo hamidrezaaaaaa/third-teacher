@@ -45,7 +45,7 @@ const Members = () => {
   const getMembers = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}members`,
+      url: `${BaseBackURL}members/`,
     };
 
     axios(config)
@@ -103,7 +103,7 @@ const Members = () => {
   const deleteMember = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}members/${id}`,
+      url: `${BaseBackURL}members/${id}/`,
     };
     axios(config)
       .then((response) => {

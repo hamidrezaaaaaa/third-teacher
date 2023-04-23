@@ -33,7 +33,7 @@ const Carousel = () => {
   const getCarouselData = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}philosophes`,
+      url: `${BaseBackURL}philosophes/`,
     };
     axios(config)
       .then((res) => {
@@ -58,7 +58,7 @@ const Carousel = () => {
   const getSecondCarouselData = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}schools`,
+      url: `${BaseBackURL}schools/`,
     };
     axios(config)
       .then((res) => {

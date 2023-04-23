@@ -43,7 +43,7 @@ const Schools = () => {
   const getSchools = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}schools`,
+      url: `${BaseBackURL}schools/`,
     };
 
     axios(config)
@@ -100,7 +100,7 @@ const Schools = () => {
   const deleteSchool = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}schools/${id}`,
+      url: `${BaseBackURL}schools/${id}/`,
     };
     axios(config)
       .then((response) => {

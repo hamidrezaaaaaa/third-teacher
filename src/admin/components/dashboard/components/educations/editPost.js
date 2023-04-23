@@ -43,7 +43,7 @@ const EditPost = ({ post, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}educations/${items.id}`,
+      url: `${BaseBackURL}educations/${items.id}/`,
       data: data,
     };
 

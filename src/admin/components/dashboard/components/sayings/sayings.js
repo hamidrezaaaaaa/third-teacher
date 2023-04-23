@@ -44,7 +44,7 @@ const Sayings = () => {
   const getSayings = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(config)
@@ -95,7 +95,7 @@ const Sayings = () => {
   const deleteSaying = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}sayings/${id}`,
+      url: `${BaseBackURL}sayings/${id}/`,
     };
     axios(config)
       .then((response) => {

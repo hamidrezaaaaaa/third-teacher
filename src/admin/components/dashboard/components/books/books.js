@@ -45,7 +45,7 @@ const Books = () => {
   const getBooks = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}books`,
+      url: `${BaseBackURL}books/`,
     };
 
     axios(config)
@@ -76,7 +76,7 @@ const Books = () => {
         <td>{item.publicationYear}</td>
         <td>
           <img
-            src={`${BaseBackURL}uploads/${item.image}`}
+            src={`${BaseBackURL}uploads/${item.image}/`}
             alt={item.title}
           />{" "}
         </td>
@@ -104,7 +104,7 @@ const Books = () => {
   const deleteBook = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}books/${id}`,
+      url: `${BaseBackURL}books/${id}/`,
     };
     axios(config)
       .then((response) => {

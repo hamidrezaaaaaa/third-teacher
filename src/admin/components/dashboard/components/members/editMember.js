@@ -45,7 +45,7 @@ const EditMember = ({ member, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}members/${items.id}`,
+      url: `${BaseBackURL}members/${items.id}/`,
       data: data,
     };
 

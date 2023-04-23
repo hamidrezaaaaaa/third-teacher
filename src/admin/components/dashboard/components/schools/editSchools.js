@@ -44,7 +44,7 @@ const EditSchool = ({ school, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}schools/${items.id}`,
+      url: `${BaseBackURL}schools/${items.id}/`,
       data: data,
     };
 

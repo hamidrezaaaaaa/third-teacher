@@ -13,7 +13,7 @@ function Philosopher() {
   const getCarouselData = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}philosophes`,
+      url: `${BaseBackURL}philosophes/`,
     };
     axios(config)
       .then((res) => {

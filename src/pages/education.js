@@ -15,7 +15,7 @@ const Education = () => {
   const getEducationns = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}educations`,
+      url: `${BaseBackURL}educations/`,
     };
 
     axios(config)
@@ -31,7 +31,7 @@ const Education = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)

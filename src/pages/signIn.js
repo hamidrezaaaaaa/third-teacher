@@ -20,7 +20,7 @@ const SignIn = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)
@@ -35,7 +35,7 @@ const SignIn = () => {
   const getUsers = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}user`,
+      url: `${BaseBackURL}user/`,
     };
 
     axios(config)

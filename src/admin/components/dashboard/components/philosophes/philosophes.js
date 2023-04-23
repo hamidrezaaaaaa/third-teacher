@@ -43,7 +43,7 @@ const Philosophers = () => {
   const getPhilophoses = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}philosophes`,
+      url: `${BaseBackURL}philosophes/`,
     };
 
     axios(config)
@@ -100,7 +100,7 @@ const Philosophers = () => {
   const deletePhilosophe = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}philosophes/${id}`,
+      url: `${BaseBackURL}philosophes/${id}/`,
     };
     axios(config)
       .then((response) => {

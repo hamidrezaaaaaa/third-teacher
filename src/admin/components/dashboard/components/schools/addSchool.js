@@ -39,7 +39,7 @@ const AddSchool = ({onClose,visible}) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}schools`,
+      url: `${BaseBackURL}schools/`,
       data: data,
     };
 

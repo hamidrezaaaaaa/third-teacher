@@ -25,7 +25,7 @@ const PreviewResearch = () => {
   const getResearch = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}research/${id}`,
+      url: `${BaseBackURL}research/${id}/`,
     };
 
     axios(config)
@@ -48,7 +48,7 @@ const PreviewResearch = () => {
 
   const onButtonClick = () => {
     // using Java Script method to get PDF file
-    fetch(`${BaseBackURL}documents/${research.pdf}`).then((response) => {
+    fetch(`${BaseBackURL}documents/${research.pdf}/`).then((response) => {
       response.blob().then((blob) => {
         if (state.loggedIn) {
           var data = JSON.stringify({
@@ -61,7 +61,7 @@ const PreviewResearch = () => {
 
           let config = {
             method: "post",
-            url: `${BaseBackURL}orders`,
+            url: `${BaseBackURL}orders/`,
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",

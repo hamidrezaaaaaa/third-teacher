@@ -42,7 +42,7 @@ const Users = () => {
   const getUsers = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}user`,
+      url: `${BaseBackURL}user/`,
     };
 
     axios(config)
@@ -72,7 +72,7 @@ const Users = () => {
   const deleteUser = (userId) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}user/${userId}`,
+      url: `${BaseBackURL}user/${userId}/`,
     };
 
     axios(config)

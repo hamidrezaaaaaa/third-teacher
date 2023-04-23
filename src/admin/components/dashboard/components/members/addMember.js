@@ -40,7 +40,7 @@ const AddMember = ({ onClose, visible }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}members`,
+      url: `${BaseBackURL}members/`,
       data: data,
     };
 

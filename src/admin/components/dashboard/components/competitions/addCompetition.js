@@ -46,7 +46,7 @@ const AddCompetition = ({ onClose, visible }) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}competition`,
+      url: `${BaseBackURL}competition/`,
       data: data,
     };
 

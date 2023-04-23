@@ -44,7 +44,7 @@ const EditSaying = ({ saying, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}sayings/${items.id}`,
+      url: `${BaseBackURL}sayings/${items.id}/`,
       headers: {
         "Content-Type": "application/json",
       },

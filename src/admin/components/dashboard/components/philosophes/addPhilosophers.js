@@ -39,7 +39,7 @@ const AddPhilosophers = ({onClose,visible}) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}philosophes`,
+      url: `${BaseBackURL}philosophes/`,
       data: data,
     };
 

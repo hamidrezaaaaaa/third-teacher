@@ -15,7 +15,7 @@ const Research = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)
@@ -30,7 +30,7 @@ const Research = () => {
   const getResearches = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}research`,
+      url: `${BaseBackURL}research/`,
     };
 
     axios(confing)
@@ -47,7 +47,6 @@ const Research = () => {
     getResearches();
   },[]);
 
-  console.log(research)
 
   useEffect(() => {
     if (sayings.find((x) => x.position == "پژوهش ها")) {

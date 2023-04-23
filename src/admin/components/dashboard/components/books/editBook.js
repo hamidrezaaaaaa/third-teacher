@@ -48,7 +48,7 @@ const EditBook = ({ book, onClose, visible }) => {
 
     let config = {
       method: "patch",
-      url: `${BaseBackURL}books/${items.id}`,
+      url: `${BaseBackURL}books/${items.id}/`,
       data: data,
     };
 

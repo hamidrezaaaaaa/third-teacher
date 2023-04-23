@@ -50,7 +50,7 @@ const AddUser = ({visible,onClose}) => {
 
     let config = {
       method: "post",
-      url: `${BaseBackURL}user/sign-up`,
+      url: `${BaseBackURL}user/sign-up/`,
       headers: {
         "Content-Type": "application/json",
       },

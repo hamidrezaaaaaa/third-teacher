@@ -43,7 +43,7 @@ const Competitions = () => {
   const getCompetitions = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}competition`,
+      url: `${BaseBackURL}competition/`,
     };
 
     axios(config)
@@ -99,7 +99,7 @@ const Competitions = () => {
   const deleteCompetition = (id) => {
     var config = {
       method: "delete",
-      url: `${BaseBackURL}competition/${id}`,
+      url: `${BaseBackURL}competition/${id}/`,
     };
     axios(config)
       .then((response) => {

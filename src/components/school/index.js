@@ -13,7 +13,7 @@ function School() {
   const getCarouselData = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}schools`,
+      url: `${BaseBackURL}schools/`,
     };
     axios(config)
       .then((res) => {

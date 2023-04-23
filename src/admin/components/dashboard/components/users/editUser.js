@@ -51,7 +51,7 @@ const EditUser = ({ user,onClose,visible}) => {
 
     var config = {
       method: "patch",
-      url: `${BaseBackURL}user/${user.userId}`,
+      url: `${BaseBackURL}user/${user.userId}/`,
       headers: {
         "Content-Type": "application/json",
       },

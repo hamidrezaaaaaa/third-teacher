@@ -25,7 +25,7 @@ const PreviewBook = () => {
   const getBook = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}books/${id}`,
+      url: `${BaseBackURL}books/${id}/`,
     };
 
     axios(config)
@@ -48,7 +48,7 @@ const PreviewBook = () => {
 
   const onButtonClick = () => {
     // using Java Script method to get PDF file
-    fetch(`${BaseBackURL}documents/${book.pdf}`).then((response) => {
+    fetch(`${BaseBackURL}documents/${book.pdf}/`).then((response) => {
       response.blob().then((blob) => {
         if (state.loggedIn) {
           var data = JSON.stringify({
@@ -61,7 +61,7 @@ const PreviewBook = () => {
 
           let config = {
             method: "post",
-            url: `${BaseBackURL}orders`,
+            url: `${BaseBackURL}orders/`,
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",

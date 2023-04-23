@@ -25,7 +25,7 @@ const PreviewCompetition = () => {
   const getCompetition = () => {
     let config = {
       method: "get",
-      url: `${BaseBackURL}competition/${id}`,
+      url: `${BaseBackURL}competition/${id}/`,
     };
 
     axios(config)

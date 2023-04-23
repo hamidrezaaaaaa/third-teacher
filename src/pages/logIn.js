@@ -19,7 +19,7 @@ const LogIn = () => {
   const getSayings = () => {
     let confing = {
       method: "get",
-      url: `${BaseBackURL}sayings`,
+      url: `${BaseBackURL}sayings/`,
     };
 
     axios(confing)
@@ -51,7 +51,7 @@ const LogIn = () => {
   
       var config = {
         method: "post",
-        url: `${BaseBackURL}user/login`,
+        url: `${BaseBackURL}user/login/`,
         headers: {
           "Content-Type": "application/json",
         },
