@@ -133,6 +133,11 @@ export const addSayingSchema = yup.object().shape({
   position: yup.string().required("لطفا محل نصب سخن را انتخاب کنید"),
 });
 
+export const addAboutSchema = yup.object().shape({
+  description: yup.string().required("لطفا متن را وارد کنید"),
+  active: yup.string().required("لطفا وضعیت متن را انتخاب کنید"),
+});
+
 export const addCategorySchema = yup.object().shape({
   category: yup.string().required("لطفا دسته بنددی را وارد کنید"),
 });
@@ -158,17 +163,17 @@ export const addbookSchema = yup.object().shape({
         );
       }
     ),
-  pdf: yup
-    .mixed()
-    .required("لطفا فایل کتاب را بارگزاری کنید")
-    .test("fileSize", "حجم فایل زیاد است ", (value) => {
-      return value && value.size <= 2000000;
-    })
-    .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .pdf", (value) => {
-      return (
-        value && (value.type === "application/pdf" || value.type === "x-png")
-      );
-    }),
+  // pdf: yup
+  //   .mixed()
+  //   .required("لطفا فایل کتاب را بارگزاری کنید")
+  //   .test("fileSize", "حجم فایل زیاد است ", (value) => {
+  //     return value && value.size <= 2000000;
+  //   })
+  //   .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .pdf", (value) => {
+  //     return (
+  //       value && (value.type === "application/pdf" || value.type === "x-png")
+  //     );
+  //   }),
 });
 
 export const addCompetitionSchema = yup.object().shape({
@@ -218,15 +223,15 @@ export const addResearchSchema = yup.object().shape({
         );
       }
     ),
-  pdf: yup
-    .mixed()
-    .required("لطفا فایل کتاب را بارگزاری کنید")
-    .test("fileSize", "حجم فایل زیاد است ", (value) => {
-      return value && value.size <= 2000000;
-    })
-    .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .pdf", (value) => {
-      return (
-        value && (value.type === "application/pdf" || value.type === "x-png")
-      );
-    }),
+  // pdf: yup
+  //   .mixed()
+  //   .required("لطفا فایل کتاب را بارگزاری کنید")
+  //   .test("fileSize", "حجم فایل زیاد است ", (value) => {
+  //     return value && value.size <= 2000000;
+  //   })
+  //   .test("type", "لطفا تنها از این فرمت ها استفاده کنید: .pdf", (value) => {
+  //     return (
+  //       value && (value.type === "application/pdf" || value.type === "x-png")
+  //     );
+  //   }),
 });

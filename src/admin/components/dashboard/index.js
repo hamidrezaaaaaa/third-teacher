@@ -12,6 +12,7 @@ import Educations from "./components/educations/educations";
 import Books from "./components/books/books";
 import Members from "./components/members/members";
 import Sayings from "./components/sayings/sayings";
+import About from "./components/about/about";
 
 const MainDashboard = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const MainDashboard = () => {
           <Route path="/educations" element={<Educations />} />
           <Route path="/members" element={<Members/>} />
           <Route path="/sayings" element={<Sayings/>} />
+          <Route path="/about" element={<About/>}  />
         </Routes>
       </Monitor>
     </Container>
