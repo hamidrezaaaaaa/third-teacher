@@ -42,6 +42,8 @@ const PreviewCompetition = () => {
     getCompetition();
   }, []);
 
+  console.log("ss", competition);
+
   return (
     <Container>
       <PreviousDesktop position="-93.3vh" />
@@ -50,7 +52,9 @@ const PreviewCompetition = () => {
         <p className="text">{competition && competition.expand}</p>
         <div className="data-row">
           <p className="topic">مهلت ارسال آثار</p>
-          <p className="result">{competition && competition.submitingDeadline}</p>
+          <p className="result">
+            {competition && competition.submitingDeadline}
+          </p>
         </div>
         <div className="data-row">
           <p className="topic"> تاریخ اعلام نتایج</p>
@@ -58,11 +62,27 @@ const PreviewCompetition = () => {
         </div>
         <div className="data-row">
           <p className="topic"> لینک ثبت نام</p>
-          <p className="result">{competition &&  <a href={`${competition.signupLink}`}>{competition.signupLink}</a> }</p>
+          <p
+            className="result"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              window.open(
+                `http://${competition.signupLink}`,
+                "_blank",
+                "noreferrer"
+              );
+            }}
+          >
+            {competition.signupLink}
+          </p>
         </div>
         <div className="data-row">
           <p className="topic"> وضعیت مسابقه</p>
-          <p className="result">{competition && competition.status== 'todo'? 'درحال اجرا' :'اتمام زمان برگزاری' }</p>
+          <p className="result">
+            {competition && competition.status == "todo"
+              ? "درحال اجرا"
+              : "اتمام زمان برگزاری"}
+          </p>
         </div>
         <div className="data-row">
           <p className="topic">جوایز</p>
