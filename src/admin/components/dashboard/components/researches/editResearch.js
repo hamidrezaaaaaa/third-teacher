@@ -5,7 +5,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { addResearchSchema } from "../../../../../schema";
 import Modal from "react-modal";
-
+import { Datepicker } from "@ijavad805/react-datepicker";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "../../../../../context/useContext";
@@ -133,11 +133,19 @@ const EditResearch = ({ research, onClose, visible }) => {
         )}
 
         <label for="publicationYear">سال انتشار</label>
-        <input
+        {/* <input
           placeholder="سال انتشار"
           id="publicationYear"
           value={values.publicationYear}
           onChange={handleChange}
+        /> */}
+          <Datepicker
+          id="publicationYear"
+          placeholder="سال انتشار"
+          onChange={(val) => {
+            setFieldValue("publicationYear", val.format("YYYY-MM-DD"));
+          }}
+          lang={"fa"}
         />
         {errors.publicationYear && touched.publicationYear && (
           <ErrorText>{errors.publicationYear}</ErrorText>
@@ -207,6 +215,12 @@ const Form = styled.form`
       padding: 1vw;
       border-radius: 4px;
     }
+  }
+  .__datepicker {
+    display: block;
+    width: 100%;
+    margin-right: 13px;
+    margin-left: 3px;
   }
 `;
 

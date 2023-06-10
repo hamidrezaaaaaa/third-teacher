@@ -170,8 +170,8 @@ const Researches = () => {
             <button
               className="confirm"
               onClick={() => {
-                selectResearch(selectResearch.id);
-                setDeleteModal(false);
+                deleteResearch(selectResearch.id);
+                
               }}
             >
               تایید
