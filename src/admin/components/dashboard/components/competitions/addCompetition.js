@@ -8,6 +8,8 @@ import Modal from "react-modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "../../../../../context/useContext";
+import { Datepicker } from "@ijavad805/react-datepicker";
+
 
 //style for modal
 const customStyles = {
@@ -31,7 +33,7 @@ const customStyles = {
 const AddCompetition = ({ onClose, visible }) => {
   const { state, dispatch } = useUser();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values ,{resetForm}) => {
     const data = new FormData();
     data.append("title", values.title);
     data.append("expand", values.expand);
@@ -58,6 +60,7 @@ const AddCompetition = ({ onClose, visible }) => {
         });
         onClose(false);
         dispatch({ type: "SET_UPDATE", payload: !state.update });
+        resetForm();
       })
       .catch((error) => {
         console.log(error);
@@ -131,22 +134,38 @@ const AddCompetition = ({ onClose, visible }) => {
         )}
 
         <label for="submitingDeadline">مهلت ارسال آثار</label>
-        <input
+        {/* <input
           placeholder="مهلت ارسال آثار"
           id="submitingDeadline"
           value={values.submitingDeadline}
           onChange={handleChange}
+        /> */}
+         <Datepicker
+          id="submitingDeadline"
+          placeholderText="مهلت ارسال آثار"
+          onChange={(val) => {
+            setFieldValue("submitingDeadline", val.format("YYYY-MM-DD"));
+          }}
+          lang={"fa"}
         />
         {errors.submitingDeadline && touched.submitingDeadline && (
           <ErrorText>{errors.submitingDeadline}</ErrorText>
         )}
 
         <label for="resultDeadline">زمان اعلام نتایج</label>
-        <input
+        {/* <input
           placeholder="زمان اعلام نتایج"
           id="resultDeadline"
           value={values.resultDeadline}
           onChange={handleChange}
+        /> */}
+          <Datepicker
+          id="resultDeadline"
+          placeholderText="مهلت ارسال آثار"
+          onChange={(val) => {
+            setFieldValue("resultDeadline", val.format("YYYY-MM-DD"));
+          }}
+          lang={"fa"}
         />
         {errors.resultDeadline && touched.resultDeadline && (
           <ErrorText>{errors.resultDeadline}</ErrorText>
@@ -272,6 +291,12 @@ const Form = styled.form`
     padding: 6px;
     border: none;
     border-radius: 4px;
+  }
+  .__datepicker {
+    display: block;
+    width: 100%;
+    margin-right: 13px;
+    margin-left: 3px;
   }
 `;
 

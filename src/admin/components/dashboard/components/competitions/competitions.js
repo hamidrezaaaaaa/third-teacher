@@ -220,6 +220,10 @@ const Container = styled.div`
         text-align: center;
         padding: 0.5vw;
         font-size: 1.2vw;
+        white-space: nowrap;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
         .text {
           overflow: hidden;
           display: -webkit-box;

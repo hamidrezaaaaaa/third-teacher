@@ -8,6 +8,10 @@ import Modal from "react-modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "../../../../../context/useContext";
+import { Datepicker } from "@ijavad805/react-datepicker";
+
+// First check for the pattern
+var regEx = /^\d{4}-\d{2}-\d{2}$/;
 
 //style for modal
 const customStyles = {
@@ -24,22 +28,15 @@ const customStyles = {
     backgroundColor: "#4C5675",
     border: "none",
     width: "40%",
-    height:"80%"
+    height: "80%",
   },
 };
 
-const EditCompetition = ({ onClose, visible,competition }) => {
+const EditCompetition = ({ onClose, visible, competition }) => {
   const { state, dispatch } = useUser();
-  const [items, setItems] = useState({});
-
-
-  useEffect(() => {
-    setItems(competition);
-  }, []);
-
-  console.log('res',items)
 
   const onSubmit = async (values) => {
+    console.log("valu", values);
     const data = new FormData();
     data.append("title", values.title);
     data.append("expand", values.expand);
@@ -53,9 +50,12 @@ const EditCompetition = ({ onClose, visible,competition }) => {
     data.append("image", values.image);
 
     let config = {
-      method: "post",
-      url: `${BaseBackURL}competition/${items.id}/`,
+      method: "patch",
+      url: `${BaseBackURL}competition/${competition.id}`,
       data: data,
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
     };
 
     axios(config)
@@ -91,21 +91,24 @@ const EditCompetition = ({ onClose, visible,competition }) => {
     handleSubmit,
     setFieldValue,
   } = useFormik({
+    enableReinitialize: true,
     initialValues: {
       title: competition.title,
-      expand: items.expand,
-      status: items.status,
-      submitingDeadline: items.submitingDeadline,
-      resultDeadline: items.resultDeadline,
-      signupLink: items.signupLink,
-      awards: items.awards,
-      referee: items.referee,
-      organizers: items.organizers,
+      expand: competition.expand,
+      status: competition.status,
+      submitingDeadline: competition.submitingDeadline,
+      resultDeadline: competition.resultDeadline,
+      signupLink: competition.signupLink,
+      awards: competition.awards,
+      referee: competition.referee,
+      organizers: competition.organizers,
       image: null,
     },
     validationSchema: addCompetitionSchema,
     onSubmit,
   });
+
+  console.log("val", values.submitingDeadline);
 
   return (
     <Modal
@@ -138,22 +141,40 @@ const EditCompetition = ({ onClose, visible,competition }) => {
         )}
 
         <label for="submitingDeadline">مهلت ارسال آثار</label>
-        <input
+        {/* <input
           placeholder="مهلت ارسال آثار"
           id="submitingDeadline"
           value={values.submitingDeadline}
           onChange={handleChange}
+        /> */}
+
+        <Datepicker
+          id="submitingDeadline"
+          placeholderText="مهلت ارسال آثار"
+          onChange={(val) => {
+            setFieldValue("submitingDeadline", val.format("YYYY-MM-DD"));
+          }}
+          lang={"fa"}
         />
+
         {errors.submitingDeadline && touched.submitingDeadline && (
           <ErrorText>{errors.submitingDeadline}</ErrorText>
         )}
 
         <label for="resultDeadline">زمان اعلام نتایج</label>
-        <input
+        {/* <input
           placeholder="زمان اعلام نتایج"
           id="resultDeadline"
           value={values.resultDeadline}
           onChange={handleChange}
+        /> */}
+          <Datepicker
+          id="resultDeadline"
+          placeholderText="مهلت ارسال آثار"
+          onChange={(val) => {
+            setFieldValue("resultDeadline", val.format("YYYY-MM-DD"));
+          }}
+          lang={"fa"}
         />
         {errors.resultDeadline && touched.resultDeadline && (
           <ErrorText>{errors.resultDeadline}</ErrorText>
@@ -279,6 +300,13 @@ const Form = styled.form`
     padding: 6px;
     border: none;
     border-radius: 4px;
+  }
+
+  .__datepicker {
+    display: block;
+    width: 100%;
+    margin-right: 13px;
+    margin-left: 3px;
   }
 `;
 

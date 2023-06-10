@@ -183,7 +183,7 @@ export const addCompetitionSchema = yup.object().shape({
   organizers: yup.string().required("لطفا برگزارکنندکان را وارد کنید"),
   image: yup
     .mixed()
-    .required("لطفا تصویر جلد کتاب را بارگزاری کنید")
+    .required("لطفا تصویر پوستر مسابقه را بارگزاری کنید")
     .test("fileSize", "حجم فایل زیاد است ", (value) => {
       return value && value.size <= 2000000;
     })
