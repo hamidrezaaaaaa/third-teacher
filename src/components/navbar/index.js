@@ -95,18 +95,21 @@ const Navbar = () => {
   function handleMobileNavbar() {
     setMobileNavbarSelecter((x) => !x);
   }
+
+ 
+
   return (
     <Container>
       {800 < screenWidthSize ? (
         <NavbarDesktop>
           <Logo
-            onClick={() => {
+            onClick={(e) => {
               navigate("/");
             }}
           >
             <SocialNetwork>
-              <div className="instagram"></div>
-              <div className="whatsapp"></div>
+              <div className="instagram" onClick={(e)=>{e.stopPropagation(); window.open('https://www.instagram.com/thethird_teacher', '_blank', 'noreferrer');}} ></div>
+              <div className="whatsapp" onClick={(e)=>{e.stopPropagation(); window.open('https://wa.me/09134431746', '_blank', 'noreferrer');}} ></div>
             </SocialNetwork>
           </Logo>
           <Items>{menuItemDesktop}</Items>
