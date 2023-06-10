@@ -33,6 +33,7 @@ const Container = styled.div`
     font-size: 1vw;
     font-weight: 400;
     width: 85%;
+    text-align: justify;
   }
  
 
