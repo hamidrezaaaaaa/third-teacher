@@ -90,7 +90,7 @@ const Image =styled.div`
 
 const Title=styled.h2`
   margin:0;
-  font-size:2.569vw;
+  font-size:2vw;
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
   white-space:nowrap;
@@ -102,10 +102,10 @@ const Title=styled.h2`
     position:absolute;
     top:70%;
 
-    font-size: 3vw;
+    font-size: 2.3vw;
   }
   @media (max-width: 600px){
-    font-size:4.5vh ;
+    font-size:3.2vh ;
   }
 `
 
