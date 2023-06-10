@@ -25,7 +25,6 @@ const Navbar = () => {
     return (
       <Wraper key={i}>
         <Item
-          
           onClick={(e) => {
             setSelect(i);
             navigate(x.path);
@@ -42,9 +41,17 @@ const Navbar = () => {
                 <li
                   key={g}
                   onClick={() => {
-                    navigate(z.path);
-                    handleMobileNavbar();
-                    setSelect(i);
+                    if (z.path == "/about/green-squad") {
+                      window.open(
+                        "http://creativegreencube.ir",
+                        "_blank",
+                        "noreferrer"
+                      );
+                    } else {
+                      navigate(z.path);
+                      handleMobileNavbar();
+                      setSelect(i);
+                    }
                   }}
                 >
                   {z.title}
@@ -58,7 +65,7 @@ const Navbar = () => {
   });
   const menuItemMobile = data.navbar.map((x, i) => {
     return (
-      <Wraper   key={x.section}>
+      <Wraper key={x.section}>
         <Item
           onClick={(e) => {
             if (i == 0) {
@@ -78,9 +85,17 @@ const Navbar = () => {
                 <li
                   key={z.title}
                   onClick={() => {
-                    navigate(z.path);
-                    handleMobileNavbar();
-                    setSelect(i);
+                    if (z.path == "/about/green-squad") {
+                      window.open(
+                        "http://creativegreencube.ir",
+                        "_blank",
+                        "noreferrer"
+                      );
+                    } else {
+                      navigate(z.path);
+                      handleMobileNavbar();
+                      setSelect(i);
+                    }
                   }}
                 >
                   {z.title}
@@ -96,8 +111,6 @@ const Navbar = () => {
     setMobileNavbarSelecter((x) => !x);
   }
 
- 
-
   return (
     <Container>
       {800 < screenWidthSize ? (
@@ -108,8 +121,28 @@ const Navbar = () => {
             }}
           >
             <SocialNetwork>
-              <div className="instagram" onClick={(e)=>{e.stopPropagation(); window.open('https://www.instagram.com/thethird_teacher', '_blank', 'noreferrer');}} ></div>
-              <div className="whatsapp" onClick={(e)=>{e.stopPropagation(); window.open('https://wa.me/09134431746', '_blank', 'noreferrer');}} ></div>
+              <div
+                className="instagram"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(
+                    "https://www.instagram.com/thethird_teacher",
+                    "_blank",
+                    "noreferrer"
+                  );
+                }}
+              ></div>
+              <div
+                className="whatsapp"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(
+                    "https://wa.me/09134431746",
+                    "_blank",
+                    "noreferrer"
+                  );
+                }}
+              ></div>
             </SocialNetwork>
           </Logo>
           <Items>{menuItemDesktop}</Items>
@@ -168,24 +201,23 @@ const FixNavbar = styled.div`
 `;
 
 const OverlayNav = styled.div`
-display:flex;
-height:100vh;
-position:absolute;
-position: fixed;
-top:0vh;
-overflow-y:hidden;
-touch-action: none;
-left : ${props=>props.mobileNavbarSelecter ==true ? '0%':'150%'};
-z-index:102;
-padding:0;
-background-color: #444444;
-transition: 0.7s;
-width : ${props=>props.mobileNavbarSelecter ==true ?'100%':'0'};
-overflow-x: hidden;
+  display: flex;
+  height: 100vh;
+  position: absolute;
+  position: fixed;
+  top: 0vh;
+  overflow-y: hidden;
+  touch-action: none;
+  left: ${(props) => (props.mobileNavbarSelecter == true ? "0%" : "150%")};
+  z-index: 102;
+  padding: 0;
+  background-color: #444444;
+  transition: 0.7s;
+  width: ${(props) => (props.mobileNavbarSelecter == true ? "100%" : "0")};
+  overflow-x: hidden;
 
-@media (min-width: 600px) and (max-width: 800px){
-}
-
+  @media (min-width: 600px) and (max-width: 800px) {
+  }
 `;
 
 const NavbarDesktop = styled.div`
@@ -401,12 +433,12 @@ const Wraper = styled.div`
     list-style: none;
     display: none;
     z-index: 100;
-    li{
+    li {
       font-size: 0.8vw;
     }
   }
- 
-  &:hover{
+
+  &:hover {
     .drop-down {
       position: absolute;
       display: flex;
@@ -419,21 +451,20 @@ const Wraper = styled.div`
         color: ${(props) => props.theme.textColor[0]};
         white-space: nowrap;
         text-align: center;
-       
-        cursor:pointer;
+
+        cursor: pointer;
         &:hover {
           color: ${(props) => props.theme.textColor[3]};
         }
       }
     }
   }
-  
-  @media (max-width: 800px){
-    flex-direction:column;
-    display:flex;
-    align-items:center;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
     .drop-down {
-      
       margin: 20px 0 0;
       padding: 0;
       list-style: none;
@@ -447,16 +478,16 @@ const Wraper = styled.div`
         flex-direction: column;
         background: #444444;
         gap: 1.042vw;
-        width:100%;
+        width: 100%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         li {
           color: ${(props) => props.theme.textColor[0]};
           white-space: nowrap;
-          color:white;
-          width:100%;
+          color: white;
+          width: 100%;
           text-align: center;
-          padding:5px 0 ;
-          cursor:pointer;
+          padding: 5px 0;
+          cursor: pointer;
           font-size: 1rem;
 
           &:hover {
@@ -464,8 +495,8 @@ const Wraper = styled.div`
           }
         }
       }
+    }
   }
-}
 `;
 
 const Item = styled.li`
