@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getSayings();
-  });
+  },[]);
 
 
   useEffect(()=>{

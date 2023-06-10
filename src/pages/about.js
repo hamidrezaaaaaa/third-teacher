@@ -10,6 +10,7 @@ import { useEffect } from "react";
 const About = () => {
   const [sayings, setSayings] = useState([]);
   const [filterSaying,setFilterSaying]=useState({});
+  const [aboutText,setAboutText]=useState([]);
 
   const getSayings = () => {
     let confing = {
@@ -26,9 +27,30 @@ const About = () => {
       });
   };
 
+  const getAboutText =()=>{
+
+let config = {
+  method: 'get',
+  url: `${BaseBackURL}about/`,
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+};
+
+axios.request(config)
+.then((response) => {
+  // console.log(JSON.stringify(response.data));
+  setAboutText(response.data.filter(x=>x.active == "1"));
+})
+.catch((error) => {
+  console.log(error);
+});
+  }
+
   useEffect(() => {
     getSayings();
-  });
+    getAboutText();
+  },[]);
 
 
   useEffect(()=>{
@@ -45,8 +67,8 @@ const About = () => {
         <PreviousDesktop position="-25vh" />
         <h1>درباره معلم سوم</h1>
         <div className="content">
-          <p className="text">{data.about[0].content}</p>
-          <p className="poetry">{data.about[0].poetry}</p>
+          <p className="text">{aboutText.length ==0?'محتوایی برای نمایش وجود ندارد':aboutText[0].description}</p>
+          <p className="poetry"></p>
         </div>
       </Content>
       <SideBar saying={filterSaying && filterSaying} width="14.2%" />
@@ -105,6 +127,7 @@ const Content = styled.div`
       font-size: 1vw;
       font-weight: 400;
       color: ${(props) => props.theme.textColor[1]};
+      text-align: justify;
     }
     .text {
       margin-bottom: 1.736vw;

@@ -20,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
-  });
+  },[]);
   const menuItemDesktop = data.navbar.map((x, i) => {
     return (
       <Wraper key={i}>

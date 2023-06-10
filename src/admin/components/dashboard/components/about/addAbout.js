@@ -87,8 +87,6 @@ const AddAbout = ({ onClose, visible }) => {
     onSubmit,
   });
 
-  console.log('ab',values)
-
   return (
     <Modal
       isOpen={visible}

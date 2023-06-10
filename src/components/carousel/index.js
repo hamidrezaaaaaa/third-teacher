@@ -145,7 +145,7 @@ const Carousel = () => {
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
     return () => window.removeEventListener("resize", updateMedia);
-  });
+  },[]);
 
   useOutsideAlerter(modal);
   function useOutsideAlerter(ref) {

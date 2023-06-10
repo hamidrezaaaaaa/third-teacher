@@ -45,7 +45,7 @@ const Books = () => {
   useEffect(() => {
     getSayings();
     getBooks();
-  });
+  },[]);
 
   useEffect(() => {
     if (sayings.find((x) => x.position == "کتاب ها")) {

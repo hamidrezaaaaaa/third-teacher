@@ -33,7 +33,7 @@ const LogIn = () => {
 
   useEffect(() => {
     getSayings();
-  });
+  },[]);
 
 
   useEffect(()=>{

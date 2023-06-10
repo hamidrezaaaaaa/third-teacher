@@ -42,7 +42,6 @@ const PreviewCompetition = () => {
     getCompetition();
   }, []);
 
-  console.log("ss", competition);
 
   return (
     <Container>

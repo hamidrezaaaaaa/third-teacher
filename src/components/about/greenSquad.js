@@ -26,7 +26,7 @@ const GreenSquad = () => {
 
   useEffect(() => {
     getSayings();
-  });
+  },[]);
 
 
   useEffect(()=>{
