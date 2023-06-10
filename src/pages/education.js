@@ -12,6 +12,16 @@ const Education = () => {
   const [filterSaying,setFilterSaying]=useState({});
   const [category,setCategory]=useState([]);
 
+    //for remove repeat data
+    function uniqBy(a, key) {
+      var index = [];
+      return a.filter(function (item) {
+        var k = key(item);
+        return index.indexOf(k) >= 0 ? false : index.push(k);
+      });
+    }
+  
+
   const getEducationns = () => {
     let config = {
       method: "get",
@@ -48,18 +58,20 @@ const Education = () => {
   useEffect(() => {
     getSayings();
     getEducationns();
-  });
+  },[]);
 
 
   useEffect(()=>{
     if(sayings.find(x=>x.position == "آموزش ها")){
       setFilterSaying({...sayings.find(x=>x.position == "آموزش ها")})
     }
-  },[sayings.length>0])
+  },[sayings.length])
 
-  const source = category.map((item, i) => {
+  const source =uniqBy(category, JSON.stringify).map((item, i) => {
     return <EducationCard key={i} title={item} name={item} />;
   });
+
+
   return (
     <Container>
       <Content>
