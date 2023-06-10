@@ -64,6 +64,7 @@ const Books = () => {
     getBooks();
   }, [reload, state.update]);
 
+
   //generate row of philosophes table
   const tableCell = books.map((item, i) => {
     return (
@@ -76,7 +77,7 @@ const Books = () => {
         <td>{item.publicationYear}</td>
         <td>
           <img
-            src={`${BaseBackURL}uploads/${item.image}/`}
+            src={`${BaseBackURL}uploads/${item.image}`}
             alt={item.title}
           />{" "}
         </td>
