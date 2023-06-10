@@ -423,7 +423,7 @@ const Carousel = () => {
 const ShortInfo = styled.span`
   padding: 15px 5px;
   color: #a58463;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   max-height: 57%;
   overflow: auto;
   @media (max-width: 600px) {
@@ -433,7 +433,7 @@ const ShortInfo = styled.span`
 `;
 
 const Philosopher = styled.span`
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-top: -4.5%;
   text-align: center;
   color: #4f594e;
@@ -448,8 +448,8 @@ const Philosopher = styled.span`
 `;
 
 const BorderTop = styled.div`
-  margin-top: -23px;
-  border-top: 2.9px solid #fe9900;
+  /* margin-top: -23px; */
+  /* border-top: 2.9px solid #fe9900; */
   display: flex;
   width: 25%;
   justify-content: space-between;
