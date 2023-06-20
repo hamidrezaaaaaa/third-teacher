@@ -94,7 +94,8 @@ cursor:pointer;
 
 const Image =styled.div`
 
-  width:25%;
+  width:25vw;
+  height: 25vw;
   background:${props=>props.theme.background[2]};
   border-radius:50%;
   margin: 5.083vh 1vw 2.083vw;
@@ -115,13 +116,15 @@ const Image =styled.div`
   }
   img{
     width:100%;
+    height: 100%;
     border-radius:100%;
-    object-fit:contain;
+    object-fit:cover;
     transform: translate(-1px, 23px);
   }
 
   @media (max-width: 800px){
     width:38.917vw;
+    height:38.917vw ;
     background:${props=>props.theme.background[2]};
     border-radius:50%;
     margin: 5.083vh 1vw 2.083vw;
@@ -143,13 +146,14 @@ const Image =styled.div`
     }
     img{
       width:100%;
-      object-fit:contain;
+      /* object-fit:contain; */
       transform: translate(-1px, 23px);
     }
   }
 
   @media (max-width: 600px){
-    width:60%;
+    width:53vw;
+    height: 53vw;
     background:${props=>props.theme.background[2]};
     border-radius:50%;
     margin: 5.083vh 1vw 2.083vw;
@@ -171,7 +175,7 @@ const Image =styled.div`
     }
     img{
       width:100%;
-      object-fit:contain;
+      /* object-fit:contain; */
       transform: translate(-1px, 23px);
     }
   }

@@ -651,7 +651,7 @@ const Container = styled.div`
     }
     .title{
     transform: scale(0.6);
-      margin-top:-20px;
+      /* margin-top:-20px; */
     }
 }
 

@@ -48,11 +48,11 @@ justify-content:space-around;
 `
 
 const Image =styled.div`
-  width:50%;
- 
+  width:7vw;
+ height:7vw;
   background:${props=>props.theme.background[2]};
   border-radius:100%;
-  margin:0 1vw 2.083vw;
+  /* margin:0 1vw 2.083vw; */
   position:relative;
   z-index:0;
 
@@ -61,8 +61,10 @@ const Image =styled.div`
   }
   
   @media (max-width: 600px){
-    margin-top:3vh;
+    /* margin-top:3vh; */
     // width:70%;
+    width: 30vw;
+    height: 30vw;
   }
 
 
@@ -82,19 +84,18 @@ const Image =styled.div`
   img{
     width:100%;
     border-radius:100%;
-    height:auto;
-    object-fit:contain;
+    height:100%;
+    object-fit:cover;
     transform: translate(-1px, 13px);
   }
 `
 
 const Title=styled.h2`
-  margin:0;
+  /* margin-top:20px; */
   font-size:2vw;
   font-weight:500;
   color:${props=>props.theme.textColor[1]};
   white-space:nowrap;
-  white-space: initial;
   text-align:center;
   @media (min-width: 600px) and (max-width: 800px){
     overflow:hidden;
