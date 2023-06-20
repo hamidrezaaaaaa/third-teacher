@@ -55,14 +55,15 @@ const Container = styled.div`
   }
   @media (min-width: 800px){
     align-items: flex-start;
+    padding: 5px;
     padding-bottom: 10px;
-    width: 47%;
+    width:35%;
     .cover{
       width: 100%;
       max-height: inherit;
       height: 18vw;
       img{
-        object-fit: cover;
+        object-fit: contain;
       }
       
     }
