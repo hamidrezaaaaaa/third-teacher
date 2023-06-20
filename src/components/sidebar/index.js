@@ -32,7 +32,7 @@ const Container = styled.div`
     color: ${(props) => props.theme.textColor[1]};
     font-size: 1vw;
     font-weight: 400;
-    width: 85%;
+    width: 88%;
     text-align: justify;
   }
  
