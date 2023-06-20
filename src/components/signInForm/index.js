@@ -5,6 +5,9 @@ import { signInFormSchema } from "../../schema";
 import { useUser } from "../../context/useContext";
 import { BaseBackURL } from "../../constant/api";
 import axios from "axios";
+import { Datepicker } from "@ijavad805/react-datepicker";
+import { toast } from "react-toastify";
+
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -12,18 +15,18 @@ const SignInForm = () => {
 
   const onSubmit = async (values) => {
     let data = JSON.stringify({
-      "email": `${values.email}`,
-      "password": `${state.password}`,
-      "firstname": `${values.firstName}`,
-      "lastname": `${values.lastName}`,
-      "birtday": `${values.birthPlace}`,
-      "education": `${values.education}`,
-      "university": `${values.university}`,
-      "job": `${values.job}`,
-      "mobilenumber": `${values.phoneNumber}`,
-      "province": `${values.province}`,
-      "address": `${values.address}`,
-      "postcode": `${values.postCode}`
+      email: `${values.email}`,
+      password: `${state.password}`,
+      firstname: `${values.firstName}`,
+      lastname: `${values.lastName}`,
+      birtday: `${values.birthPlace}`,
+      education: `${values.education}`,
+      university: `${values.university}`,
+      job: `${values.job}`,
+      mobilenumber: `${values.phoneNumber}`,
+      province: `${values.province}`,
+      address: `${values.address}`,
+      postcode: `${values.postCode}`,
     });
 
     let config = {
@@ -34,16 +37,19 @@ const SignInForm = () => {
       },
       data: data,
     };
-    console.log(data)
 
     axios(config)
       .then((result) => {
         console.log(result);
+        dispatch({ type: "SET_USER_INFO", payload: {email :data.email}});
         navigate("/log-in");
+        toast.success("ثبت نام با موفقیت انجام شد", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       })
       .catch((err) => {
         console.log(err);
-        console.log('sag')
+        console.log("sag");
       });
   };
 
@@ -54,6 +60,7 @@ const SignInForm = () => {
     isSubmitting,
     handleBlur,
     handleChange,
+    setFieldValue,
     handleSubmit,
   } = useFormik({
     initialValues: {
@@ -73,11 +80,12 @@ const SignInForm = () => {
     onSubmit,
   });
 
+
   return (
     <Container>
       <Title>عضویت</Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <div className="form" >
+        <div className="form">
           <input
             placeholder="نام"
             id="firstName"
@@ -96,11 +104,19 @@ const SignInForm = () => {
           {errors.lastName && touched.lastName && (
             <ErrorText>{errors.lastName}</ErrorText>
           )}
-          <input
+          {/* <input
             placeholder="تولد"
             id="birthPlace"
             value={values.birthPlace}
             onChange={handleChange}
+          /> */}
+          <Datepicker
+            id="birthPlace"
+            input={<input placeholder="تاریخ تولد" />} 
+            onChange={(val) => {
+              setFieldValue("birthPlace", val.format("YYYY-MM-DD"));
+            }}
+            lang={"fa"}
           />
           {errors.birthPlace && touched.birthPlace && (
             <ErrorText>{errors.birthPlace}</ErrorText>
@@ -177,30 +193,29 @@ const SignInForm = () => {
           )}
         </div>
         <button type="submit">عضویت</button>
-
       </Form>
     </Container>
   );
 };
 
 const Container = styled.div`
-width:100%;
-box-sizing:border-box;
-@media (max-width: 800px){
-  padding:0px 0vw 0 1vw;
-  width: 92%;
-  box-sizing:border-box;
-  margin:0 auto;
-  margin-top: -2vh;
-}
-@media (max-width: 600px){
-  heigth: auto;
   width: 100%;
-  padding:0px 0vw 0 1vw;
-  width: 100%;
-  box-sizing:border-box;
-  margin:0 auto;
-}
+  box-sizing: border-box;
+  @media (max-width: 800px) {
+    padding: 0px 0vw 0 1vw;
+    width: 92%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: -2vh;
+  }
+  @media (max-width: 600px) {
+    heigth: auto;
+    width: 100%;
+    padding: 0px 0vw 0 1vw;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
 `;
 
 const Title = styled.h1`
@@ -248,16 +263,16 @@ const Title = styled.h1`
   }
 
   `;
-  
-  const Form = styled.form`
+
+const Form = styled.form`
   display: flex;
   justify-content: space-between;
   .form {
     display: flex;
-  flex-direction: column;
-  gap: 0.736vw;
-  width: 100%;
-  input {
+    flex-direction: column;
+    gap: 0.736vw;
+    width: 100%;
+    input {
       outline: none;
       width: 70%;
       padding: 0.5vw;
@@ -274,20 +289,19 @@ const Title = styled.h1`
     background: ${(props) => props.theme.background[1]};
     padding: 0.694vw 1.389vw;
     font-size: 1vw;
-    padding:3vh;
+    padding: 3vh;
     color: ${(props) => props.theme.textColor[0]};
-    z-index:20;
+    z-index: 20;
   }
-  
-  @media (max-width: 800px){
-    
+
+  @media (max-width: 800px) {
     margin: 0 auto;
     width: 100%;
-    align-items:center;
-    gap:3vh;
-    flex-direction:column;
+    align-items: center;
+    gap: 3vh;
+    flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     button {
       margin-top: auto;
       border: none;
@@ -295,7 +309,7 @@ const Title = styled.h1`
       padding: 1.694vw 3.389vw;
       font-size: 2.7vw;
       color: ${(props) => props.theme.textColor[0]};
-      z-index:20;
+      z-index: 20;
     }
     .form {
       margin: 0 auto;
@@ -315,15 +329,15 @@ const Title = styled.h1`
     }
   }
 
-  @media (max-width: 600px){
-    box-sizing:border-box;
+  @media (max-width: 600px) {
+    box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
-    align-items:center;
-    gap:3vh;
-    flex-direction:column;
+    align-items: center;
+    gap: 3vh;
+    flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     button {
       margin-top: auto;
       border: none;
@@ -332,7 +346,7 @@ const Title = styled.h1`
       padding: 2vw 4vw;
       font-size: 3.7vw;
       color: ${(props) => props.theme.textColor[0]};
-      z-index:20;
+      z-index: 20;
     }
     .form {
       margin: 0 auto;
@@ -348,10 +362,8 @@ const Title = styled.h1`
         text-align: center;
         outline: none;
       }
-    
     }
   }
-
 `;
 
 const ErrorText = styled.p`
@@ -362,12 +374,11 @@ const ErrorText = styled.p`
   margin: 0;
   margin-right: 2%;
   margin-top: -2%;
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     font-size: 2vw;
-    padding:0.7vh;
-
+    padding: 0.7vh;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 2w;
   }
 `;

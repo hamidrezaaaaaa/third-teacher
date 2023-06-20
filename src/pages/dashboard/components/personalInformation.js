@@ -5,6 +5,7 @@ import axios from "axios";
 import { BaseBackURL } from "../../../constant/api";
 import jwt_decoded from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { ChangeToPersianDate } from "../../../utils";
 
 const PersonalInformation = () => {
   const { state, dispatch } = useUser();
@@ -34,7 +35,6 @@ const PersonalInformation = () => {
       });
   };
 
-//  console.log('data',info)
 
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const PersonalInformation = () => {
       <Form>
         <input placeholder="نام" value={info.firstname} />
         <input placeholder="نام‌ خانوادگی" value={info.lastname} />
-        <input placeholder="تولد" value={info.birtday} />
+        <input placeholder="تولد" value={ChangeToPersianDate(info.birtday)  } />
         <input placeholder="تحصیلات" value={info.education} />
         <input placeholder="دانشگاه" value={info.university} />
         <input placeholder="شغل" value={info.job} />

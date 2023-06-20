@@ -9,6 +9,7 @@ import { BaseBackURL } from "../../constant/api";
 import { useUser } from "../../context/useContext";
 import jwt_decoded from "jwt-decode";
 import LoginModal from "../books/loginModal";
+import { ChangeToPersianDate } from "../../utils";
 
 const PreviewCompetition = () => {
   const { state, dispatch } = useUser();
@@ -52,12 +53,12 @@ const PreviewCompetition = () => {
         <div className="data-row">
           <p className="topic">مهلت ارسال آثار</p>
           <p className="result">
-            {competition && competition.submitingDeadline}
+            {competition && ChangeToPersianDate(competition.submitingDeadline) }
           </p>
         </div>
         <div className="data-row">
           <p className="topic"> تاریخ اعلام نتایج</p>
-          <p className="result">{competition && competition.resultDeadline}</p>
+          <p className="result">{competition && ChangeToPersianDate(competition.resultDeadline) }</p>
         </div>
         <div className="data-row">
           <p className="topic"> لینک ثبت نام</p>

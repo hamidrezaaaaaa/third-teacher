@@ -87,12 +87,13 @@ const LogIn = () => {
       handleSubmit,
     } = useFormik({
       initialValues: {
-        userName: "",
+        userName: state.userInfo.email!==""? state.userInfo.email :"",
         password: "",
       },
       validationSchema: logInSchema,
       onSubmit,
     });
+
   return (
     <Container>
       <PreviousDesktop position="-22.5vh" />
