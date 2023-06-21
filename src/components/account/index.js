@@ -80,6 +80,7 @@ function Account() {
       dispatch({ type: "SET_LOGIN", payload: false});
       dispatch({ type: "SET_TOKEN", payload: '' });
       dispatch({ type: "SET_USER_INFO", payload: {} });
+      navigate('/')
       toast.success("خروج با موفقیت انجام شد", {
         position: toast.POSITION.TOP_RIGHT,
       });
