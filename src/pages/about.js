@@ -9,8 +9,8 @@ import { useEffect } from "react";
 
 const About = () => {
   const [sayings, setSayings] = useState([]);
-  const [filterSaying,setFilterSaying]=useState({});
-  const [aboutText,setAboutText]=useState([]);
+  const [filterSaying, setFilterSaying] = useState({});
+  const [aboutText, setAboutText] = useState([]);
 
   const getSayings = () => {
     let confing = {
@@ -27,54 +27,94 @@ const About = () => {
       });
   };
 
-  const getAboutText =()=>{
+  const getAboutText = () => {
+    let config = {
+      method: "get",
+      url: `${BaseBackURL}about/`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-let config = {
-  method: 'get',
-  url: `${BaseBackURL}about/`,
-  headers: { 
-    'Content-Type': 'application/json'
-  },
-};
-
-axios.request(config)
-.then((response) => {
-  // console.log(JSON.stringify(response.data));
-  setAboutText(response.data.filter(x=>x.active == "1"));
-})
-.catch((error) => {
-  console.log(error);
-});
-  }
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        setAboutText(response.data.filter((x) => x.active == "1"));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     getSayings();
     getAboutText();
-  },[]);
+  }, []);
 
-
-  useEffect(()=>{
-    if(sayings.find(x=>x.position == "درباره ما")){
-      setFilterSaying({...sayings.find(x=>x.position == "درباره ما")})
+  useEffect(() => {
+    if (sayings.find((x) => x.position == "درباره ما")) {
+      setFilterSaying({ ...sayings.find((x) => x.position == "درباره ما") });
     }
-  },[sayings.length>0])
-
-
+  }, [sayings.length > 0]);
 
   return (
-    <Container>
-      <Content>
-        <PreviousDesktop position="-25vh" />
-        <h1>درباره معلم سوم</h1>
+    <Wraper>
+      <Container>
+        <Content>
+          <PreviousDesktop position="-25vh" />
+          <h1>درباره معلم سوم</h1>
+          <div className="content">
+            <p className="text">
+              {aboutText.length == 0
+                ? "محتوایی برای نمایش وجود ندارد"
+                : aboutText[0].description}
+            </p>
+            <p className="poetry"></p>
+          </div>
+        </Content>
+
+        <SideBar saying={filterSaying && filterSaying} width="14.2%" />
+      </Container>
+      <AboutContainer>
+        <h1>راه‌های ارتباط با ما</h1>
         <div className="content">
-          <p className="text">{aboutText.length ==0?'محتوایی برای نمایش وجود ندارد':aboutText[0].description}</p>
-          <p className="poetry"></p>
+          <div className="text-row">
+            <p className="subject">آدرس اینستاگرام :</p>
+            <p
+              className="result"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(
+                  "https://www.instagram.com/thethird_teacher",
+                  "_blank",
+                  "noreferrer"
+                );
+              }}
+            >
+              thethird_teacher
+            </p>
+          </div>
+          <div className="text-row">
+            <p className="subject"> ایمیل :</p>
+            <p className="result">info@thethirdteacher.ir</p>
+          </div>
+          <div className="text-row">
+            <p className="subject"> شماره موبایل :</p>
+            <p className="result">09134431746</p>
+          </div>
         </div>
-      </Content>
-      <SideBar saying={filterSaying && filterSaying} width="14.2%" />
-    </Container>
+      </AboutContainer>
+    </Wraper>
   );
 };
+
+const Wraper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* overflow: hidden; */
+`;
 
 const Container = styled.section`
   width: 100%;
@@ -225,5 +265,65 @@ const Content = styled.div`
   }
 `;
 const Sidbar = styled.div``;
+
+const AboutContainer = styled(Content)`
+  margin-top: -20%;
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .text-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .subject {
+        margin: 0;
+        padding: 0;
+        font-size: 1vw;
+        font-weight: 400;
+        color: ${(props) => props.theme.textColor[1]};
+        line-height: 2.5rem;
+      }
+      .result {
+        margin: 0;
+        padding: 0;
+        font-size: 1vw;
+        font-weight: 400;
+        color: ${(props) => props.theme.textColor[2]};
+        line-height: 2.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    margin-top: 0;
+    width: 90%;
+    margin: auto;
+    .content {
+      .text-row {
+        .subject,
+        .result {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    margin-top: 0;
+    width: 90%;
+    margin: auto;
+    .content {
+      .text-row {
+        width: 100%;
+        justify-content: space-between;
+        .subject,
+        .result {
+          font-size: 3vw;
+        }
+      }
+    }
+  }
+`;
 
 export default About;
