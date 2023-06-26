@@ -120,7 +120,7 @@ const Navbar = () => {
               navigate("/");
             }}
           >
-            <SocialNetwork>
+            {/* <SocialNetwork>
               <div
                 className="instagram"
                 onClick={(e) => {
@@ -143,7 +143,7 @@ const Navbar = () => {
                   );
                 }}
               ></div>
-            </SocialNetwork>
+            </SocialNetwork> */}
           </Logo>
           <Items>{menuItemDesktop}</Items>
           <Search>
@@ -323,7 +323,7 @@ const SocialNetwork = styled.div`
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  width: 7vw;
+  width: 5vw;
   height: 5vw;
   background-repeat: no-repeat;
   background-size: contain;

@@ -237,11 +237,11 @@ const Member = styled.div`
     .post {
       margin: 10px 0;
       color: ${(props) => props.theme.textColor[1]};
-      font-size: 2vw;
+      font-size: 2.5vw;
       font-weight: 200;
     }
     .education{
-      font-size: 1.2vw;
+      font-size: 2.3vw;
     }
    }
 `;
