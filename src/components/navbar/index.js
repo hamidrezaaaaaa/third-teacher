@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import instagram from "../../assets/icon/insta.svg";
 import whatsapp from "../../assets/icon/what.svg";
-import logo from "../../assets/logo/logo.jpg";
+import logo from "../../assets/logo/logo.png";
 import search from "../../assets/icon/search.png";
 import data from "../../data/navbar.json";
 import { useNavigate } from "react-router-dom";
