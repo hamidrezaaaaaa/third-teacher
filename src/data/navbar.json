@@ -6,10 +6,10 @@
     },
     {
       "section": " درباره معلم سوم",
-      "path": "/about",
       "dropDown": [
         { "title": "اعضای گروه", "path": "/about/team" },
         { "title": "معلم سوم", "path": "about" },
+        { "title": "ارتباط با ما", "path": "/about/contact-us" },
         { "title": "مکعب سبز خلاق", "path": "/about/green-squad" }
       ]
     },

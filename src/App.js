@@ -26,6 +26,7 @@ import AdminDashboard from "./admin"
 import School from "./components/school";
 import PreviewResearch from "./components/researches/previewResearch";
 import PreviewCompetition from "./components/competition/previewCompetition";
+import ContactUs from "./components/about/contactUs";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/Education/:title" element={<PreviewEducation />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/about/team" element={<Team />} />
+                <Route path="/about/contact-us" element={<ContactUs/>}/>
                 <Route path="/about/green-squad" element={<GreenSquad />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-in" element={<SignIn />} />
