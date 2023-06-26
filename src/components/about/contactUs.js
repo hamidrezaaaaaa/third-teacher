@@ -83,10 +83,50 @@ const ContactUs = () => {
             </div>
             <div className="text-row">
               <p className="subject"> ایمیل :</p>
-              <p className="result">info@thethirdteacher.ir</p>
+              <p
+                className="result"
+                onClick={(e) => {
+                  window.location.href = "mailto:info@thethirdteacher.ir";
+                  e.preventDefault();
+                }}
+              >
+                info@thethirdteacher.ir
+              </p>
             </div>
             <div className="text-row">
               <p className="subject"> شماره موبایل :</p>
+              <p
+                className="result"
+                onClick={(e) => {
+                  window.open("tel:09134431746");
+                  e.preventDefault();
+                }}
+              >
+                09134431746
+              </p>
+            </div>
+            <div className="text-row">
+              <p className="subject"> تلگرام :</p>
+              <p className="result">09134431746</p>
+            </div>
+            <div className="text-row">
+              <p className="subject"> واتس‌آپ :</p>
+              <p
+                className="result"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(
+                    "https://wa.me/09134431746",
+                    "_blank",
+                    "noreferrer"
+                  );
+                }}
+              >
+                09134431746
+              </p>
+            </div>
+            <div className="text-row">
+              <p className="subject"> ایتا :</p>
               <p className="result">09134431746</p>
             </div>
           </div>
@@ -152,10 +192,12 @@ const Content = styled.div`
     justify-content: space-between;
     border: 3px solid #ffcf87;
     padding: 2vw;
+
     .text-row {
       display: flex;
       align-items: center;
       gap: 10px;
+      width: 50%;
       .subject {
         margin: 0;
         padding: 0;
@@ -207,6 +249,7 @@ const Content = styled.div`
       margin: 1vh auto;
       box-sizing: border-box;
       .text-row {
+        width: 50%;
         .subject,
         .result {
           font-size: 2vw;
